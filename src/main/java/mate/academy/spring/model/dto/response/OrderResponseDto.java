@@ -1,8 +1,5 @@
 package mate.academy.spring.model.dto.response;
 
-import mate.academy.spring.model.Ticket;
-import mate.academy.spring.model.User;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
