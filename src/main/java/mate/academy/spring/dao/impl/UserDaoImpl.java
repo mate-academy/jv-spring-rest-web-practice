@@ -24,4 +24,13 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             return query.uniqueResultOptional();
         }
     }
+
+    @Override
+    public Optional<User> get(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return Optional.ofNullable(session.get(User.class, id));
+        } catch (Exception e) {
+            throw new RuntimeException("Can't get user by id: " + id);
+        }
+    }
 }
