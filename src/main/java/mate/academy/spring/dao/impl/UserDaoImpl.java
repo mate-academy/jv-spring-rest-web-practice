@@ -32,6 +32,8 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                     + "WHERE u.email = :email", User.class);
             query.setParameter("email", email);
             return query.uniqueResultOptional();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't find user by email: " + email, e);
         }
     }
 }
