@@ -20,14 +20,15 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     @Override
     public List<Order> getOrdersHistory(User user) {
         try (Session session = sessionFactory.openSession()) {
-            Query<Order> query = session.createQuery("FROM Order o "
+            Query<Order> query = session.createQuery(
+                    "FROM Order o "
                     + "left join fetch o.tickets "
                     + "left join fetch o.user "
                     + "WHERE o.user = :user", Order.class);
             query.setParameter("user", user);
             return query.getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("Cannot find orders of user by user: " + "user", e);
+            throw new DataProcessingException("Can`t find orders of user by user: " + user, e);
         }
     }
 }

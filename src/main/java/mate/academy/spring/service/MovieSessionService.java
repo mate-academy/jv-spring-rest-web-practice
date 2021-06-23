@@ -5,7 +5,7 @@ import java.util.List;
 import mate.academy.spring.model.MovieSession;
 
 public interface MovieSessionService {
-    List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);
+    List<MovieSession> findAvailableSessionsForMovieByIdAndDate(Long movieId, LocalDate date);
 
     MovieSession get(Long id);
 

@@ -26,7 +26,8 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
+    public List<MovieSession> findAvailableSessionsForMovieByIdAndDate(
+            Long movieId, LocalDate date) {
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<MovieSession> criteriaQuery =
@@ -69,8 +70,8 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Could not update movie session with id "
-                    + movieSession.getId() + ". ", e);
+            throw new DataProcessingException("Could not update movie session "
+                    + movieSession + ". ", e);
         } finally {
             if (session != null) {
                 session.close();
