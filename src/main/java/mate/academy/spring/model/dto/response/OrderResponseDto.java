@@ -2,9 +2,9 @@ package mate.academy.spring.model.dto.response;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import lombok.Data;
+import lombok.Setter;
 
-@Data
+@Setter
 public class OrderResponseDto {
     private Long id;
     private List<Long> ticketIds;

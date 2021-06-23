@@ -1,8 +1,8 @@
 package mate.academy.spring.model.dto.request;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class UserRequestDto {
     private String email;
     private String password;
