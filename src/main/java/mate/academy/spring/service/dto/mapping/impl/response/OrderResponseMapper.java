@@ -13,7 +13,6 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
         responseDto.setId(order.getId());
         responseDto.setOrderDate(order.getOrderDate());
         responseDto.setTickets(order.getTickets());
-        responseDto.setUser(order.getUser());
         return responseDto;
     }
 }

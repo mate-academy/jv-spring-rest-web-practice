@@ -11,5 +11,4 @@ public class OrderResponseDto {
     private Long id;
     private List<Ticket> tickets;
     private LocalDateTime orderDate;
-    private User user;
 }
