@@ -1,6 +1,5 @@
 package mate.academy.spring.service.impl;
 
-import java.util.Optional;
 import mate.academy.spring.dao.UserDao;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
@@ -23,7 +22,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userDao.findByEmail(email);
+    public User findByEmail(String email) {
+        return userDao.findByEmail(email).get();
+    }
+
+    @Override
+    public User getById(Long userId) {
+        return userDao.getById(userId).get();
     }
 }
