@@ -1,0 +1,23 @@
+package mate.academy.spring.service.dto.mapping.impl.response;
+
+import java.util.stream.Collectors;
+import mate.academy.spring.model.ShoppingCart;
+import mate.academy.spring.model.Ticket;
+import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
+import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ShoppingCartResponseMapper implements DtoResponseMapper<ShoppingCartResponseDto,
+        ShoppingCart> {
+    @Override
+    public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
+        ShoppingCartResponseDto shoppingCardResponseDto = new ShoppingCartResponseDto();
+        shoppingCardResponseDto.setId(shoppingCart.getId());
+        shoppingCardResponseDto.setUserId(shoppingCart.getUser().getId());
+        shoppingCardResponseDto.setTicketsId(shoppingCart.getTickets().stream()
+                .map(Ticket::getId)
+                .collect(Collectors.toList()));
+        return shoppingCardResponseDto;
+    }
+}
