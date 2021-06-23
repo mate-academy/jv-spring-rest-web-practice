@@ -36,8 +36,7 @@ public class ShoppingCartController {
                                      @RequestParam Long movieSessionId) {
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         User user = userService.get(userId);
-        shoppingCartService.addSession(movieSession,
-                user);
+        shoppingCartService.addSession(movieSession, user);
         return "Added movie session to shopping cart";
     }
 
