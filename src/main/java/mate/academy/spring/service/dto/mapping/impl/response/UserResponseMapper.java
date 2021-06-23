@@ -12,6 +12,7 @@ public class UserResponseMapper implements DtoResponseMapper<UserResponseDto, Us
     public UserResponseDto toDto(User user) {
         UserResponseDto response = new UserResponseDto();
         response.setEmail(user.getEmail());
+        response.setId(user.getId());
         return response;
     }
 }
