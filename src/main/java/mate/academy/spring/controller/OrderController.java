@@ -29,7 +29,7 @@ public class OrderController {
         this.shoppingCartService = shoppingCartService;
     }
 
-    @PostMapping("complete")
+    @PostMapping("/complete")
     public OrderResponseDto complete(@RequestParam Long userId) {
         return orderDtoMapper.toDto(orderService.completeOrder(shoppingCartService
                 .getByUser(userService.getById(userId))));
