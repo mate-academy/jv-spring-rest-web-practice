@@ -87,6 +87,6 @@ public class DataInjector {
         MovieSession movieSession5 = new MovieSession(fastAndFurious, redCinemaHall,
                 LocalDateTime.now().plusMinutes(5).plusHours(5).plusDays(5));
         movieSessionService.add(movieSession5);
-        return "Added mock data DB!";
+        return "Mock data added to DB!";
     }
 }

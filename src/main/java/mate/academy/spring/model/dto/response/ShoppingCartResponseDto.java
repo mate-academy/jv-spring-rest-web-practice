@@ -15,16 +15,8 @@ public class ShoppingCartResponseDto {
         this.id = id;
     }
 
-    public List<Long> getTicketIds() {
-        return ticketIds;
-    }
-
     public void setTicketIds(List<Long> ticketIds) {
         this.ticketIds = ticketIds;
-    }
-
-    public Long getUserId() {
-        return userId;
     }
 
     public void setUserId(Long userId) {
