@@ -7,15 +7,17 @@ import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieSessionResponseMapper implements DtoResponseMapper<MovieSessionResponseDto,
-                                                                     MovieSession> {
+public class MovieSessionResponseMapper
+        implements DtoResponseMapper<MovieSessionResponseDto, MovieSession> {
+    private static final String PATTERN = "dd.MM.yyyy HH:mm";
+
     @Override
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());
         movieSessionResponseDto.setMovieTitle(movieSession.getMovie().getTitle());
         movieSessionResponseDto.setShowTime(movieSession
-                .getShowTime().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")));
+                .getShowTime().format(DateTimeFormatter.ofPattern(PATTERN)));
         movieSessionResponseDto.setCinemaHallCapacity(movieSession.getCinemaHall().getCapacity());
         return movieSessionResponseDto;
     }
