@@ -5,7 +5,6 @@ import javax.annotation.PostConstruct;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
-import mate.academy.spring.model.User;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.MovieSessionService;
@@ -70,24 +69,6 @@ public class AppInitializer {
 
         movieSessionService.add(tomorrowMovieSession);
         movieSessionService.add(yesterdayMovieSession);
-
-        User bob = new User();
-        bob.setEmail("bob@gmail.com");
-        bob.setPassword("1234");
-        userService.add(bob);
-        String bobsEmail = "bob@gmail.com";
-        System.out.println(userService.findByEmail(bobsEmail));
-
-        User alice = new User();
-        bob.setEmail("alice@gmail.com");
-        bob.setPassword("1234");
-        userService.add(alice);
-        String aliceEmail = "bob@gmail.com";
-        System.out.println(userService.findByEmail(aliceEmail));
-
-        shoppingCartService.registerNewShoppingCart(bob);
-        shoppingCartService.addSession(tomorrowMovieSession, bob);
-        System.out.println(shoppingCartService.getByUser(bob));
 
         return "Initialized!";
     }
