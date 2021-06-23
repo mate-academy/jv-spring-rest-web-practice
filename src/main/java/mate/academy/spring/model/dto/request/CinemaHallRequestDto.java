@@ -11,4 +11,12 @@ public class CinemaHallRequestDto {
     public String getDescription() {
         return description;
     }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

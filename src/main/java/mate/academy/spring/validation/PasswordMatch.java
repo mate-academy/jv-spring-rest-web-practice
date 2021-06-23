@@ -12,7 +12,7 @@ import javax.validation.Payload;
 @Target({TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PasswordMatch {
-    String message() default "Passwords don't match each other";
+    String message() default "Invalid password";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

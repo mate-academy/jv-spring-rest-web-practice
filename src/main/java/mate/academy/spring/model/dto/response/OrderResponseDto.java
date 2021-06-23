@@ -24,4 +24,20 @@ public class OrderResponseDto {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public List<Long> getTicketsIds() {
+        return ticketsIds;
+    }
+
+    public LocalDateTime getOrderDate() {
+        return orderDate;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
 }

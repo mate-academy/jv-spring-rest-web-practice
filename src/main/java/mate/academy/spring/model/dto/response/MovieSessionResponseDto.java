@@ -21,4 +21,20 @@ public class MovieSessionResponseDto {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getMovieTitle() {
+        return movieTitle;
+    }
+
+    public String getShowTime() {
+        return showTime;
+    }
+
+    public int getCinemaHallCapacity() {
+        return cinemaHallCapacity;
+    }
 }

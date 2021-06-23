@@ -24,7 +24,7 @@ public class AppInitializer {
     }
 
     @PostConstruct
-    public String initialize() {
+    public void initialize() {
         Movie fastAndFurious = new Movie("Fast and Furious");
         fastAndFurious.setDescription("An action film about street racing, heists, and spies.");
         movieService.add(fastAndFurious);
@@ -56,7 +56,5 @@ public class AppInitializer {
 
         movieSessionService.add(tomorrowMovieSession);
         movieSessionService.add(yesterdayMovieSession);
-
-        return "Initialized!";
     }
 }

@@ -16,4 +16,16 @@ public class MovieSessionRequestDto {
     public Long getCinemaHallId() {
         return cinemaHallId;
     }
+
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
+    }
+
+    public void setShowTime(String showTime) {
+        this.showTime = showTime;
+    }
+
+    public void setCinemaHallId(Long cinemaHallId) {
+        this.cinemaHallId = cinemaHallId;
+    }
 }
