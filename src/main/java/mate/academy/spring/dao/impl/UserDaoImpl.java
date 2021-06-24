@@ -3,6 +3,7 @@ package mate.academy.spring.dao.impl;
 import java.util.Optional;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.UserDao;
+import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,6 +23,15 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                     + "WHERE u.email = :email", User.class);
             query.setParameter("email", email);
             return query.uniqueResultOptional();
+        }
+    }
+
+    @Override
+    public Optional<User> findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return Optional.ofNullable(session.get(User.class, id));
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't get a user by id: " + id, e);
         }
     }
 }
