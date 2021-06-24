@@ -3,8 +3,7 @@ package mate.academy.spring.model.dto.response;
 import lombok.Data;
 
 @Data
-public class MovieResponseDto {
+public class UserResponseDto {
     private Long id;
-    private String title;
-    private String description;
+    private String email;
 }
