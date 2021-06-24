@@ -37,4 +37,14 @@ public class MovieSessionResponseDto {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "MovieSessionResponseDto{"
+                + " id=" + id
+                + ", movieTitle='" + movieTitle + '\''
+                + ", showTime='" + showTime + '\''
+                + ", cinemaHallCapacity=" + cinemaHallCapacity
+                + '}';
+    }
 }
