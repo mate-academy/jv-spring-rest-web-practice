@@ -29,10 +29,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     @Override
     public Optional<User> findById(Long userId) {
         try (Session session = sessionFactory.openSession()) {
-            Query<User> query = session.createQuery("FROM User u "
-                    + "WHERE u.id = :userId", User.class);
-            query.setParameter("userId", userId);
-            return query.uniqueResultOptional();
+            return Optional.ofNullable(session.get(User.class, userId));
         } catch (Exception e) {
             throw new DataProcessingException("Can't find user with id " + userId, e);
         }
