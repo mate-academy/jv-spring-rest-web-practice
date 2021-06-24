@@ -31,7 +31,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         try (Session session = sessionFactory.openSession()) {
             return Optional.ofNullable(session.get(User.class, id));
         } catch (Exception e) {
-            throw new RuntimeException("Can't get a user by id=" + id
+            throw new DataProcessingException("Can't get a user by id=" + id
                     + " from DB.", e);
         }
     }
