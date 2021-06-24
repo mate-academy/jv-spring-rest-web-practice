@@ -7,7 +7,6 @@ import mate.academy.spring.security.AuthenticationService;
 import mate.academy.spring.service.dto.mapping.impl.response.UserResponseDtoMapper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,8 +20,7 @@ public class AuthenticationController {
         this.userResponseDtoMapper = userResponseDtoMapper;
     }
 
-    @PostMapping
-    @RequestMapping("/register")
+    @PostMapping("/register")
     public UserResponseDto registration(@RequestBody @Valid UserRequestDto userRequestDto) {
         return userResponseDtoMapper.toDto(
                authenticationService.register(userRequestDto.getEmail(),
