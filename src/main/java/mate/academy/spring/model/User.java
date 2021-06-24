@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -17,6 +18,8 @@ public class User {
     private Long id;
     @Column(unique = true)
     private String email;
+    @ToString.Exclude
     private String password;
+    @ToString.Exclude
     private byte[] salt;
 }
