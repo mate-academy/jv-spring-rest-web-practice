@@ -1,7 +1,7 @@
 package mate.academy.spring.service.dto.mapping.impl.request;
 
 import mate.academy.spring.model.ShoppingCart;
-import mate.academy.spring.model.dto.request.ShoppingCardRequestDto;
+import mate.academy.spring.model.dto.request.ShoppingCartRequestDto;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import mate.academy.spring.service.dto.mapping.DtoRequestMapper;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ShoppingCardRequestMapper implements
-        DtoRequestMapper<ShoppingCardRequestDto, ShoppingCart> {
+        DtoRequestMapper<ShoppingCartRequestDto, ShoppingCart> {
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
 
@@ -20,7 +20,7 @@ public class ShoppingCardRequestMapper implements
     }
 
     @Override
-    public ShoppingCart fromDto(ShoppingCardRequestDto dto) {
+    public ShoppingCart fromDto(ShoppingCartRequestDto dto) {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.setUser(userService.findByEmail(dto.getUserEmail()).get());
         shoppingCart.setTickets(shoppingCartService

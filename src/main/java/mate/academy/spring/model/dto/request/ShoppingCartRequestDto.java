@@ -1,4 +1,4 @@
-package mate.academy.spring.model.dto.response;
+package mate.academy.spring.model.dto.request;
 
 import java.util.List;
 import lombok.Getter;
@@ -6,9 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ShoppingCardResponseDto {
-    private Long id;
+public class ShoppingCartRequestDto {
     private List<Long> ticketsId;
     private String userEmail;
-
 }

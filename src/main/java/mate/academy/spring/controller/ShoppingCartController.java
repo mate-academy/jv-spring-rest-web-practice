@@ -2,7 +2,7 @@ package mate.academy.spring.controller;
 
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
-import mate.academy.spring.model.dto.response.ShoppingCardResponseDto;
+import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/shopping-cards")
-public class ShoppingCardController {
-    private final DtoResponseMapper<ShoppingCardResponseDto, ShoppingCart> responseMapper;
+public class ShoppingCartController {
+    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> responseMapper;
     private final ShoppingCartService shoppingCartService;
     private final MovieSessionService movieSessionService;
     private final UserService userService;
 
-    public ShoppingCardController(DtoResponseMapper<ShoppingCardResponseDto,
+    public ShoppingCartController(DtoResponseMapper<ShoppingCartResponseDto,
             ShoppingCart> responseMapper,
                                   ShoppingCartService shoppingCartService,
                                   MovieSessionService movieSessionService,
@@ -40,7 +40,7 @@ public class ShoppingCardController {
     }
 
     @GetMapping("/by-user")
-    public ShoppingCardResponseDto getByUser(@RequestParam String userEmail) {
+    public ShoppingCartResponseDto getByUser(@RequestParam String userEmail) {
         User user = userService.findByEmail(userEmail).get();
         ShoppingCart serviceByUser = shoppingCartService.getByUser(user);
         return responseMapper.toDto(serviceByUser);
