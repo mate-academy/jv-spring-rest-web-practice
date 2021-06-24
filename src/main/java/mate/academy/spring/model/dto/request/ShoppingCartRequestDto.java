@@ -1,7 +1,7 @@
 package mate.academy.spring.model.dto.request;
 
-import jakarta.validation.constraints.NotNull;
 import java.util.List;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 import mate.academy.spring.model.Ticket;
 
