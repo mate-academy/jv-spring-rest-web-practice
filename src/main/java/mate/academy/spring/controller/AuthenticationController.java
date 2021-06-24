@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import javax.validation.Valid;
 import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.security.AuthenticationService;
@@ -22,7 +23,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public UserResponseDto register(@RequestBody UserRequestDto request) {
+    public UserResponseDto register(@RequestBody @Valid UserRequestDto request) {
         if (request.getPassword().equals(request.getRepeatPassword())) {
             responseMapper
                     .toDto(authenticationService
