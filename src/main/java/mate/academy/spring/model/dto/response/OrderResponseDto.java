@@ -9,6 +9,6 @@ import mate.academy.spring.model.User;
 @Data
 public class OrderResponseDto {
     private Long id;
-    private List<Ticket> tickets;
-    private LocalDateTime orderDate;
+    private List<Long> ticketsId;
+    private String orderDate;
 }
