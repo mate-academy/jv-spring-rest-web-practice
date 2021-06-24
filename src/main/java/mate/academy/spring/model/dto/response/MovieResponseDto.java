@@ -28,4 +28,13 @@ public class MovieResponseDto {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "MovieResponseDto{"
+                + " id=" + id
+                + ", title='" + title + '\''
+                + ", description='" + description + '\''
+                + '}';
+    }
 }

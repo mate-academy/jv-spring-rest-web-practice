@@ -19,4 +19,12 @@ public class CinemaHallResponseDto {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "CinemaHallResponseDto{"
+                + " id=" + id
+                + ", capacity=" + capacity
+                + '}';
+    }
 }
