@@ -8,5 +8,4 @@ import mate.academy.spring.model.Ticket;
 public class ShoppingCartResponseDto {
     private Long id;
     private List<Ticket> tickets;
-    private Long userId;
 }

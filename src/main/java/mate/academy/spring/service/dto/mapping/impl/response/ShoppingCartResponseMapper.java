@@ -11,9 +11,8 @@ public class ShoppingCartResponseMapper implements
     @Override
     public ShoppingCartResponseDto parseToDto(ShoppingCart cart) {
         ShoppingCartResponseDto responseDto = new ShoppingCartResponseDto();
-        responseDto.setId(cart.getId());
+        responseDto.setId(cart.getUser().getId());
         responseDto.setTickets(cart.getTickets());
-        responseDto.setUserId(cart.getUser().getId());
         return responseDto;
     }
 }
