@@ -1,14 +1,9 @@
 package mate.academy.spring.model.dto.response;
 
+import lombok.Data;
+
+@Data
 public class UserResponseDto {
     private Long id;
     private String email;
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
