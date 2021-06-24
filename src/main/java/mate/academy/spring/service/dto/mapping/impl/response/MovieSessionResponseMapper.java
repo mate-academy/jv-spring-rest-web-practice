@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class MovieSessionResponseMapper implements DtoResponseMapper<MovieSessionResponseDto,
                                                                      MovieSession> {
     @Override
-    public MovieSessionResponseDto toDto(MovieSession movieSession) {
+    public MovieSessionResponseDto parseToDto(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());
         movieSessionResponseDto.setMovieTitle(movieSession.getMovie().getTitle());
