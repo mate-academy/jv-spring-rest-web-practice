@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AuthenticationController {
-    final AuthenticationService authenticationService;
-    final UserResponseMapper userResponseMapper;
+    private final AuthenticationService authenticationService;
+    private final UserResponseMapper userResponseMapper;
 
     public AuthenticationController(AuthenticationService authenticationService,
                                     UserResponseMapper userResponseMapper) {
