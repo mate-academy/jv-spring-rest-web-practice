@@ -5,7 +5,6 @@ import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class UserResponseMapper implements DtoResponseMapper<UserResponseDto, User> {
 
