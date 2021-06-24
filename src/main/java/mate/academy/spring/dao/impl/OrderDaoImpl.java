@@ -27,7 +27,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
             query.setParameter("user", user);
             return query.getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("Cannot find orders of user by user: " + "user", e);
+            throw new DataProcessingException("Cannot find orders of user by user: " + user, e);
         }
     }
 }
