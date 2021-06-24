@@ -34,7 +34,7 @@ public class OrderController {
         this.orderResponseMapper = orderResponseMapper;
     }
 
-    @PostMapping("/order_complete")
+    @PostMapping("/order-complete")
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
         User user = userService.getById(userId);
         ShoppingCart shoppingCart = cartService.getByUser(user);

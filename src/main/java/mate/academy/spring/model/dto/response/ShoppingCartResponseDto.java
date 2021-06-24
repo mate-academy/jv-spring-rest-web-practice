@@ -5,7 +5,6 @@ import lombok.Data;
 
 @Data
 public class ShoppingCartResponseDto {
-    private Long id;
     private List<Long> ticketsId;
     private Long userId;
 }
