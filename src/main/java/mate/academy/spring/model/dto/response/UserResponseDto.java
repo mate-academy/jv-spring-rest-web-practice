@@ -4,9 +4,7 @@ import java.util.List;
 
 public class UserResponseDto {
     private Long id;
-    private List<Long> ticketIds;
-    private String orderDate;
-    private Long userId;
+    private String email;
 
     public Long getId() {
         return id;
@@ -16,27 +14,11 @@ public class UserResponseDto {
         this.id = id;
     }
 
-    public List<Long> getTicketIds() {
-        return ticketIds;
+    public String getEmail() {
+        return email;
     }
 
-    public void setTicketIds(List<Long> ticketIds) {
-        this.ticketIds = ticketIds;
-    }
-
-    public String getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(String orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
