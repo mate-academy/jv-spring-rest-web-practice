@@ -13,11 +13,10 @@ public class ShoppingCartResponseMapper
     @Override
     public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
         ShoppingCartResponseDto responseDto = new ShoppingCartResponseDto();
-        responseDto.setId(shoppingCart.getId());
+        responseDto.setId(shoppingCart.getUser().getId());
         responseDto.setTicketsId(shoppingCart.getTickets().stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList()));
-        responseDto.setUserId(shoppingCart.getUser().getId());
         return responseDto;
     }
 }
