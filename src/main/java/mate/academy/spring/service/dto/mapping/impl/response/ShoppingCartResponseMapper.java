@@ -8,7 +8,8 @@ import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ShoppingCartResponseMapper implements DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> {
+public class ShoppingCartResponseMapper implements
+        DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> {
     public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
         return new ShoppingCartResponseDto(
                 shoppingCart.getId(),
