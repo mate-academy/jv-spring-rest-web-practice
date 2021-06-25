@@ -15,7 +15,7 @@ public class ShoppingCart {
     @Id
     private Long id;
     @OneToMany
-    private List<Ticket> cartId;
+    private List<Ticket> ticketsId;
     @OneToOne
     @MapsId
     @JoinColumn(name = "id")
@@ -29,12 +29,12 @@ public class ShoppingCart {
         this.id = id;
     }
 
-    public List<Ticket> getCartId() {
-        return cartId;
+    public List<Ticket> getTicketsId() {
+        return ticketsId;
     }
 
-    public void setCartId(List<Ticket> cartId) {
-        this.cartId = cartId;
+    public void setTicketsId(List<Ticket> ticketsId) {
+        this.ticketsId = ticketsId;
     }
 
     public User getUser() {
@@ -48,6 +48,6 @@ public class ShoppingCart {
     @Override
     public String toString() {
         return "ShoppingCart{" + "id=" + id + ", tickets="
-                + cartId + ", user=" + user + '}';
+                + ticketsId + ", user=" + user + '}';
     }
 }
