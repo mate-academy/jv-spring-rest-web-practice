@@ -9,5 +9,4 @@ import lombok.Data;
 public class ShoppingCartResponseDto {
     private Long id;
     private List<Long> ticketsIds;
-    private Long userId;
 }
