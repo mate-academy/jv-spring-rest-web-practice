@@ -7,13 +7,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserRequestMapper implements DtoRequestMapper<UserRequestDto, User> {
-
     @Override
     public User fromDto(UserRequestDto dto) {
         User user = new User();
         user.setPassword(dto.getPassword());
         user.setEmail(dto.getEmail());
-        user.setSalt(dto.getSalt());
         return user;
     }
 }

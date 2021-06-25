@@ -41,7 +41,7 @@ public class InjectController {
     }
 
     @GetMapping
-    public String getInject() {
+    public String injectData() {
         CinemaHall redHall = new CinemaHall();
         redHall.setCapacity(25);
         redHall.setDescription("little hall");
