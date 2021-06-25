@@ -31,14 +31,14 @@ public class MovieController {
 
     @PostMapping
     public MovieResponseDto addMovie(@RequestBody MovieRequestDto dto) {
-        Movie movie = movieService.add(movieDtoRequestMapper.fromDto(dto));
-        return movieDtoResponseMapper.toDto(movie);
+        Movie movie = movieService.add(movieDtoRequestMapper.parseFromDto(dto));
+        return movieDtoResponseMapper.parseToDto(movie);
     }
 
     @GetMapping
     public List<MovieResponseDto> getAllMovies() {
         return movieService.getAll().stream()
-                .map(movieDtoResponseMapper::toDto)
+                .map(movieDtoResponseMapper::parseToDto)
                 .collect(Collectors.toList());
     }
 }
