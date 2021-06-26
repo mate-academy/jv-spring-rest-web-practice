@@ -14,7 +14,8 @@ public class AuthenticationController {
     private final AuthenticationService service;
     private final UserResponseMapper userResponseMapper;
 
-    public AuthenticationController(AuthenticationService service, UserResponseMapper userResponseMapper) {
+    public AuthenticationController(AuthenticationService service,
+                                    UserResponseMapper userResponseMapper) {
         this.service = service;
         this.userResponseMapper = userResponseMapper;
     }
