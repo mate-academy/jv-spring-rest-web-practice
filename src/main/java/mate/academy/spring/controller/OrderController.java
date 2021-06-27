@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,13 +32,13 @@ public class OrderController {
     }
     
     @PostMapping("/complete")
-    public OrderResponseDto completeOrder(@RequestParam @Positive Long userId) {
+    public OrderResponseDto completeOrder(@RequestParam @Positive @Valid Long userId) {
         return orderResponseMapper.toDto(orderService
                 .completeOrder(shoppingCartService.getByUser(userService.findById(userId))));
     }
     
     @GetMapping
-    public List<OrderResponseDto> getOrdersHistory(@RequestParam @Positive Long userId) {
+    public List<OrderResponseDto> getOrdersHistory(@RequestParam @Positive @Valid Long userId) {
         return orderService.getOrdersHistory(userService.findById(userId)).stream()
                 .map(orderResponseMapper::toDto).collect(Collectors.toList());
     }
