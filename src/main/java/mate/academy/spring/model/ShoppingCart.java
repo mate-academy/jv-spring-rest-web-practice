@@ -18,7 +18,7 @@ public class ShoppingCart {
     private List<Ticket> tickets;
     @OneToOne
     @MapsId
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "userId")
     private User user;
 
     public Long getId() {
