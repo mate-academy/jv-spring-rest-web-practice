@@ -10,7 +10,7 @@
 - UserController
     - Get user by email - GET: /users/by-email?email
 - ShoppingCartController
-    - Add movie session - POST: /shopping-carts/movie-sessions?userId&movieSessionId
+    - Add movie session - PUT: /shopping-carts/movie-sessions?userId&movieSessionId
     - Get by user - GET: /shopping-carts/by-user?userId
 
 We will remove `userId` from request parameters in the future.
