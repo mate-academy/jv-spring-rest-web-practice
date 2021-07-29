@@ -7,7 +7,7 @@ import mate.academy.spring.model.User;
 public interface ShoppingCartService {
     void addSession(MovieSession movieSession, User user);
 
-    ShoppingCart getByUser(User user);
+    ShoppingCart getByUserId(Long userId);
 
     void registerNewShoppingCart(User user);
 

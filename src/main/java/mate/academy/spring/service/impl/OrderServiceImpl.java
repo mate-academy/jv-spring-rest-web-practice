@@ -6,7 +6,6 @@ import java.util.List;
 import mate.academy.spring.dao.OrderDao;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.ShoppingCart;
-import mate.academy.spring.model.User;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
@@ -32,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getOrdersHistory(User user) {
-        return orderDao.getOrdersHistory(user);
+    public List<Order> getOrdersHistory(Long userId) {
+        return orderDao.getOrdersHistory(userId);
     }
 }
