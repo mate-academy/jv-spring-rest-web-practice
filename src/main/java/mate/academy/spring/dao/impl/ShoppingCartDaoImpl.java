@@ -1,5 +1,6 @@
 package mate.academy.spring.dao.impl;
 
+import java.util.Optional;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.ShoppingCartDao;
 import mate.academy.spring.exception.DataProcessingException;
@@ -18,12 +19,14 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
     }
 
     @Override
-    public ShoppingCart getByUser(User user) {
+    public Optional<ShoppingCart> getByUser(User user) {
         try (Session session = sessionFactory.openSession()) {
-            Query<ShoppingCart> query = session.createQuery("FROM ShoppingCart WHERE user = "
+            Query<ShoppingCart> query = session.createQuery("from ShoppingCart sc "
+                    + "left join fetch sc.tickets "
+                    + "where user = "
                     + ":user", ShoppingCart.class);
             query.setParameter("user", user);
-            return query.uniqueResult();
+            return query.uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Cannot find shopping cart using user ", e);
         }
