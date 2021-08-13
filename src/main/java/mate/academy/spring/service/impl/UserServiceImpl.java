@@ -21,6 +21,11 @@ public class UserServiceImpl implements UserService {
         user.setPassword(HashUtil.hashPassword(user.getPassword(), user.getSalt()));
         return userDao.add(user);
     }
+    
+    @Override
+    public User getById(Long id) {
+        return userDao.getById(id).get();
+    }
 
     @Override
     public Optional<User> findByEmail(String email) {
