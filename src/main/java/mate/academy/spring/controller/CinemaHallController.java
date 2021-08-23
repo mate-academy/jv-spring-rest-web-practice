@@ -18,30 +18,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cinema-halls")
 public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
-    private final DtoRequestMapper<CinemaHallRequestDto, CinemaHall> cinemaHallDtoRequestMapper;
-    private final DtoResponseMapper<CinemaHallResponseDto, CinemaHall> cinemaHallDtoResponseMapper;
+    private final DtoRequestMapper<CinemaHallRequestDto, CinemaHall> requestMapper;
+    private final DtoResponseMapper<CinemaHallResponseDto, CinemaHall> responseMapper;
 
     public CinemaHallController(CinemaHallService cinemaHallService,
                                 DtoRequestMapper<CinemaHallRequestDto, CinemaHall>
-                                        cinemaHallDtoRequestMapper,
+                                        requestMapper,
                                 DtoResponseMapper<CinemaHallResponseDto, CinemaHall>
-                                        cinemaHallDtoResponseMapper) {
-
+                                        responseMapper) {
         this.cinemaHallService = cinemaHallService;
-        this.cinemaHallDtoRequestMapper = cinemaHallDtoRequestMapper;
-        this.cinemaHallDtoResponseMapper = cinemaHallDtoResponseMapper;
+        this.requestMapper = requestMapper;
+        this.responseMapper = responseMapper;
     }
 
     @PostMapping
     public CinemaHallResponseDto addCinemaHall(@RequestBody CinemaHallRequestDto dto) {
-        CinemaHall cinemaHall = cinemaHallService.add(cinemaHallDtoRequestMapper.fromDto(dto));
-        return cinemaHallDtoResponseMapper.toDto(cinemaHall);
+        CinemaHall cinemaHall = cinemaHallService.add(requestMapper.fromDto(dto));
+        return responseMapper.toDto(cinemaHall);
     }
 
     @GetMapping
     public List<CinemaHallResponseDto> getAllCinemaHalls() {
         return cinemaHallService.getAll().stream()
-                .map(cinemaHallDtoResponseMapper::toDto)
+                .map(responseMapper::toDto)
                 .collect(Collectors.toList());
     }
 }

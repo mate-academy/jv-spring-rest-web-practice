@@ -1,10 +1,11 @@
 package mate.academy.spring.controller;
 
+import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
-import mate.academy.spring.service.dto.mapping.impl.response.ShoppingCartResponseMapper;
+import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
-    private final ShoppingCartResponseMapper responseMapper;
+    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> responseMapper;
     private final MovieSessionService movieSessionService;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   UserService userService,
-                                  ShoppingCartResponseMapper responseMapper,
+                                  DtoResponseMapper<ShoppingCartResponseDto,
+                                          ShoppingCart> responseMapper,
                                   MovieSessionService movieSessionService) {
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
