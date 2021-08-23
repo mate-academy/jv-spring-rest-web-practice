@@ -18,7 +18,7 @@ public class ShoppingCartResponseMapper
         List<Long> tickets = shoppingCart.getTickets().stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
-        shoppingCartResponseDto.setTickets(tickets);
+        shoppingCartResponseDto.setTicketsId(tickets);
         return shoppingCartResponseDto;
     }
 }

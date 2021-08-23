@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class MovieSessionResponseMapper implements DtoResponseMapper<MovieSessionResponseDto,
                                                                      MovieSession> {
+    private static final String DATA_TIME_FORMAT = "dd.MM.yyyy HH:mm";
+
     @Override
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
@@ -16,7 +18,7 @@ public class MovieSessionResponseMapper implements DtoResponseMapper<MovieSessio
         movieSessionResponseDto.setMovieTitle(movieSession.getMovie().getTitle());
         movieSessionResponseDto.setShowTime(movieSession.getShowTime()
                                             .format(DateTimeFormatter
-                                                    .ofPattern("dd.MM.yyyy HH:mm")));
+                                                    .ofPattern(DATA_TIME_FORMAT)));
         movieSessionResponseDto.setCinemaHallCapacity(movieSession.getCinemaHall().getCapacity());
         return movieSessionResponseDto;
     }
