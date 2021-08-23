@@ -42,10 +42,11 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/movie-sessions")
-    public void addSession(@RequestParam Long userId,
+    public ShoppingCartResponseDto addSession(@RequestParam Long userId,
                                               @RequestParam Long movieSessionId) {
         User user = userService.findById(userId).get();
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         shoppingCartService.addSession(movieSession, user);
+        return shoppingCartDtoResponseMapper.toDto(shoppingCartService.getByUser(user));
     }
 }
