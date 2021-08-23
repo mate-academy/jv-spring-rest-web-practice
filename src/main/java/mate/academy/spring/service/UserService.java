@@ -6,7 +6,7 @@ import mate.academy.spring.model.User;
 public interface UserService {
     User add(User user);
 
-    Optional<User> findByEmail(String email);
+    User findByEmail(String email);
 
-    Optional<User> findById(Long id);
+    User findById(Long id);
 }
