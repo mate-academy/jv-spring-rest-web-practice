@@ -24,4 +24,14 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             return query.uniqueResultOptional();
         }
     }
+
+    @Override
+    public Optional<User> getById(Long userId) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<User> query = session.createQuery("FROM User u "
+                    + "WHERE u.id = :id", User.class);
+            query.setParameter("id", userId);
+            return query.uniqueResultOptional();
+        }
+    }
 }
