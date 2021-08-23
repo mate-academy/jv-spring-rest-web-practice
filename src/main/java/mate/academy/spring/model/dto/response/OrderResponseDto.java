@@ -9,4 +9,5 @@ public class OrderResponseDto {
     private Long id;
     private List<Long> ticketIds;
     private LocalDateTime orderDate;
+    private Long userId;
 }
