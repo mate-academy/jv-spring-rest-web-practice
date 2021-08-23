@@ -4,6 +4,8 @@ import java.util.Optional;
 import mate.academy.spring.model.User;
 
 public interface UserService {
+    User get(Long id);
+
     User add(User user);
 
     Optional<User> findByEmail(String email);
