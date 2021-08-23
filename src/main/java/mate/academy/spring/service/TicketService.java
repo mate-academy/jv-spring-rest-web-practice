@@ -1,8 +1,8 @@
-package mate.academy.spring.dao;
+package mate.academy.spring.service;
 
 import java.util.Optional;
 import mate.academy.spring.model.Ticket;
 
-public interface TicketDao extends GenericDao<Ticket> {
+public interface TicketService {
     Optional<Ticket> findById(Long id);
 }
