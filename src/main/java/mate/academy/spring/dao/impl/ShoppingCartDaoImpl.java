@@ -8,7 +8,6 @@ import mate.academy.spring.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -20,10 +19,11 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
     @Override
     public ShoppingCart getByUser(User user) {
         try (Session session = sessionFactory.openSession()) {
-            Query<ShoppingCart> query = session.createQuery("FROM ShoppingCart WHERE user = "
-                    + ":user", ShoppingCart.class);
-            query.setParameter("user", user);
-            return query.uniqueResult();
+            return session.createQuery("FROM ShoppingCart sc"
+                            + " LEFT JOIN FETCH sc.tickets "
+                            + "WHERE sc.user = :user", ShoppingCart.class)
+                    .setParameter("user", user)
+                    .uniqueResult();
         } catch (Exception e) {
             throw new DataProcessingException("Cannot find shopping cart using user ", e);
         }
