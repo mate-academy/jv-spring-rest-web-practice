@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionRequestMapper implements DtoRequestMapper<MovieSessionRequestDto,
-                                                                   MovieSession> {
+        MovieSession> {
     public static final String PATTERN = "dd.MM.yyyy HH:mm";
     private final CinemaHallService cinemaHallService;
     private final MovieService movieService;
