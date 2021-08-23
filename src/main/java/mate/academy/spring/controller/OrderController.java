@@ -9,7 +9,7 @@ import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
-import mate.academy.spring.service.dto.mapping.impl.response.OrderResponseMapper;
+import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
-    private final OrderResponseMapper orderResponseMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
     private final OrderService orderService;
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
 
-    public OrderController(OrderResponseMapper orderResponseMapper,
+    public OrderController(DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper,
                            OrderService orderService,
                            ShoppingCartService shoppingCartService,
                            UserService userService) {
