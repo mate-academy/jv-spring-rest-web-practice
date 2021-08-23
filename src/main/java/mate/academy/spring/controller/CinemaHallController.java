@@ -26,6 +26,7 @@ public class CinemaHallController {
                                         cinemaHallDtoRequestMapper,
                                 DtoResponseMapper<CinemaHallResponseDto, CinemaHall>
                                         cinemaHallDtoResponseMapper) {
+
         this.cinemaHallService = cinemaHallService;
         this.cinemaHallDtoRequestMapper = cinemaHallDtoRequestMapper;
         this.cinemaHallDtoResponseMapper = cinemaHallDtoResponseMapper;
