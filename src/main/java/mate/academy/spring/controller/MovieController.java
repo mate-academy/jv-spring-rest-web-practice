@@ -20,7 +20,7 @@ public class MovieController {
     private final MovieService movieService;
     private final DtoRequestMapper<MovieRequestDto, Movie> movieDtoRequestMapper;
     private final DtoResponseMapper<MovieResponseDto, Movie> movieDtoResponseMapper;
-
+    
     public MovieController(MovieService movieService,
                            DtoRequestMapper<MovieRequestDto, Movie> movieDtoRequestMapper,
                            DtoResponseMapper<MovieResponseDto, Movie> movieDtoResponseMapper) {
@@ -28,17 +28,16 @@ public class MovieController {
         this.movieDtoRequestMapper = movieDtoRequestMapper;
         this.movieDtoResponseMapper = movieDtoResponseMapper;
     }
-
+    
     @PostMapping
     public MovieResponseDto addMovie(@RequestBody MovieRequestDto dto) {
         Movie movie = movieService.add(movieDtoRequestMapper.fromDto(dto));
         return movieDtoResponseMapper.toDto(movie);
     }
-
+    
     @GetMapping
     public List<MovieResponseDto> getAllMovies() {
-        return movieService.getAll().stream()
-                .map(movieDtoResponseMapper::toDto)
+        return movieService.getAll().stream().map(movieDtoResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
