@@ -22,10 +22,10 @@ public class CinemaHallController {
     private final DtoResponseMapper<CinemaHallResponseDto, CinemaHall> cinemaHallDtoResponseMapper;
 
     public CinemaHallController(CinemaHallService cinemaHallService,
-                                DtoRequestMapper<CinemaHallRequestDto, CinemaHall>
-                                        cinemaHallDtoRequestMapper,
-                                DtoResponseMapper<CinemaHallResponseDto, CinemaHall>
-                                        cinemaHallDtoResponseMapper) {
+            DtoRequestMapper<CinemaHallRequestDto, CinemaHall>
+                    cinemaHallDtoRequestMapper,
+            DtoResponseMapper<CinemaHallResponseDto, CinemaHall>
+                    cinemaHallDtoResponseMapper) {
         this.cinemaHallService = cinemaHallService;
         this.cinemaHallDtoRequestMapper = cinemaHallDtoRequestMapper;
         this.cinemaHallDtoResponseMapper = cinemaHallDtoResponseMapper;

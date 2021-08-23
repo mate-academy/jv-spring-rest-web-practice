@@ -22,8 +22,8 @@ public class MovieController {
     private final DtoResponseMapper<MovieResponseDto, Movie> movieDtoResponseMapper;
 
     public MovieController(MovieService movieService,
-                           DtoRequestMapper<MovieRequestDto, Movie> movieDtoRequestMapper,
-                           DtoResponseMapper<MovieResponseDto, Movie> movieDtoResponseMapper) {
+            DtoRequestMapper<MovieRequestDto, Movie> movieDtoRequestMapper,
+            DtoResponseMapper<MovieResponseDto, Movie> movieDtoResponseMapper) {
         this.movieService = movieService;
         this.movieDtoRequestMapper = movieDtoRequestMapper;
         this.movieDtoResponseMapper = movieDtoResponseMapper;
