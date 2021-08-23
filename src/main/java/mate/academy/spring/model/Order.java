@@ -20,7 +20,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany
-    @JoinTable(name = "orders_tickers",
+    @JoinTable(name = "orders_tickets",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "ticket_id"))
     private List<Ticket> tickets;
