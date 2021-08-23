@@ -6,5 +6,5 @@ import mate.academy.spring.model.User;
 public interface UserDao extends GenericDao<User> {
     Optional<User> findByEmail(String email);
 
-    Optional<User> findById(Long id);
+    User findById(Long id);
 }
