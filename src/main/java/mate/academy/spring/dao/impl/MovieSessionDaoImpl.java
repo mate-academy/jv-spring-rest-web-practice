@@ -49,7 +49,11 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     @Override
     public Optional<MovieSession> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return Optional.ofNullable(session.get(MovieSession.class, id));
+            return session.createQuery("from MovieSession m "
+                    + "join fetch m.cinemaHall "
+                    + "join fetch m.movie "
+                    + "where m.id = :id", MovieSession.class)
+                    .setParameter("id", id).uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a movie session by id: " + id, e);
         }

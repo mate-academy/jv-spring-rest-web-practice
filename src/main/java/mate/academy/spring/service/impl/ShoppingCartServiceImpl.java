@@ -3,22 +3,26 @@ package mate.academy.spring.service.impl;
 import java.util.ArrayList;
 import mate.academy.spring.dao.ShoppingCartDao;
 import mate.academy.spring.dao.TicketDao;
+import mate.academy.spring.dao.impl.TicketDaoImpl;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.ShoppingCartService;
+import mate.academy.spring.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
-    private final TicketDao ticketDao;
     private final ShoppingCartDao shoppingCartDao;
+    private final UserService userService;
+    private final TicketDao ticketDao;
 
-    public ShoppingCartServiceImpl(TicketDao ticketDao,
-                                   ShoppingCartDao shoppingCartDao) {
-        this.ticketDao = ticketDao;
+    public ShoppingCartServiceImpl(ShoppingCartDao shoppingCartDao,
+                                   UserService userService, TicketDaoImpl ticketDao) {
         this.shoppingCartDao = shoppingCartDao;
+        this.userService = userService;
+        this.ticketDao = ticketDao;
     }
 
     @Override
@@ -48,5 +52,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public void clearShoppingCart(ShoppingCart cart) {
         cart.setTickets(new ArrayList<>());
         shoppingCartDao.update(cart);
+    }
+
+    @Override
+    public ShoppingCart getShoppingCartByUserId(Long id) {
+        User user = userService.findById(id);
+        return getByUser(user);
     }
 }

@@ -9,20 +9,16 @@ import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
-import mate.academy.spring.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OrderServiceImpl implements OrderService {
     private final OrderDao orderDao;
     private final ShoppingCartService shoppingCartService;
-    private final UserService userService;
 
-    public OrderServiceImpl(OrderDao orderDao, ShoppingCartService shoppingCartService,
-                            UserService userService) {
+    public OrderServiceImpl(OrderDao orderDao, ShoppingCartService shoppingCartService) {
         this.orderDao = orderDao;
         this.shoppingCartService = shoppingCartService;
-        this.userService = userService;
     }
 
     @Override
@@ -38,11 +34,5 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getOrdersHistory(User user) {
         return orderDao.getOrdersHistory(user);
-    }
-
-    @Override
-    public ShoppingCart getShoppingCartByUserId(Long id) {
-        User user = userService.findById(id).get();
-        return shoppingCartService.getByUser(user);
     }
 }
