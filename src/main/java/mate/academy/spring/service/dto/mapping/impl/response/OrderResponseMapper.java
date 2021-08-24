@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, Order> {
-
+    private static final String DATE_FORMAT = "dd.MM.yyyy HH:mm";
     @Override
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto orderResponseDto = new OrderResponseDto();
         orderResponseDto.setId(order.getId());
         orderResponseDto.setUserId(order.getUser().getId());
         orderResponseDto.setOrderDate(order.getOrderDate()
-                .format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")));
+                .format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
         List<Long> ticketIds = order.getTickets()
                 .stream().map(Ticket::getId)
                 .collect(Collectors.toList());
