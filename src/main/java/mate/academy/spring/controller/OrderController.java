@@ -37,7 +37,6 @@ public class OrderController {
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
         User user = userService.findById(userId);
         Order order = orderService.completeOrder(shoppingCartService.getByUser(user));
-        orderResponseMapper.toDto(order);
         return orderResponseMapper.toDto(order);
     }
 
