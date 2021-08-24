@@ -17,14 +17,15 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto,
     @Override
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto orderResponseDto = new OrderResponseDto();
-        orderResponseDto.setId(order.getId());
+        Long id = order.getId();
+        orderResponseDto.setId(id);
         List<Long> tickets = order.getTickets().stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
         orderResponseDto.setTiketIds(tickets);
         orderResponseDto.setOrderDate(order.getOrderDate().format(DateTimeFormatter
                 .ofPattern(DATE_PATTERN)));
-        orderResponseDto.setUserId(orderResponseDto.getId());
+        orderResponseDto.setUserId(id);
         return orderResponseDto;
     }
 }
