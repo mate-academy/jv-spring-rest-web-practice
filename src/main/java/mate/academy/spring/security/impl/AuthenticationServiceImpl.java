@@ -1,8 +1,9 @@
-package mate.academy.spring.security;
+package mate.academy.spring.security.impl;
 
 import java.util.Optional;
 import mate.academy.spring.exception.AuthenticationException;
 import mate.academy.spring.model.User;
+import mate.academy.spring.security.AuthenticationService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import mate.academy.spring.util.HashUtil;
