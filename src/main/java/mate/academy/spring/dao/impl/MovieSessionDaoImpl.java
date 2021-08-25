@@ -15,6 +15,7 @@ import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -49,7 +50,12 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     @Override
     public Optional<MovieSession> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return Optional.ofNullable(session.get(MovieSession.class, id));
+            Query<MovieSession> query = session.createQuery("from MovieSession ms "
+                    + " left join fetch ms.movie"
+                    + " left join fetch ms.cinemaHall"
+                    + " where ms.id = :id ", MovieSession.class);
+            query.setParameter("id", id);
+            return query.uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a movie session by id: " + id, e);
         }
