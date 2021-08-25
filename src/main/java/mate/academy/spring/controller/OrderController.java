@@ -34,7 +34,7 @@ public class OrderController {
 
     @PostMapping("/complete")
     public void complete(@RequestParam Long userId) {
-        orderService.completeOrder(shoppingCartService.getShoppingCartByUserId(userId));
+        orderService.completeOrder(shoppingCartService.getByUserId(userId));
     }
 
     @GetMapping
