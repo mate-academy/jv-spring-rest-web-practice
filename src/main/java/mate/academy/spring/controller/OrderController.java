@@ -40,8 +40,8 @@ public class OrderController {
                         Collectors.toList());
     }
 
-    @PostMapping("/complate")
-    public OrderResponseDto complateOrder(@RequestParam Long id) {
+    @PostMapping("/complete")
+    public OrderResponseDto completeOrder(@RequestParam Long id) {
         return orderDtoResponseMapper.toDto(orderService
                 .completeOrder(shoppingCartService.getByUser(userService.findById(id))));
     }
