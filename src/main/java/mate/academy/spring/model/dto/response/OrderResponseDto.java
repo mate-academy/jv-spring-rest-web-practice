@@ -5,13 +5,13 @@ import java.util.List;
 
 public class OrderResponseDto {
     private Long id;
-    private List<Long> ticketsID;
+    private List<Long> ticketsId;
     private LocalDateTime orderDate;
     private Long userId;
 
     public OrderResponseDto(Long id, List<Long> ticketsID, LocalDateTime orderDate, Long userId) {
         this.id = id;
-        this.ticketsID = ticketsID;
+        this.ticketsId = ticketsID;
         this.orderDate = orderDate;
         this.userId = userId;
     }
@@ -24,12 +24,12 @@ public class OrderResponseDto {
         this.id = id;
     }
 
-    public List<Long> getTicketsID() {
-        return ticketsID;
+    public List<Long> getTicketsId() {
+        return ticketsId;
     }
 
-    public void setTicketsID(List<Long> ticketsID) {
-        this.ticketsID = ticketsID;
+    public void setTicketsId(List<Long> ticketsId) {
+        this.ticketsId = ticketsId;
     }
 
     public LocalDateTime getOrderDate() {
