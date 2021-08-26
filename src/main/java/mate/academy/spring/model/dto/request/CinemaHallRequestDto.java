@@ -3,7 +3,6 @@ package mate.academy.spring.model.dto.request;
 import javax.validation.constraints.NotNull;
 
 public class CinemaHallRequestDto {
-    @NotNull
     private int capacity;
     @NotNull
     private String description;

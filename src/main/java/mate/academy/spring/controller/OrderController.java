@@ -37,13 +37,13 @@ public class OrderController {
     @PostMapping("/complete")
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
         ShoppingCart shoppingCart = shoppingCartService.getByUser(
-                userService.finById(userId));
+                userService.findById(userId));
         return orderResponseMapper.toDto(orderService.completeOrder(shoppingCart));
     }
 
-    @GetMapping("/orders")
+    @GetMapping
     public List<OrderResponseDto> getOrdersHistory(@RequestParam Long userId) {
-        return orderService.getOrdersHistory(userService.finById(userId))
+        return orderService.getOrdersHistory(userService.findById(userId))
                 .stream()
                 .map(orderResponseMapper::toDto)
                 .collect(Collectors.toList());
