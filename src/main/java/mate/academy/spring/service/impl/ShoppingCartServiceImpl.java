@@ -16,7 +16,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final ShoppingCartDao shoppingCartDao;
 
     public ShoppingCartServiceImpl(TicketDao ticketDao,
-                                   ShoppingCartDao shoppingCartDao) {
+            ShoppingCartDao shoppingCartDao) {
         this.ticketDao = ticketDao;
         this.shoppingCartDao = shoppingCartDao;
     }

@@ -2,6 +2,7 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.dto.request.MovieRequestDto;
 import mate.academy.spring.model.dto.response.MovieResponseDto;
@@ -22,15 +23,15 @@ public class MovieController {
     private final DtoResponseMapper<MovieResponseDto, Movie> movieDtoResponseMapper;
 
     public MovieController(MovieService movieService,
-                           DtoRequestMapper<MovieRequestDto, Movie> movieDtoRequestMapper,
-                           DtoResponseMapper<MovieResponseDto, Movie> movieDtoResponseMapper) {
+            DtoRequestMapper<MovieRequestDto, Movie> movieDtoRequestMapper,
+            DtoResponseMapper<MovieResponseDto, Movie> movieDtoResponseMapper) {
         this.movieService = movieService;
         this.movieDtoRequestMapper = movieDtoRequestMapper;
         this.movieDtoResponseMapper = movieDtoResponseMapper;
     }
 
     @PostMapping
-    public MovieResponseDto addMovie(@RequestBody MovieRequestDto dto) {
+    public MovieResponseDto addMovie(@RequestBody @Valid MovieRequestDto dto) {
         Movie movie = movieService.add(movieDtoRequestMapper.fromDto(dto));
         return movieDtoResponseMapper.toDto(movie);
     }
