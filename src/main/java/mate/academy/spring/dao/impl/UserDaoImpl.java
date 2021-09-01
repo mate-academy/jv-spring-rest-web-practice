@@ -36,4 +36,14 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             throw new DataProcessingException("Can't find user by id: " + id, e);
         }
     }
+
+    @Override
+    public Optional<User> get(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<User> query = session.createQuery("FROM User u "
+                    + "WHERE u.id = :id", User.class);
+            query.setParameter("id", id);
+            return query.uniqueResultOptional();
+        }
+    }
 }
