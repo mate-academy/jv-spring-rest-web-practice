@@ -1,9 +1,7 @@
 package mate.academy.spring.model.dto.request;
 
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
 public class ShoppingCartRequestDto {
     private List<Long> ticketsId;
     private Long userId;
