@@ -2,7 +2,7 @@ package mate.academy.spring.model.dto.response;
 
 import java.util.List;
 
-public abstract class AbstractResponseDto {
+public abstract class UserTicketsResponseDto {
     private Long id;
     private List<Long> ticketIds;
     private String userEmail;

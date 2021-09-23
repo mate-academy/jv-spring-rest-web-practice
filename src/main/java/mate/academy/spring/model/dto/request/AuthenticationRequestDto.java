@@ -1,10 +1,8 @@
 package mate.academy.spring.model.dto.request;
 
 import javax.validation.constraints.NotNull;
-import mate.academy.spring.validation.Email;
 
 public class AuthenticationRequestDto {
-    @Email
     @NotNull
     private String email;
     @NotNull
