@@ -40,7 +40,7 @@ public class OrderController {
                                 .getByUser(userService.get(userId))));
     }
 
-    @GetMapping("/get-all")
+    @GetMapping
     public List<OrderResponseDto> getAll(@PathVariable Long userId) {
         return orderService.getOrdersHistory(userService.get(userId))
                 .stream()

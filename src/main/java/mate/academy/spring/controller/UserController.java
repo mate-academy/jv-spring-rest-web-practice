@@ -23,8 +23,8 @@ public class UserController {
         this.userDtoResponseMapper = userDtoResponseMapper;
     }
 
-    @GetMapping("/get-all")
-    public List<UserResponseDto> getAll(@RequestParam String email) {
+    @GetMapping("/by-email")
+    public List<UserResponseDto> findByEmail(@RequestParam String email) {
         return userService.findByEmail(email)
                 .stream()
                 .map(userDtoResponseMapper::toDto)
