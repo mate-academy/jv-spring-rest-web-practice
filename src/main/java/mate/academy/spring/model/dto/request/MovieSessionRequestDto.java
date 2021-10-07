@@ -1,6 +1,5 @@
 package mate.academy.spring.model.dto.request;
 
-import java.time.LocalDateTime;
 import javax.validation.constraints.NotNull;
 
 public class MovieSessionRequestDto {
