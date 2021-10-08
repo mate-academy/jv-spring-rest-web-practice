@@ -1,6 +1,6 @@
 package mate.academy.spring.model.dto.request;
 
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotNull;
 import mate.academy.spring.validation.email.Email;
 import mate.academy.spring.validation.password.Password;
 
