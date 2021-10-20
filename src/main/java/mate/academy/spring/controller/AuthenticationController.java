@@ -29,9 +29,9 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public UserResponseDto register(@RequestBody @Valid UserRequestDto user) {
-        User addedUser = userService.add(userRequestMapper.fromDto(user));
-        shoppingCartService.registerNewShoppingCart(userRequestMapper.fromDto(user));
+    public UserResponseDto register(@RequestBody @Valid UserRequestDto userRequestDto) {
+        User addedUser = userService.add(userRequestMapper.fromDto(userRequestDto));
+        shoppingCartService.registerNewShoppingCart(addedUser);
         return userResponseMapper.toDto(addedUser);
     }
 }
