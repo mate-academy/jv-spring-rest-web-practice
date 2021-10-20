@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
 import jakarta.validation.Valid;
+import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.ShoppingCartService;
@@ -29,7 +30,8 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody @Valid UserRequestDto user) {
+        User addedUser = userService.add(userRequestMapper.fromDto(user));
         shoppingCartService.registerNewShoppingCart(userRequestMapper.fromDto(user));
-        return userResponseMapper.toDto(userService.add(userRequestMapper.fromDto(user)));
+        return userResponseMapper.toDto(addedUser);
     }
 }

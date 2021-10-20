@@ -1,18 +1,17 @@
 package mate.academy.spring.model.dto.request;
 
 import java.util.List;
-import mate.academy.spring.model.Ticket;
 
 public class ShoppingCartRequestDto {
-    private List<Ticket> tickets;
+    private List<Long> ticketsId;
     private Long userId;
 
-    public List<Ticket> getTickets() {
-        return tickets;
+    public List<Long> getTicketsId() {
+        return ticketsId;
     }
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setTicketsId(List<Long> ticketsId) {
+        this.ticketsId = ticketsId;
     }
 
     public Long getUserId() {
