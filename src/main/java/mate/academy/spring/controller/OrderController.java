@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController {
     private OrderService orderService;
     private UserService userService;
@@ -45,8 +45,8 @@ public class OrderController {
 
     @GetMapping
     public List<OrderResponseDto> get(@RequestParam Long userId) {
-        return orderService.getOrdersHistory(
-                        userService.get(userId))
+        User user = userService.get(userId);
+        return orderService.getOrdersHistory(user)
                 .stream()
                 .map(responseMapper::toDto)
                 .collect(Collectors.toList());
