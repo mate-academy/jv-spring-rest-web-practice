@@ -8,7 +8,6 @@ import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import mate.academy.spring.service.dto.mapping.impl.response.OrderResponseMapper;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,8 +35,8 @@ public class OrderController {
                 .completeOrder(shoppingCartService.getByUser(userService.get(userId))));
     }
 
-    @GetMapping("/{userId}")
-    public List<OrderResponseDto> getOrdersHistory(@PathVariable Long userId) {
+    @GetMapping
+    public List<OrderResponseDto> getOrdersHistory(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId))
                 .stream()
                 .map(mapper::toDto)
