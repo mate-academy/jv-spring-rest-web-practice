@@ -7,9 +7,8 @@ import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
-import mate.academy.spring.service.dto.mapping.impl.response.OrderResponseMapper;
+import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,12 +20,12 @@ public class OrderController {
     private final OrderService orderService;
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
-    private final OrderResponseMapper orderResponseMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
 
     public OrderController(OrderService orderService,
                            ShoppingCartService shoppingCartService,
                            UserService userService,
-                           OrderResponseMapper orderResponseMapper) {
+                           DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper) {
         this.orderService = orderService;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
@@ -40,8 +39,8 @@ public class OrderController {
         return orderResponseMapper.toDto(order);
     }
 
-    @GetMapping("/{id}")
-    public List<OrderResponseDto> getOrderHistory(@PathVariable Long id) {
+    @GetMapping
+    public List<OrderResponseDto> getOrderHistory(@RequestParam Long id) {
         return orderService.getOrdersHistory(userService.get(id)).stream()
                 .map(orderResponseMapper::toDto)
                 .collect(Collectors.toList());
