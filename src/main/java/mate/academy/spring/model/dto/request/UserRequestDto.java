@@ -1,7 +1,15 @@
-package mate.academy.spring.service.dto.mapping.impl.request;
+package mate.academy.spring.model.dto.request;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class UserRequestDto {
+    @Email(regexp = "^(.+)@(.+)$")
+    @NotNull
     private String email;
+    @Size(min = 4)
+    @NotNull
     private String password;
 
     public String getEmail() {
