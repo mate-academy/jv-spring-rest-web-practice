@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,8 +30,8 @@ public class OrderController {
         this.userService = userService;
     }
 
-    @PostMapping("/complete/{userId}")
-    public OrderResponseDto completeOrder(@PathVariable Long userId) {
+    @PostMapping("/complete")
+    public OrderResponseDto completeOrder(@RequestParam Long userId) {
         return mapper.toDto(orderService
                 .completeOrder(shoppingCartService.getByUser(userService.get(userId))));
     }
