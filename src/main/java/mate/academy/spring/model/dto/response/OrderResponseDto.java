@@ -1,47 +1,42 @@
 package mate.academy.spring.model.dto.response;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderResponseDto {
     private Long orderId;
     private List<Long> ticketsId;
-    private LocalDateTime orderDate;
+    private String orderDate;
     private Long userId;
 
     public Long getOrderId() {
         return orderId;
     }
 
-    public OrderResponseDto setOrderId(Long orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
-        return this;
     }
 
     public List<Long> getTicketsId() {
         return ticketsId;
     }
 
-    public OrderResponseDto setTicketsId(List<Long> ticketsId) {
+    public void setTicketsId(List<Long> ticketsId) {
         this.ticketsId = ticketsId;
-        return this;
     }
 
-    public LocalDateTime getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public OrderResponseDto setOrderDate(LocalDateTime orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
-        return this;
     }
 
     public Long getUserId() {
         return userId;
     }
 
-    public OrderResponseDto setUserId(Long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
-        return this;
     }
 }
