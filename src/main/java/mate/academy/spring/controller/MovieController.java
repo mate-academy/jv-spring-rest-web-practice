@@ -41,4 +41,5 @@ public class MovieController {
                 .map(movieDtoResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
+
 }
