@@ -18,6 +18,6 @@ public class ShoppingCartResponseMapper implements
         shoppCart.getTickets()
                 .forEach(t -> dto.getTicketIds()
                        .add(t.getId()));
-        return dto;
+        return dto;;
     }
 }
