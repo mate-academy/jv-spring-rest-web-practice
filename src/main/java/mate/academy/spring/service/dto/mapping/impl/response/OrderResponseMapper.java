@@ -1,6 +1,5 @@
 package mate.academy.spring.service.dto.mapping.impl.response;
 
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.Ticket;
