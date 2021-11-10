@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -22,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/by-email")
-    public List<UserResponseDto> getByEmail(@RequestParam String email) {
+    public List<UserResponseDto> getByEmail(@RequestParam @Valid String email) {
         return userService.findByEmail(email)
                 .stream()
                 .map(userResponseMapper::toDto)
