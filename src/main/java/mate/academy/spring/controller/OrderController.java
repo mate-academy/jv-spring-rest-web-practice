@@ -9,7 +9,6 @@ import mate.academy.spring.service.UserService;
 import mate.academy.spring.service.dto.mapping.impl.response.OrderResponseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,15 +23,18 @@ public class OrderController {
     private final UserService userService;
 
     @Autowired
-    public OrderController(OrderResponseMapper orderResponseMapper, OrderService orderService, ShoppingCartService shoppingCartService, UserService userService) {
+    public OrderController(OrderResponseMapper orderResponseMapper,
+                           OrderService orderService,
+                           ShoppingCartService shoppingCartService,
+                           UserService userService) {
         this.orderResponseMapper = orderResponseMapper;
         this.orderService = orderService;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
     }
 
-    @PostMapping("/complete{userId}")
-    public OrderResponseDto addOrder(@PathVariable Long userId) {
+    @PostMapping("/complete")
+    public OrderResponseDto addOrder(@RequestParam Long userId) {
         return orderResponseMapper.toDto(orderService
                 .completeOrder(shoppingCartService.getByUser(userService.get(userId))));
     }

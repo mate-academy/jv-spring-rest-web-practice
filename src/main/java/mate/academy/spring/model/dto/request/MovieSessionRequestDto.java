@@ -1,6 +1,9 @@
 package mate.academy.spring.model.dto.request;
 
+import org.springframework.lang.NonNull;
+
 public class MovieSessionRequestDto {
+    @NonNull
     private Long movieId;
     private String showTime;
     private Long cinemaHallId;
