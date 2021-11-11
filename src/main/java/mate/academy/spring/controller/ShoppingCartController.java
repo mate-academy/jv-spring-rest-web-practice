@@ -21,24 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
-    private final DtoResponseMapper<MovieSessionResponseDto, MovieSession> dtoResponseMapper;
-    private final DtoRequestMapper<MovieSessionRequestDto, MovieSession> dtoRequestMapper;
     private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> cartDtoResponseMapper;
     private final UserService userService;
     private final MovieSessionService movieSessionService;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
-                                  DtoResponseMapper<MovieSessionResponseDto,
-                                          MovieSession> dtoResponseMapper,
-                                  DtoRequestMapper<MovieSessionRequestDto,
-                                          MovieSession> dtoRequestMapper,
                                   DtoResponseMapper<ShoppingCartResponseDto,
                                           ShoppingCart> cartDtoResponseMapper,
                                   UserService userService,
                                   MovieSessionService movieSessionService) {
         this.shoppingCartService = shoppingCartService;
-        this.dtoResponseMapper = dtoResponseMapper;
-        this.dtoRequestMapper = dtoRequestMapper;
         this.cartDtoResponseMapper = cartDtoResponseMapper;
         this.userService = userService;
         this.movieSessionService = movieSessionService;
