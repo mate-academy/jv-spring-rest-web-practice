@@ -18,7 +18,8 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto orderResponseDto = new OrderResponseDto();
         orderResponseDto.setId(order.getId());
-        orderResponseDto.setOrderDate(order.getOrderDate().format(DateTimeFormatter.ofPattern(DATE_PATTERN)));
+        orderResponseDto.setOrderDate(order.getOrderDate()
+                .format(DateTimeFormatter.ofPattern(DATE_PATTERN)));
         orderResponseDto.setUserId(order.getUser().getId());
         List<Long> ticketIdList = order.getTickets().stream()
                 .map(Ticket::getId)

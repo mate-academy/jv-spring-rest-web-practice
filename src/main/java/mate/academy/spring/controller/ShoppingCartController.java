@@ -5,7 +5,11 @@ import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import mate.academy.spring.service.dto.mapping.impl.response.ShoppingCartResponseMapper;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/shopping_carts")
@@ -27,12 +31,14 @@ public class ShoppingCartController {
 
     @GetMapping("/by_user")
     public ShoppingCartResponseDto getShoppingCartByUser(@RequestParam Long userId) {
-        return shoppingCartResponseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
+        return shoppingCartResponseMapper.toDto(shoppingCartService
+                .getByUser(userService.get(userId)));
     }
 
     @PutMapping("/movie_sessions")
     public void addMovieSessions(@RequestParam Long userId,
                                  @RequestParam Long movieSessionId) {
-        shoppingCartService.addSession(movieSessionService.get(movieSessionId), userService.get(userId));
+        shoppingCartService.addSession(movieSessionService
+                .get(movieSessionId), userService.get(userId));
     }
 }
