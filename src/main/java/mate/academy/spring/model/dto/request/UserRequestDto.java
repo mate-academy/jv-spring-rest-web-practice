@@ -1,9 +1,7 @@
 package mate.academy.spring.model.dto.request;
 
 import javax.validation.constraints.NotNull;
-import org.springframework.stereotype.Component;
 
-@Component
 public class UserRequestDto {
     @NotNull
     private String email;
