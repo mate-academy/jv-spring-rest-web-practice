@@ -4,7 +4,6 @@ import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.security.AuthenticationService;
 import mate.academy.spring.service.dto.mapping.impl.response.UserResponseMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +13,6 @@ public class AuthenticationController {
     private final AuthenticationService authService;
     private final UserResponseMapper mapper;
 
-    @Autowired
     public AuthenticationController(AuthenticationService authService, UserResponseMapper mapper) {
         this.authService = authService;
         this.mapper = mapper;
