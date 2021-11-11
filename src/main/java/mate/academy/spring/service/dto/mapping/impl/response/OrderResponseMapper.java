@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, Order> {
-    private static final String DATE_PATTERN = "dd.MM.yyyy";
+    private static final String DATE_PATTERN = "dd.MM.yyyy HH:mm";
 
     @Override
     public OrderResponseDto toDto(Order order) {
