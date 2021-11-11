@@ -4,7 +4,6 @@ public class UserResponseDto {
     private long id;
     private String email;
 
-
     public long getId() {
         return id;
     }
