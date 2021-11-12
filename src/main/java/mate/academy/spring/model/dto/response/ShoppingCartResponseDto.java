@@ -6,7 +6,6 @@ public class ShoppingCartResponseDto {
     private Long userId;
     private List<Long> ticketIds;
 
-
     public List<Long> getTicketIds() {
         return ticketIds;
     }
