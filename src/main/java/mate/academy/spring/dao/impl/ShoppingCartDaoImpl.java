@@ -51,4 +51,19 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
             }
         }
     }
+
+    @Override
+    public ShoppingCart getByUserId(Long userId) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<ShoppingCart> query = session.createQuery(
+                    "FROM ShoppingCart sc "
+                            + "LEFT JOIN FETCH sc.tickets "
+                            + "LEFT JOIN FETCH sc.user u "
+                            + "WHERE u.id = :userId", ShoppingCart.class);
+            query.setParameter("userId", userId);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            throw new DataProcessingException("Cannot find shopping cart using userId ", e);
+        }
+    }
 }

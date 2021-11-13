@@ -9,6 +9,8 @@ public interface ShoppingCartService {
 
     ShoppingCart getByUser(User user);
 
+    ShoppingCart getByUserId(Long userId);
+
     void registerNewShoppingCart(User user);
 
     void clearShoppingCart(ShoppingCart cart);
