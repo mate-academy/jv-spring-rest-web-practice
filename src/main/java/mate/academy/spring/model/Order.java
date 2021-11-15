@@ -1,6 +1,5 @@
 package mate.academy.spring.model;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +18,7 @@ public class Order {
     private Long id;
     @OneToMany
     private List<Ticket> tickets;
-    private LocalDateTime orderDate;
+    private String orderDate;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
@@ -39,11 +38,11 @@ public class Order {
         this.tickets = tickets;
     }
 
-    public LocalDateTime getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDateTime orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
