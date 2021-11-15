@@ -13,8 +13,6 @@ public class UserResponseMapper implements DtoResponseMapper<UserResponseDto, Us
         UserResponseDto userResponseDto = new UserResponseDto();
         userResponseDto.setId(user.getId());
         userResponseDto.setEmail(user.getEmail());
-        userResponseDto.setSalt(user.getSalt());
-        userResponseDto.setPassword(userResponseDto.getPassword());
         return userResponseDto;
     }
 }
