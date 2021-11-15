@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.model.Order;
+import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
-import mate.academy.spring.model.dto.response.TicketResponseDto;
 import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.stereotype.Component;
 
@@ -21,12 +21,12 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto orderResponseDto = new OrderResponseDto();
         orderResponseDto.setId(order.getId());
-        orderResponseDto.setOrderDate(LocalDateTime.now());
+        orderResponseDto.setOrderDate(LocalDateTime.now().toString());
         orderResponseDto.setUserId(order.getUser().getId());
-        List<TicketResponseDto> tickets = order.getTickets().stream()
-                .map(ticketsResponseMapper::toDto)
+        List<Long> ticketsIds = order.getTickets().stream()
+                .map(Ticket::getId)
                 .collect(Collectors.toList());
-        orderResponseDto.setTickets(tickets);
+        orderResponseDto.setTicketsIds(ticketsIds);
         return orderResponseDto;
     }
 }
