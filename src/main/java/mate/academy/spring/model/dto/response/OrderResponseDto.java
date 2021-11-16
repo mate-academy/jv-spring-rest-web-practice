@@ -5,7 +5,7 @@ import mate.academy.spring.model.User;
 
 public class OrderResponseDto {
     private Long id;
-    private List<Long> tickets;
+    private List<Long> userId;
     private String orderDate;
     private User user;
 
@@ -17,12 +17,12 @@ public class OrderResponseDto {
         this.id = id;
     }
 
-    public List<Long> getTickets() {
-        return tickets;
+    public List<Long> getUserId() {
+        return userId;
     }
 
-    public void setTickets(List<Long> tickets) {
-        this.tickets = tickets;
+    public void setUserId(List<Long> userId) {
+        this.userId = userId;
     }
 
     public String getOrderDate() {
