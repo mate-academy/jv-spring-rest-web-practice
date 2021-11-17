@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/shopping/carts")
+@RequestMapping("/shopping-carts")
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
     private final ShoppingCartResponseMapper mapper;
@@ -31,7 +31,7 @@ public class ShoppingCartController {
         this.userService = userService;
     }
 
-    @PutMapping("/movie/sessions")
+    @PutMapping("/movie-sessions")
     public void update(@RequestParam Long userId,
                        @RequestParam Long movieSessionId) {
         User user = userService.get(userId);
@@ -39,7 +39,7 @@ public class ShoppingCartController {
         shoppingCartService.addSession(movieSession, user);
     }
 
-    @GetMapping("/by/user")
+    @GetMapping("/by-user")
     public ShoppingCartResponseDto get(@RequestParam Long userId) {
         User user = userService.get(userId);
         return mapper.toDto(shoppingCartService.getByUser(user));
