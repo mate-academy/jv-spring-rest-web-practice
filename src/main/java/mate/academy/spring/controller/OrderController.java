@@ -10,9 +10,9 @@ import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -32,18 +32,19 @@ public class OrderController {
         this.orderResponseDtoMapper = orderResponseDtoMapper;
     }
 
-    @GetMapping("/{userId}")
-    public List<OrderResponseDto> getUOrdersHistoryByUser(@PathVariable Long userId) {
+    @GetMapping("/")
+    public List<OrderResponseDto> getUOrdersHistoryByUser(@RequestParam Long userId) {
         try {
             return orderService.getOrdersHistory(userService.get(userId)).stream()
-                    .map(orderResponseDtoMapper::toDto).collect(Collectors.toList());
+                    .map(orderResponseDtoMapper::toDto)
+                    .collect(Collectors.toList());
         } catch (NoSuchElementException e) {
             throw new RuntimeException("Cant find orders history by user id " + userId);
         }
     }
 
-    @PostMapping("/complete/{userId}")
-    public OrderResponseDto completeOrder(@PathVariable Long userId) {
+    @PostMapping("/complete")
+    public OrderResponseDto completeOrder(@RequestParam Long userId) {
         Order order = orderService.completeOrder(shoppingCartService
                   .getByUser(userService.get(userId)));
         return orderResponseDtoMapper.toDto(order);

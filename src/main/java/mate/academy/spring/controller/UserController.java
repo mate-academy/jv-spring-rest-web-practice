@@ -7,12 +7,12 @@ import mate.academy.spring.service.UserService;
 import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users/by-email")
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
     private final DtoResponseMapper<UserResponseDto, User> userResponseDtoMapper;
@@ -24,8 +24,8 @@ public class UserController {
         this.userResponseDtoMapper = dtoResponseMapper;
     }
 
-    @GetMapping("/{email}")
-    public UserResponseDto getUserById(@PathVariable String email) {
+    @GetMapping("/by-email")
+    public UserResponseDto getUserById(@RequestParam String email) {
         try {
             return userResponseDtoMapper.toDto(userService.findByEmail(email).get());
         } catch (NoSuchElementException e) {
