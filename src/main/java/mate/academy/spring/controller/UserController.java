@@ -1,6 +1,5 @@
 package mate.academy.spring.controller;
 
-import java.util.NoSuchElementException;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.UserService;
 import mate.academy.spring.service.dto.mapping.impl.response.UserResponseMapper;
@@ -23,6 +22,6 @@ public class UserController {
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam String email) {
         return userResponseMapper.toDto(
-                userService.findByEmail(email).orElseThrow(NoSuchElementException::new));
+                userService.findByEmail(email).orElseThrow());
     }
 }
