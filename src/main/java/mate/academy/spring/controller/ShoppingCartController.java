@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import lombok.AllArgsConstructor;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
@@ -16,24 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/shopping-carts")
+@AllArgsConstructor
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
     private final MovieSessionService movieSessionService;
-    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> shoppingCartDtoResponseMapper;
-
-    public ShoppingCartController(ShoppingCartService shoppingCartService,
-                                  UserService userService,
-                                  MovieSessionService movieSessionService,
-                                  DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> shoppingCartDtoResponseMapper) {
-        this.shoppingCartService = shoppingCartService;
-        this.userService = userService;
-        this.movieSessionService = movieSessionService;
-        this.shoppingCartDtoResponseMapper = shoppingCartDtoResponseMapper;
-    }
+    private final DtoResponseMapper<ShoppingCartResponseDto,
+            ShoppingCart> shoppingCartDtoResponseMapper;
 
     @PutMapping("/movie-sessions")
-    public ShoppingCartResponseDto addMovieSession(@RequestParam Long userId, @RequestParam Long movieSessionId) {
+    public ShoppingCartResponseDto addMovieSession(@RequestParam Long userId,
+                                                   @RequestParam Long movieSessionId) {
         User user = userService.get(userId);
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         shoppingCartService.addSession(movieSession, user);
@@ -42,6 +36,7 @@ public class ShoppingCartController {
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
-        return shoppingCartDtoResponseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
+        return shoppingCartDtoResponseMapper
+                .toDto(shoppingCartService.getByUser(userService.get(userId)));
     }
 }

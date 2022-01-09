@@ -2,6 +2,7 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
@@ -16,27 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/orders")
+@AllArgsConstructor
 public class OrderController {
     private final OrderService orderService;
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
     private final DtoResponseMapper<OrderResponseDto, Order> orderDtoResponseMapper;
 
-    public OrderController(OrderService orderService,
-                           ShoppingCartService shoppingCartService,
-                           UserService userService,
-                           DtoResponseMapper<OrderResponseDto, Order> orderDtoResponseMapper) {
-        this.orderService = orderService;
-        this.shoppingCartService = shoppingCartService;
-        this.userService = userService;
-
-        this.orderDtoResponseMapper = orderDtoResponseMapper;
-    }
-
     @PostMapping("/complete")
-    public OrderResponseDto completeOrder (@RequestParam Long userId) {
-        return orderDtoResponseMapper.
-                toDto(orderService.completeOrder(shoppingCartService.getByUser(userService.get(userId))));
+    public OrderResponseDto completeOrder(@RequestParam Long userId) {
+        return orderDtoResponseMapper.toDto(orderService
+                .completeOrder(shoppingCartService.getByUser(userService.get(userId))));
     }
 
     @GetMapping("/orders")
