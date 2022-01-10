@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
-    private final DtoResponseMapper<AuthenticationResponseDto, User> authenticationDtoMapper;
+    private final DtoResponseMapper<AuthenticationResponseDto, User> userDtoMapper;
 
     public AuthenticationController(AuthenticationService authenticationService,
                                     DtoResponseMapper<AuthenticationResponseDto,
                                             User> authenticationDtoMapper) {
         this.authenticationService = authenticationService;
-        this.authenticationDtoMapper = authenticationDtoMapper;
+        this.userDtoMapper = authenticationDtoMapper;
     }
 
     @PostMapping("/register")
@@ -28,6 +28,6 @@ public class AuthenticationController {
             @RequestBody AuthenticationRequestDto authenticationRequestDto) {
         User user = authenticationService.register(authenticationRequestDto.getEmail(),
                 authenticationRequestDto.getPassword());
-        return authenticationDtoMapper.toDto(user);
+        return userDtoMapper.toDto(user);
     }
 }

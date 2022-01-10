@@ -19,7 +19,8 @@ public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
     private final MovieSessionService movieSessionService;
-    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> shoppingCartResponse;
+    private final DtoResponseMapper<ShoppingCartResponseDto,
+            ShoppingCart> shoppingCartDtoResponseMapper;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   UserService userService,
@@ -29,7 +30,7 @@ public class ShoppingCartController {
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
         this.movieSessionService = movieSessionService;
-        this.shoppingCartResponse = shoppingCartResponseMapper;
+        this.shoppingCartDtoResponseMapper = shoppingCartResponseMapper;
     }
 
     @PutMapping("/movie-sessions")
@@ -39,11 +40,12 @@ public class ShoppingCartController {
         ShoppingCart shoppingCart
                 = shoppingCartService.getByUser(userService.get(userId));
         shoppingCartService.addSession(movieSessionService.get(movieSessionId), user);
-        return shoppingCartResponse.toDto(shoppingCart);
+        return shoppingCartDtoResponseMapper.toDto(shoppingCart);
     }
 
     @GetMapping
     public ShoppingCartResponseDto get(@RequestParam Long userId) {
-        return shoppingCartResponse.toDto(shoppingCartService.getByUser(userService.get(userId)));
+        return shoppingCartDtoResponseMapper
+                .toDto(shoppingCartService.getByUser(userService.get(userId)));
     }
 }
