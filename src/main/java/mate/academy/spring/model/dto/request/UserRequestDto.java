@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieRequestDto {
-    private String title;
-    private String description;
+public class UserRequestDto {
+    private String email;
+    private String password;
 }

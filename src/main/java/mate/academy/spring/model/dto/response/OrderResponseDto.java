@@ -1,5 +1,7 @@
 package mate.academy.spring.model.dto.response;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,9 +11,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieSessionResponseDto {
+public class OrderResponseDto {
     private Long id;
-    private String movieTitle;
-    private String showTime;
-    private int cinemaHallCapacity;
+    private List<Long> ticketsIds;
+    private LocalDateTime orderDate;
+    private Long userId;
 }

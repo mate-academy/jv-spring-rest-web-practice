@@ -1,4 +1,4 @@
-package mate.academy.spring.model.dto.request;
+package mate.academy.spring.model.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieRequestDto {
-    private String title;
-    private String description;
+public class UserResponseDto {
+    private Long id;
+    private String email;
 }

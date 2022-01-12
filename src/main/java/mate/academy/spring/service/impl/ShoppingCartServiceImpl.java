@@ -1,6 +1,7 @@
 package mate.academy.spring.service.impl;
 
 import java.util.ArrayList;
+import lombok.AllArgsConstructor;
 import mate.academy.spring.dao.ShoppingCartDao;
 import mate.academy.spring.dao.TicketDao;
 import mate.academy.spring.model.MovieSession;
@@ -11,15 +12,10 @@ import mate.academy.spring.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final TicketDao ticketDao;
     private final ShoppingCartDao shoppingCartDao;
-
-    public ShoppingCartServiceImpl(TicketDao ticketDao,
-                                   ShoppingCartDao shoppingCartDao) {
-        this.ticketDao = ticketDao;
-        this.shoppingCartDao = shoppingCartDao;
-    }
 
     @Override
     public void addSession(MovieSession movieSession, User user) {
