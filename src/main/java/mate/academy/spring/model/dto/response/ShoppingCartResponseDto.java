@@ -3,15 +3,15 @@ package mate.academy.spring.model.dto.response;
 import java.util.List;
 
 public class ShoppingCartResponseDto {
-    private List<Long> ticketsId;
+    private List<Long> ticketIds;
     private Long userId;
 
-    public List<Long> getTicketsId() {
-        return ticketsId;
+    public List<Long> getTicketIds() {
+        return ticketIds;
     }
 
-    public void setTicketsId(List<Long> ticketsId) {
-        this.ticketsId = ticketsId;
+    public void setTicketIds(List<Long> ticketIds) {
+        this.ticketIds = ticketIds;
     }
 
     public Long getUserId() {
