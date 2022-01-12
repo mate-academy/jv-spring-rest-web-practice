@@ -1,31 +1,14 @@
 package mate.academy.spring.model.dto.request;
 
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
+@Data
 public class MovieSessionRequestDto {
+    @NotNull
     private Long movieId;
+    @NotNull
     private String showTime;
+    @NotNull
     private Long cinemaHallId;
-
-    public Long getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(Long movieId) {
-        this.movieId = movieId;
-    }
-
-    public String getShowTime() {
-        return showTime;
-    }
-
-    public void setShowTime(String showTime) {
-        this.showTime = showTime;
-    }
-
-    public Long getCinemaHallId() {
-        return cinemaHallId;
-    }
-
-    public void setCinemaHallId(Long cinemaHallId) {
-        this.cinemaHallId = cinemaHallId;
-    }
 }

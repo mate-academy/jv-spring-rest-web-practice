@@ -1,5 +1,6 @@
 package mate.academy.spring.model.dto.response;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,9 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieSessionResponseDto {
+public class ShoppingCartResponseDto {
     private Long id;
-    private String movieTitle;
-    private String showTime;
-    private int cinemaHallCapacity;
+    private List<Long> ticketsIds;
 }

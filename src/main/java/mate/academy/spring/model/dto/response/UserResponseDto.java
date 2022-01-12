@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieSessionResponseDto {
+public class UserResponseDto {
     private Long id;
-    private String movieTitle;
-    private String showTime;
-    private int cinemaHallCapacity;
+    private String email;
 }
