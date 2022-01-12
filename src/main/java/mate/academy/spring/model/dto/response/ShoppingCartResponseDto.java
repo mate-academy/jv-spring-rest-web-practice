@@ -23,4 +23,3 @@ public class ShoppingCartResponseDto {
         this.userId = userId;
     }
 }
-
