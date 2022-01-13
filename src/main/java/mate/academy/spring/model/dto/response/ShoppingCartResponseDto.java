@@ -5,14 +5,14 @@ import java.util.List;
 public class ShoppingCartResponseDto {
     private Long id;
     private Long userId;
-    private List<Long> ticketsId;
+    private List<Long> ticketsIds;
 
-    public List<Long> getTicketsId() {
-        return ticketsId;
+    public List<Long> getTicketsIds() {
+        return ticketsIds;
     }
 
-    public void setTicketsId(List<Long> ticketsId) {
-        this.ticketsId = ticketsId;
+    public void setTicketsId(List<Long> ticketsIds) {
+        this.ticketsIds = ticketsIds;
     }
 
     public Long getId() {

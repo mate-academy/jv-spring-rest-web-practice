@@ -1,11 +1,12 @@
 package mate.academy.spring.model.dto.response;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderResponseDto {
     private Long id;
-    private List<Long> ticketsId;
-    private String orderDate;
+    private List<Long> ticketsIds;
+    private LocalDateTime orderDate;
     private Long userId;
 
     public Long getId() {
@@ -17,18 +18,18 @@ public class OrderResponseDto {
     }
 
     public List<Long> getTicketsId() {
-        return ticketsId;
+        return ticketsIds;
     }
 
-    public void setTicketsId(List<Long> ticketsId) {
-        this.ticketsId = ticketsId;
+    public void setTicketsId(List<Long> ticketsIds) {
+        this.ticketsIds = ticketsIds;
     }
 
-    public String getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(String orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 

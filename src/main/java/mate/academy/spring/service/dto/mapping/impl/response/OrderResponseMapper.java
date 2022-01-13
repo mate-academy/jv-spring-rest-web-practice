@@ -1,6 +1,5 @@
 package mate.academy.spring.service.dto.mapping.impl.response;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.model.Order;
@@ -15,14 +14,13 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto orderResponseDto = new OrderResponseDto();
         orderResponseDto.setId(order.getId());
-        List<Long> ticketsId = order.getTickets()
+        List<Long> ticketsIds = order.getTickets()
                 .stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
-        orderResponseDto.setTicketsId((ticketsId));
+        orderResponseDto.setTicketsId((ticketsIds));
         orderResponseDto.setUserId(order.getUser().getId());
-        orderResponseDto.setOrderDate(order.getOrderDate()
-                .format(DateTimeFormatter.ofPattern("dd.MM.yyy HH:mm")));
+        orderResponseDto.setOrderDate(order.getOrderDate());
         return orderResponseDto;
     }
 }
