@@ -17,7 +17,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public String registration (@RequestBody UserRequestDto userRequestDto) {
+    public String registration(@RequestBody UserRequestDto userRequestDto) {
         authenticationService.register(userRequestDto.getEmail(), userRequestDto.getPassword());
         return "Registration complete";
     }
