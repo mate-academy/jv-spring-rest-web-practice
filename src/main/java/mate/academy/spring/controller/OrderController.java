@@ -9,9 +9,9 @@ import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import mate.academy.spring.service.dto.mapping.impl.response.OrderResponseMapper;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -30,15 +30,15 @@ public class OrderController {
         this.responseMapper = responseMapper;
     }
 
-    @PostMapping(name = "/complete/{id}")
-    public void completeOrder(@PathVariable Long id) {
-        orderService.completeOrder(shoppingCartService.getByUser(userService.get(id)));
+    @PostMapping(name = "/complete}")
+    public void completeOrder(@RequestParam Long userId) {
+        orderService.completeOrder(shoppingCartService.getByUser(userService.get(userId)));
     }
 
-    @GetMapping(name = "{id}")
-    public List<OrderResponseDto> getHistory(@PathVariable Long id) {
+    @GetMapping
+    public List<OrderResponseDto> getHistory(@RequestParam Long userId) {
         List<OrderResponseDto> responseDtoList = new ArrayList<>();
-        for (Order order : orderService.getOrdersHistory(userService.get(id))) {
+        for (Order order : orderService.getOrdersHistory(userService.get(userId))) {
             responseDtoList.add(responseMapper.toDto(order));
         }
         return responseDtoList;
