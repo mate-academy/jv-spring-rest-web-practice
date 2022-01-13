@@ -7,7 +7,7 @@ public class OrderResponseDto {
     private Long id;
     private List<Long> ticketsId;
     private LocalDateTime orderDate;
-    private Long userID;
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -25,12 +25,12 @@ public class OrderResponseDto {
         this.orderDate = orderDate;
     }
 
-    public Long getUserID() {
-        return userID;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserID(Long userID) {
-        this.userID = userID;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public List<Long> getTicketsId() {
