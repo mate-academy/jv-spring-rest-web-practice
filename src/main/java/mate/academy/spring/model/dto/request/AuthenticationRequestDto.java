@@ -1,6 +1,6 @@
 package mate.academy.spring.model.dto.request;
 
-public class UserRequestDto {
+public class AuthenticationRequestDto {
     private String email;
     private String password;
 
