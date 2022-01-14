@@ -15,7 +15,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public void registrar(@RequestBody UserRequestDto requestDto) {
+    public void register(@RequestBody UserRequestDto requestDto) {
         service.register(requestDto.getEmail(), requestDto.getPassword());
     }
 }
