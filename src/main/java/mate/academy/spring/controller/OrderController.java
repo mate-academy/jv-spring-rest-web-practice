@@ -21,7 +21,7 @@ public class OrderController {
     private final OrderService orderService;
     private final UserService userService;
     private final ShoppingCartService shoppingCartService;
-    private final DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> orderResponseDtoMapper;
 
     @Autowired
     public OrderController(OrderService orderService, UserService userService,
@@ -30,20 +30,20 @@ public class OrderController {
         this.orderService = orderService;
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
-        this.orderResponseMapper = orderResponseMapper;
+        this.orderResponseDtoMapper = orderResponseMapper;
     }
 
     @PostMapping("/complete")
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
-        return orderResponseMapper.toDto(orderService.completeOrder(
+        return orderResponseDtoMapper.toDto(orderService.completeOrder(
                 shoppingCartService.getByUser(userService.get(userId))));
     }
 
     @GetMapping
-    public List<OrderResponseDto> getOrderHistory(@RequestParam Long userId) {
+    public List<OrderResponseDto> getOrdersHistory(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId))
                 .stream()
-                .map(orderResponseMapper::toDto)
+                .map(orderResponseDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
