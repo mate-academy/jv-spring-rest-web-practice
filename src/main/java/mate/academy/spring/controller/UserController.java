@@ -1,16 +1,15 @@
 package mate.academy.spring.controller;
 
-import java.util.Optional;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.UserService;
 import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping(" /users")
 public class UserController {
     private final UserService userService;
@@ -24,10 +23,8 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam String email) {
-        Optional<User> optionalUser = userService.findByEmail(email);
-        if (optionalUser.isEmpty()) {
-            throw new RuntimeException("User with this login does not exist.");
-        }
-        return dtoResponseMapper.toDto(optionalUser.get());
+        User user = userService.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User with this login does not exist."));
+        return dtoResponseMapper.toDto(user);
     }
 }

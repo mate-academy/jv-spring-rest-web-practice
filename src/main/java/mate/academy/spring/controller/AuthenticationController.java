@@ -4,24 +4,20 @@ import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.security.AuthenticationService;
-import mate.academy.spring.service.dto.mapping.DtoRequestMapper;
 import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final DtoResponseMapper<UserResponseDto, User> dtoResponseMapper;
-    private final DtoRequestMapper<UserRequestDto, User> dtoRequestMapper;
 
     public AuthenticationController(AuthenticationService authenticationService,
-                                    DtoResponseMapper<UserResponseDto, User> dtoResponseMapper,
-                                    DtoRequestMapper<UserRequestDto, User> dtoRequestMapper) {
+                                    DtoResponseMapper<UserResponseDto, User> dtoResponseMapper) {
         this.authenticationService = authenticationService;
         this.dtoResponseMapper = dtoResponseMapper;
-        this.dtoRequestMapper = dtoRequestMapper;
     }
 
     @PostMapping("/register")
