@@ -15,11 +15,11 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
         OrderResponseDto responseDto = new OrderResponseDto();
         responseDto.setId(order.getId());
         responseDto.setOrderDate(order.getOrderDate());
-        List<Long> tickets = new ArrayList<>();
+        List<Long> ticketsIds = new ArrayList<>();
         for (Ticket ticket : order.getTickets()) {
-            tickets.add(ticket.getId());
+            ticketsIds.add(ticket.getId());
         }
-        responseDto.setTicketsId(tickets);
+        responseDto.setTicketsId(ticketsIds);
         responseDto.setUserId(order.getUser().getId());
         return responseDto;
     }
