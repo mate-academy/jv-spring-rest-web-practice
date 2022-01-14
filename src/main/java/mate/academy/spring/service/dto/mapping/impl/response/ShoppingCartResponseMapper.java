@@ -14,10 +14,10 @@ public class ShoppingCartResponseMapper
     public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
         ShoppingCartResponseDto shoppingCartResponseDto = new ShoppingCartResponseDto();
         shoppingCartResponseDto.setId(shoppingCart.getId());
-        List<Long> ticketsIds = shoppingCart.getTickets().stream()
+        List<Long> ticketIds = shoppingCart.getTickets().stream()
                 .map(t -> t.getId())
                 .collect(Collectors.toList());
-        shoppingCartResponseDto.setTicketsIds(ticketsIds);
+        shoppingCartResponseDto.setTicketIds(ticketIds);
         return shoppingCartResponseDto;
     }
 }
