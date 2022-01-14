@@ -18,29 +18,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cinema-halls")
 public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
-    private final DtoRequestMapper<CinemaHallRequestDto, CinemaHall> cinemaHallDtoRequestMapper;
-    private final DtoResponseMapper<CinemaHallResponseDto, CinemaHall> cinemaHallDtoResponseMapper;
+    private final DtoRequestMapper<CinemaHallRequestDto, CinemaHall> cinemaHallRequestDtoMapper;
+    private final DtoResponseMapper<CinemaHallResponseDto, CinemaHall> cinemaHallResponseDtoMapper;
 
     public CinemaHallController(CinemaHallService cinemaHallService,
                                 DtoRequestMapper<CinemaHallRequestDto, CinemaHall>
-                                        cinemaHallDtoRequestMapper,
+                                        cinemaHallRequestDtoMapper,
                                 DtoResponseMapper<CinemaHallResponseDto, CinemaHall>
-                                        cinemaHallDtoResponseMapper) {
+                                        cinemaHallResponseDtoMapper) {
         this.cinemaHallService = cinemaHallService;
-        this.cinemaHallDtoRequestMapper = cinemaHallDtoRequestMapper;
-        this.cinemaHallDtoResponseMapper = cinemaHallDtoResponseMapper;
+        this.cinemaHallRequestDtoMapper = cinemaHallRequestDtoMapper;
+        this.cinemaHallResponseDtoMapper = cinemaHallResponseDtoMapper;
     }
 
     @PostMapping
     public CinemaHallResponseDto addCinemaHall(@RequestBody CinemaHallRequestDto dto) {
-        CinemaHall cinemaHall = cinemaHallService.add(cinemaHallDtoRequestMapper.fromDto(dto));
-        return cinemaHallDtoResponseMapper.toDto(cinemaHall);
+        CinemaHall cinemaHall = cinemaHallService.add(cinemaHallRequestDtoMapper.fromDto(dto));
+        return cinemaHallResponseDtoMapper.toDto(cinemaHall);
     }
 
     @GetMapping
     public List<CinemaHallResponseDto> getAllCinemaHalls() {
         return cinemaHallService.getAll().stream()
-                .map(cinemaHallDtoResponseMapper::toDto)
+                .map(cinemaHallResponseDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 }

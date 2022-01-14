@@ -18,27 +18,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/movies")
 public class MovieController {
     private final MovieService movieService;
-    private final DtoRequestMapper<MovieRequestDto, Movie> movieDtoRequestMapper;
-    private final DtoResponseMapper<MovieResponseDto, Movie> movieDtoResponseMapper;
+    private final DtoRequestMapper<MovieRequestDto, Movie> movieRequestDtoMapper;
+    private final DtoResponseMapper<MovieResponseDto, Movie> movieResponseDtoMapper;
 
     public MovieController(MovieService movieService,
-                           DtoRequestMapper<MovieRequestDto, Movie> movieDtoRequestMapper,
-                           DtoResponseMapper<MovieResponseDto, Movie> movieDtoResponseMapper) {
+                           DtoRequestMapper<MovieRequestDto, Movie> movieRequestDtoMapper,
+                           DtoResponseMapper<MovieResponseDto, Movie> movieResponseDtoMapper) {
         this.movieService = movieService;
-        this.movieDtoRequestMapper = movieDtoRequestMapper;
-        this.movieDtoResponseMapper = movieDtoResponseMapper;
+        this.movieRequestDtoMapper = movieRequestDtoMapper;
+        this.movieResponseDtoMapper = movieResponseDtoMapper;
     }
 
     @PostMapping
     public MovieResponseDto addMovie(@RequestBody MovieRequestDto dto) {
-        Movie movie = movieService.add(movieDtoRequestMapper.fromDto(dto));
-        return movieDtoResponseMapper.toDto(movie);
+        Movie movie = movieService.add(movieRequestDtoMapper.fromDto(dto));
+        return movieResponseDtoMapper.toDto(movie);
     }
 
     @GetMapping
     public List<MovieResponseDto> getAllMovies() {
         return movieService.getAll().stream()
-                .map(movieDtoResponseMapper::toDto)
+                .map(movieResponseDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
