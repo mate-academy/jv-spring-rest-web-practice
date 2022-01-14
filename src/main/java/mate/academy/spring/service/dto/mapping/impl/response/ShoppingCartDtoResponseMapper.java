@@ -15,7 +15,7 @@ public class ShoppingCartDtoResponseMapper
         ShoppingCartResponseDto responseDto = new ShoppingCartResponseDto();
         responseDto.setUserId(shoppingCart.getUser().getId());
         responseDto.setId(shoppingCart.getId());
-        responseDto.setTicketIds(shoppingCart.getTickets().stream()
+        responseDto.setTicketsIds(shoppingCart.getTickets().stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList()));
         return responseDto;
