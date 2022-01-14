@@ -11,19 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AuthenticationController {
-    private final AuthenticationService service;
+    private final AuthenticationService authenticationService;
     private final DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper;
 
-    public AuthenticationController(AuthenticationService service,
+    public AuthenticationController(AuthenticationService authenticationService,
                                     DtoResponseMapper<UserResponseDto,
-                                            User> userDtoResponseMapper) {
-        this.service = service;
+            User> userDtoResponseMapper) {
+        this.authenticationService = authenticationService;
         this.userDtoResponseMapper = userDtoResponseMapper;
     }
 
     @PostMapping("/register")
     public UserResponseDto registration(@RequestBody UserRequestDto requestDto) {
-        User registeredUser = service.register(requestDto.getEmail(), requestDto.getPassword());
+        User registeredUser = authenticationService
+                .register(requestDto.getEmail(), requestDto.getPassword());
         return userDtoResponseMapper.toDto(registeredUser);
     }
 }

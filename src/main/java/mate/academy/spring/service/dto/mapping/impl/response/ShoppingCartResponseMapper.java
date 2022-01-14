@@ -9,18 +9,18 @@ import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ShoppingCartResponseMapper implements DtoResponseMapper<ShoppingCartResponseDto,
-        ShoppingCart> {
+public class ShoppingCartResponseMapper
+        implements DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> {
     @Override
     public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
         ShoppingCartResponseDto shoppingCartResponseDto = new ShoppingCartResponseDto();
         shoppingCartResponseDto.setId(shoppingCart.getId());
         shoppingCartResponseDto.setUserId(shoppingCart.getUser().getId());
-        List<Long> listOfTicketId = shoppingCart.getTickets()
+        List<Long> ticketIds = shoppingCart.getTickets()
                 .stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
-        shoppingCartResponseDto.setTicketIds(listOfTicketId);
+        shoppingCartResponseDto.setTicketIds(ticketIds);
         return shoppingCartResponseDto;
     }
 }

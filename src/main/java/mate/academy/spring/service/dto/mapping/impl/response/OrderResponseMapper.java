@@ -9,19 +9,19 @@ import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto,
-        Order> {
+public class OrderResponseMapper
+        implements DtoResponseMapper<OrderResponseDto, Order> {
     @Override
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto orderResponseDto = new OrderResponseDto();
         orderResponseDto.setId(order.getId());
         orderResponseDto.setOrderDate(order.getOrderDate());
         orderResponseDto.setUserId(order.getUser().getId());
-        List<Long> ticketIdList = order.getTickets()
+        List<Long> ticketIds = order.getTickets()
                 .stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
-        orderResponseDto.setTicketId(ticketIdList);
+        orderResponseDto.setTicketIds(ticketIds);
         return orderResponseDto;
     }
 }

@@ -6,8 +6,8 @@ import mate.academy.spring.service.dto.mapping.DtoRequestMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserRequestMapper implements DtoRequestMapper<UserRequestDto,
-        User> {
+public class UserRequestMapper
+        implements DtoRequestMapper<UserRequestDto, User> {
     @Override
     public User fromDto(UserRequestDto dto) {
         User user = new User();
