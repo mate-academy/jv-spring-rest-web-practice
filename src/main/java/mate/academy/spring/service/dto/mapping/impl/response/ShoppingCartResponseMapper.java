@@ -17,11 +17,11 @@ public class ShoppingCartResponseMapper implements DtoResponseMapper<ShoppingCar
                 new ShoppingCartResponseDto();
         shoppingCartResponseDto.setId(shoppingCart.getId());
         shoppingCartResponseDto.setUserId(shoppingCart.getUser().getId());
-        List<Long> ticketsId = shoppingCart.getTickets()
+        List<Long> ticketsIds = shoppingCart.getTickets()
                 .stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
-        shoppingCartResponseDto.setTicketsIds(ticketsId);
+        shoppingCartResponseDto.setTicketsIds(ticketsIds);
         return shoppingCartResponseDto;
     }
 }
