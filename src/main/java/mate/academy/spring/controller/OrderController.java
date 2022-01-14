@@ -2,12 +2,13 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import mate.academy.spring.model.Order;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
-import mate.academy.spring.service.dto.mapping.impl.response.OrderResponseMapper;
+import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,13 +22,13 @@ public class OrderController {
     private UserService userService;
     private OrderService orderService;
     private ShoppingCartService shoppingCartService;
-    private OrderResponseMapper orderResponseMapper;
+    private DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
 
     @Autowired
     public OrderController(UserService userService,
                            OrderService orderService,
                            ShoppingCartService shoppingCartService,
-                           OrderResponseMapper orderResponseMapper) {
+                           DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper) {
         this.userService = userService;
         this.orderService = orderService;
         this.shoppingCartService = shoppingCartService;
@@ -35,10 +36,10 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-    public String completeOrder(@RequestParam Long userId) {
+    public OrderResponseDto completeOrder(@RequestParam Long userId) {
         ShoppingCart shoppingCart = shoppingCartService.getByUser(userService.get(userId));
-        orderService.completeOrder(shoppingCart);
-        return "Order complete";
+        Order order = orderService.completeOrder(shoppingCart);
+        return orderResponseMapper.toDto(order);
     }
 
     @GetMapping

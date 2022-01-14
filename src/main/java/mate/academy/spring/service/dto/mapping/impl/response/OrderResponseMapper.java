@@ -5,10 +5,11 @@ import java.util.stream.Collectors;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
+import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OrderResponseMapper {
+public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, Order> {
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto orderResponseDto = new OrderResponseDto();
         List<Long> collect = order.getTickets()
@@ -18,7 +19,7 @@ public class OrderResponseMapper {
         orderResponseDto.setId(order.getId());
         orderResponseDto.setOrderDate(order.getOrderDate());
         orderResponseDto.setUserId(order.getUser().getId());
-        orderResponseDto.setTicketsIdList(collect);
+        orderResponseDto.setTicketsIds(collect);
         return orderResponseDto;
     }
 }
