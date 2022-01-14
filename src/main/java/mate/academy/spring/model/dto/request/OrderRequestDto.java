@@ -4,16 +4,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderRequestDto {
-    private List<Integer> ticketsId;
+    private List<Integer> ticketsIds;
     private LocalDateTime orderDate;
     private Long userId;
 
-    public List<Integer> getTicketsId() {
-        return ticketsId;
+    public List<Integer> getTicketsIds() {
+        return ticketsIds;
     }
 
-    public void setTicketsId(List<Integer> ticketsId) {
-        this.ticketsId = ticketsId;
+    public void setTicketsIds(List<Integer> ticketsIds) {
+        this.ticketsIds = ticketsIds;
     }
 
     public LocalDateTime getOrderDate() {
