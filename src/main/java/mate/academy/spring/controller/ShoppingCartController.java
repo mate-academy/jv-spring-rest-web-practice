@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
 import mate.academy.spring.model.ShoppingCart;
+import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
@@ -15,16 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
-    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> dtoResponseMapper;
+    private final DtoResponseMapper<ShoppingCartResponseDto,
+            ShoppingCart> shoppingCartDtoResponseMapper;
     private final UserService userService;
     private final ShoppingCartService shoppingCartService;
     private final MovieSessionService movieSessionService;
 
     public ShoppingCartController(
-            DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> dtoResponseMapper,
+            DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> shoppingCartDtoResponseMapper,
             UserService userService, ShoppingCartService shoppingCartService,
             MovieSessionService movieSessionService) {
-        this.dtoResponseMapper = dtoResponseMapper;
+        this.shoppingCartDtoResponseMapper = shoppingCartDtoResponseMapper;
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
         this.movieSessionService = movieSessionService;
@@ -32,14 +34,18 @@ public class ShoppingCartController {
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
-        return dtoResponseMapper.toDto(
+        return shoppingCartDtoResponseMapper.toDto(
                 shoppingCartService.getByUser(
                         userService.get(userId)));
     }
 
     @PutMapping("/movie-sessions")
-    public void addSession(@RequestParam Long userId, @RequestParam Long movieSessionId) {
+    public ShoppingCartResponseDto addSession(
+            @RequestParam Long userId, @RequestParam Long movieSessionId) {
+        User user = userService.get(userId);
         shoppingCartService.addSession(
-                movieSessionService.get(movieSessionId), userService.get(userId));
+                movieSessionService.get(movieSessionId), user);
+        return shoppingCartDtoResponseMapper.toDto(
+                shoppingCartService.getByUser(user));
     }
 }
