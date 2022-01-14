@@ -8,5 +8,5 @@ import lombok.Setter;
 @Getter
 public class ShoppingCartResponseDto {
     private Long id;
-    private List<Long> ticketsId;
+    private List<Long> ticketsIds;
 }
