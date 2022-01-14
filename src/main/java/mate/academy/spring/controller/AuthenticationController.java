@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     private final AuthenticationService service;
 
-    public AuthenticationController(AuthenticationService service) {
-        this.service = service;
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.service = authenticationService;
     }
 
     @PostMapping("/register")

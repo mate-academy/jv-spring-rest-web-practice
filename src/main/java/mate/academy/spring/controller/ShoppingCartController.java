@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
-    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> dtoResponseMapper;
+    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart>
+            shoppingCartDtoResponseMapper;
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
     private final MovieSessionService movieSessionService;
@@ -24,7 +25,7 @@ public class ShoppingCartController {
                                           dtoResponseMapper, ShoppingCartService
                                           shoppingCartService, UserService userService,
                                           MovieSessionService movieSessionService) {
-        this.dtoResponseMapper = dtoResponseMapper;
+        this.shoppingCartDtoResponseMapper = dtoResponseMapper;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
         this.movieSessionService = movieSessionService;
@@ -32,7 +33,8 @@ public class ShoppingCartController {
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getShoppingCartByUser(@RequestParam Long userId) {
-        return dtoResponseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
+        return shoppingCartDtoResponseMapper
+                .toDto(shoppingCartService.getByUser(userService.get(userId)));
     }
 
     @PutMapping("/movie-sessions")
@@ -40,6 +42,7 @@ public class ShoppingCartController {
                                               @RequestParam Long movieSessionId) {
         shoppingCartService.addSession(movieSessionService.get(movieSessionId),
                 userService.get(userId));
-        return dtoResponseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
+        return shoppingCartDtoResponseMapper
+                .toDto(shoppingCartService.getByUser(userService.get(userId)));
     }
 }
