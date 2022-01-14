@@ -1,6 +1,5 @@
 package mate.academy.spring.controller;
 
-import jakarta.validation.Valid;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.UserService;
@@ -23,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping("/by-email")
-    public UserResponseDto findByEmail(@RequestParam @Valid String email) {
+    public UserResponseDto findByEmail(@RequestParam String email) {
         return dtoResponseMapper.toDto(userService.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Can't find user by email: " + email)));
     }
