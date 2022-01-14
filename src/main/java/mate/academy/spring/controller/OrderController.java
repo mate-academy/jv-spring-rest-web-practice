@@ -1,13 +1,13 @@
 package mate.academy.spring.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
-import mate.academy.spring.service.dto.mapping.impl.response.OrderResponseMapper;
+import mate.academy.spring.service.dto.mapping.DtoResponseMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,27 +20,27 @@ public class OrderController {
     private final OrderService orderService;
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
-    private final OrderResponseMapper responseMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
 
-    public OrderController(OrderService orderService, ShoppingCartService shoppingCartService,
-                           UserService userService, OrderResponseMapper responseMapper) {
+    public OrderController(OrderService orderService,
+                           ShoppingCartService shoppingCartService, UserService userService,
+                           DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper) {
         this.orderService = orderService;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
-        this.responseMapper = responseMapper;
+        this.orderResponseMapper = orderResponseMapper;
     }
 
-    @PostMapping(name = "/complete}")
-    public void completeOrder(@RequestParam Long userId) {
-        orderService.completeOrder(shoppingCartService.getByUser(userService.get(userId)));
+    @PostMapping("/complete")
+    public OrderResponseDto completeOrder(@RequestParam Long userId) {
+        return orderResponseMapper.toDto(orderService.completeOrder(
+                shoppingCartService.getByUser(userService.get(userId))));
     }
 
     @GetMapping
-    public List<OrderResponseDto> getHistory(@RequestParam Long userId) {
-        List<OrderResponseDto> responseDtoList = new ArrayList<>();
-        for (Order order : orderService.getOrdersHistory(userService.get(userId))) {
-            responseDtoList.add(responseMapper.toDto(order));
-        }
-        return responseDtoList;
+    public List<OrderResponseDto> getOrdersHistory(@RequestParam Long userId) {
+        return orderService.getOrdersHistory(userService.get(userId)).stream()
+                .map(orderResponseMapper::toDto)
+                .collect(Collectors.toList());
     }
 }
