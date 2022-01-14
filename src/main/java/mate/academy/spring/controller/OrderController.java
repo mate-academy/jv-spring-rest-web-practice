@@ -40,7 +40,7 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-    public OrderResponseDto addOrder(@RequestParam Long userId) {
+    public OrderResponseDto completeOrder(@RequestParam Long userId) {
         return dtoResponseMapper.toDto(orderService
                 .completeOrder(shoppingCartService
                         .getByUser(userService.get(userId))));
