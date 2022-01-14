@@ -17,21 +17,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
-    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> dtoResponseMapper;
+    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart>
+            shoppingCartDtoResponseMapper;
     private final MovieSessionService movieSessionService;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService, UserService userService,
-                         DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> dtoResponseMapper,
+                         DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart>
+                                 shoppingCartDtoResponseMapper,
                          MovieSessionService movieSessionService) {
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
-        this.dtoResponseMapper = dtoResponseMapper;
+        this.shoppingCartDtoResponseMapper = shoppingCartDtoResponseMapper;
         this.movieSessionService = movieSessionService;
     }
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUserId(@RequestParam Long userId) {
-        return dtoResponseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
+        return shoppingCartDtoResponseMapper
+                .toDto(shoppingCartService.getByUser(userService.get(userId)));
     }
 
     @PutMapping("/movie-sessions")
@@ -39,6 +42,7 @@ public class ShoppingCartController {
                                                    @RequestParam Long movieSessionId) {
         shoppingCartService.addSession(movieSessionService
                 .get(movieSessionId), userService.get(userId));
-        return dtoResponseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
+        return shoppingCartDtoResponseMapper
+                .toDto(shoppingCartService.getByUser(userService.get(userId)));
     }
 }

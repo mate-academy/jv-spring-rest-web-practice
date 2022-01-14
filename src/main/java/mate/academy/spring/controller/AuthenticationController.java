@@ -1,6 +1,6 @@
 package mate.academy.spring.controller;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.security.AuthenticationService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AuthenticationController {
-    private final AuthenticationService service;
+    private final AuthenticationService authenticationService;
 
     public AuthenticationController(AuthenticationService service) {
-        this.service = service;
+        this.authenticationService = service;
     }
 
     @PostMapping("/register")
     public void register(@RequestBody @Valid UserRequestDto requestDto) {
-        service.register(requestDto.getEmail(), requestDto.getPassword());
+        authenticationService.register(requestDto.getEmail(), requestDto.getPassword());
     }
 }

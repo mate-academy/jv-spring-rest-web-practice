@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private final DtoResponseMapper<UserResponseDto, User> dtoResponseMapper;
+    private final DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper;
     private final UserService userService;
 
-    public UserController(DtoResponseMapper<UserResponseDto, User> dtoResponseMapper,
+    public UserController(DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper,
                           UserService userService) {
-        this.dtoResponseMapper = dtoResponseMapper;
+        this.userDtoResponseMapper = userDtoResponseMapper;
         this.userService = userService;
     }
 
     @GetMapping("/by-email")
     public UserResponseDto findByEmail(@RequestParam String email) {
-        return dtoResponseMapper.toDto(userService.findByEmail(email)
+        return userDtoResponseMapper.toDto(userService.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Can't find user by email: " + email)));
     }
 }
