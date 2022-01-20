@@ -10,12 +10,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class ShoppingCartResponseMapper implements DtoResponseMapper<ShoppingCartResponseDto,
         ShoppingCart> {
+    private final UserResponseMapper userResponseMapper;
+
+    public ShoppingCartResponseMapper(UserResponseMapper userResponseMapper) {
+        this.userResponseMapper = userResponseMapper;
+    }
 
     @Override
     public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
         ShoppingCartResponseDto responseDto = new ShoppingCartResponseDto();
         responseDto.setId(shoppingCart.getId());
-        responseDto.setUser(shoppingCart.getUser());
+        responseDto.setUser(userResponseMapper.toDto(shoppingCart.getUser()));
         responseDto.setTicketIds(shoppingCart.getTickets().stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList()));

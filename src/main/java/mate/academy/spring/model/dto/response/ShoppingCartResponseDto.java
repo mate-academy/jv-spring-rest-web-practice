@@ -1,12 +1,11 @@
 package mate.academy.spring.model.dto.response;
 
 import java.util.List;
-import mate.academy.spring.model.User;
 
 public class ShoppingCartResponseDto {
     private Long id;
     private List<Long> ticketIds;
-    private User user;
+    private UserResponseDto userResponseDto;
 
     public Long getId() {
         return id;
@@ -24,11 +23,11 @@ public class ShoppingCartResponseDto {
         this.ticketIds = ticketIds;
     }
 
-    public User getUser() {
-        return user;
+    public UserResponseDto getUser() {
+        return userResponseDto;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(UserResponseDto userResponseDto) {
+        this.userResponseDto = userResponseDto;
     }
 }
