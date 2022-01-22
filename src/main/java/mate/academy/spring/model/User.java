@@ -6,9 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.ToString;
 
 @Entity
 @Table(name = "users")
+@ToString(exclude = {"password", "salt"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
