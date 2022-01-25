@@ -1,9 +1,9 @@
 package mate.academy.spring.mapper.impl.response;
 
 import java.time.format.DateTimeFormatter;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.response.MovieSessionResponseDto;
-import mate.academy.spring.mapper.DtoResponseMapper;
 import org.springframework.stereotype.Component;
 
 @Component

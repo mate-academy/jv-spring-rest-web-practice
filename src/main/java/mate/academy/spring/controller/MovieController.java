@@ -2,12 +2,12 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import mate.academy.spring.mapper.DtoRequestMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.dto.request.MovieRequestDto;
 import mate.academy.spring.model.dto.response.MovieResponseDto;
 import mate.academy.spring.service.MovieService;
-import mate.academy.spring.mapper.DtoRequestMapper;
-import mate.academy.spring.mapper.DtoResponseMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

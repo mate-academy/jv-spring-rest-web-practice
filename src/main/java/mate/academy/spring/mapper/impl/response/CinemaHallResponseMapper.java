@@ -1,8 +1,8 @@
 package mate.academy.spring.mapper.impl.response;
 
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.dto.response.CinemaHallResponseDto;
-import mate.academy.spring.mapper.DtoResponseMapper;
 import org.springframework.stereotype.Component;
 
 @Component
