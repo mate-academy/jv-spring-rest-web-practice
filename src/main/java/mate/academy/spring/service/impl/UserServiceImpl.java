@@ -1,5 +1,6 @@
 package mate.academy.spring.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 import mate.academy.spring.dao.UserDao;
 import mate.academy.spring.model.User;
@@ -30,5 +31,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User get(Long id) {
         return userDao.get(id).get();
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userDao.findAll();
+    }
+
+    @Override
+    public void delete(Long userId) {
+        userDao.delete(userId);
     }
 }

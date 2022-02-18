@@ -1,6 +1,9 @@
 package mate.academy.spring.model.dto.request;
 
+import com.sun.istack.NotNull;
+
 public class MovieRequestDto {
+    @NotNull
     private String title;
     private String description;
 

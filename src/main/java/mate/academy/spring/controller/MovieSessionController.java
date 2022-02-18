@@ -3,12 +3,13 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
+import mate.academy.spring.mapper.DtoRequestMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.request.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.response.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
-import mate.academy.spring.mapper.DtoRequestMapper;
-import mate.academy.spring.mapper.DtoResponseMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +41,7 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public MovieSessionResponseDto addMovieSession(@RequestBody MovieSessionRequestDto dto) {
+    public MovieSessionResponseDto addMovieSession(@RequestBody @Valid MovieSessionRequestDto dto) {
         MovieSession movieSession
                 = movieSessionService.add(movieSessionDtoRequestMapper.fromDto(dto));
         return movieSessionDtoResponseMapper.toDto(movieSession);
