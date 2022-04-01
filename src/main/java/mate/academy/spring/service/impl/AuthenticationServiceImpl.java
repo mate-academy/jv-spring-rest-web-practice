@@ -1,5 +1,6 @@
 package mate.academy.spring.service.impl;
 
+import mate.academy.spring.exception.AuthenticationException;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.AuthenticationService;
 import mate.academy.spring.service.UserService;
@@ -14,7 +15,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public User register(String email, String password) {
+    public User register(String email, String password)
+            throws AuthenticationException {
+        if (userService.findByEmail(email).isPresent()) {
+            throw new AuthenticationException("This email was used: " + email);
+        }
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
