@@ -1,11 +1,10 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.exception.AuthenticationException;
 import mate.academy.spring.mapper.impl.response.UserResponseDtoMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.model.dto.response.UserResponseDto;
-import mate.academy.spring.service.AuthenticationService;
+import mate.academy.spring.security.AuthenticationService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,13 +22,9 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody UserRequestDto userRequestDto) {
-        try {
-            User registered = authenticationService
-                    .register(userRequestDto.getEmail(),
-                    userRequestDto.getPassword());
-            return userResponseDtoMapper.toDto(registered);
-        } catch (AuthenticationException e) {
-            throw new RuntimeException(e);
-        }
+        User registered = authenticationService
+                .register(userRequestDto.getEmail(),
+                userRequestDto.getPassword());
+        return userResponseDtoMapper.toDto(registered);
     }
 }
