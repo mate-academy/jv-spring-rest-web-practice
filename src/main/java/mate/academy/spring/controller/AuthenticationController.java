@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import mate.academy.spring.exception.AuthenticationException;
 import mate.academy.spring.mapper.impl.response.UserResponseDtoMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRequestDto;
@@ -22,8 +23,13 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody UserRequestDto userRequestDto) {
-        User registered = authenticationService.register(userRequestDto.getEmail(),
-                userRequestDto.getPassword());
-        return userResponseDtoMapper.toDto(registered);
+        try {
+            User registered = authenticationService
+                    .register(userRequestDto.getEmail(),
+                    userRequestDto.getPassword());
+            return userResponseDtoMapper.toDto(registered);
+        } catch (AuthenticationException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
