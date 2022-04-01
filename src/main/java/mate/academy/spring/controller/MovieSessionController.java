@@ -3,6 +3,8 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import jakarta.validation.Valid;
 import mate.academy.spring.mapper.DtoRequestMapper;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.MovieSession;
@@ -40,7 +42,7 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public MovieSessionResponseDto addMovieSession(@RequestBody MovieSessionRequestDto dto) {
+    public MovieSessionResponseDto addMovieSession(@RequestBody @Valid MovieSessionRequestDto dto) {
         MovieSession movieSession
                 = movieSessionService.add(movieSessionDtoRequestMapper.fromDto(dto));
         return movieSessionDtoResponseMapper.toDto(movieSession);

@@ -1,9 +1,14 @@
 package mate.academy.spring.model.dto.request;
 
-import javax.persistence.Column;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 
 public class UserRequestDto {
+    @NotNull
+    @Email
     private String email;
+    @NotNull
     private String password;
 
     public String getEmail() {
