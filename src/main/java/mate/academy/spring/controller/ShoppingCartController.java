@@ -32,6 +32,7 @@ public class ShoppingCartController {
         this.userService = userService;
         this.shoppingCartResponseDtoMapper = shoppingCartResponseDtoMapper;
     }
+
     @PutMapping("/movie-sessions")
     public HttpStatus addMovieSessionToCart(@RequestParam Long userId,
                                             @RequestParam Long movieSessionId) {
