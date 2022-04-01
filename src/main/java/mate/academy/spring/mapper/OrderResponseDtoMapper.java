@@ -3,9 +3,11 @@ package mate.academy.spring.mapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
+import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
+@Component
 public class OrderResponseDtoMapper implements DtoResponseMapper<OrderResponseDto, Order> {
 
     @Override
