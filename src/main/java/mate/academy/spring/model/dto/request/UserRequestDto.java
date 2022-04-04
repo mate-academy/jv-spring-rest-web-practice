@@ -1,14 +1,14 @@
 package mate.academy.spring.model.dto.request;
 
-
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class UserRequestDto {
     @NotNull
     @Email
     private String email;
-    @NotNull
+    @NotBlank
     private String password;
 
     public String getEmail() {

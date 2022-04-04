@@ -1,8 +1,8 @@
 package mate.academy.spring.controller;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import mate.academy.spring.mapper.DtoRequestMapper;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.CinemaHall;
