@@ -1,6 +1,5 @@
 package mate.academy.spring.controller;
 
-import jakarta.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoRequestMapper;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/movies")

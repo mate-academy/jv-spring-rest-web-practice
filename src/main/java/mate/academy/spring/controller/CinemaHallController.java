@@ -1,6 +1,6 @@
 package mate.academy.spring.controller;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoRequestMapper;
