@@ -1,10 +1,11 @@
 package mate.academy.spring.model.dto.request;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class UserRequestDto {
-    @NotNull
+    @Email
     private String email;
     @NotNull
     @Size(min = 6)
