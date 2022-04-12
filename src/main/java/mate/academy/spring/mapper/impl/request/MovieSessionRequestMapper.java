@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionRequestMapper implements DtoRequestMapper<MovieSessionRequestDto,
-                                                                   MovieSession> {
+        MovieSession> {
     private final CinemaHallService cinemaHallService;
     private final MovieService movieService;
 
