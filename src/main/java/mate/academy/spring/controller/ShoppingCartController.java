@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
-
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
     private final MovieSessionService movieSessionService;
@@ -40,10 +39,9 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/movie-sessions")
-    public void update(@RequestParam Long userId, @RequestParam Long movieSessionId) {
+    public void addMovieSession(@RequestParam Long userId, @RequestParam Long movieSessionId) {
         User user = userService.get(userId);
         MovieSession movieSession = movieSessionService.get(movieSessionId);
-        shoppingCartService.registerNewShoppingCart(user);
         shoppingCartService.addSession(movieSession, user);
     }
 }
