@@ -2,6 +2,8 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import lombok.RequiredArgsConstructor;
 import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.ShoppingCart;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -24,18 +27,8 @@ public class OrderController {
     private final UserService userService;
     private final OrderResponseMapper orderResponseMapper;
 
-    public OrderController(ShoppingCartService shoppingCartService,
-                           OrderService orderService,
-                           UserService userService,
-                           OrderResponseMapper orderResponseMapper) {
-        this.shoppingCartService = shoppingCartService;
-        this.orderService = orderService;
-        this.userService = userService;
-        this.orderResponseMapper = orderResponseMapper;
-    }
-
     @PostMapping("/complete")
-    public OrderResponseDto addCompleteOrder(@RequestParam Long userId) {
+    public OrderResponseDto сompleteOrder(@RequestParam Long userId) {
         User user = userService.get(userId);
         ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
         Order completeOrder = orderService.completeOrder(shoppingCart);
