@@ -6,6 +6,8 @@ import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, Order> {
     @Override
@@ -14,7 +16,7 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
         dto.setOrderId(order.getId());
         dto.setTicketsId(order.getTickets().stream()
                 .map(Ticket::getId)
-                .toList());
+                .collect(Collectors.toList()));
         dto.setOrderDate(order.getOrderDate());
         dto.setUserId(order.getUser().getId());
         return dto;
