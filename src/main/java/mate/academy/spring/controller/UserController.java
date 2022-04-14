@@ -31,6 +31,6 @@ public class UserController {
         if (userByEmail.isPresent()) {
             return userDtoResponseMapper.toDto(userByEmail.get());
         }
-        throw new AuthenticationException("Cannot find user by email " + email);
+        throw new AuthenticationException("Cannot find user by email: " + email);
     }
 }
