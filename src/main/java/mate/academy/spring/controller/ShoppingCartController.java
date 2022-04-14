@@ -47,7 +47,6 @@ public class ShoppingCartController {
         User user = userService.get(userId);
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         shoppingCartService.addSession(movieSession, user);
-
         return shoppingCartDtoResponseMapper.toDto(
                 shoppingCartService.getByUser(userService.get(userId)));
     }

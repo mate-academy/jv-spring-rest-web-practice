@@ -27,9 +27,9 @@ public class UserController {
     public UserResponseDto getUserByEmail(
             @RequestParam(value = "email") String email)
             throws AuthenticationException {
-        Optional<User> userByEmail = userService.findByEmail(email);
-        if (userByEmail.isPresent()) {
-            return userDtoResponseMapper.toDto(userByEmail.get());
+        Optional<User> user = userService.findByEmail(email);
+        if (user.isPresent()) {
+            return userDtoResponseMapper.toDto(user.get());
         }
         throw new AuthenticationException("Cannot find user by email " + email);
     }
