@@ -9,6 +9,7 @@ import mate.academy.spring.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -30,13 +31,13 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/movie-sessions")
-    public void add(Long userId, Long movieSessionId) {
+    public void add(@RequestParam Long userId, @RequestParam Long movieSessionId) {
         shoppingCartService.addSession(movieSessionService.get(movieSessionId),
                 userService.get(userId));
     }
 
     @GetMapping("/by-user")
-    public ShoppingCartResponseDto get(Long userId) {
+    public ShoppingCartResponseDto get(@RequestParam Long userId) {
         ShoppingCart shoppingCart = shoppingCartService.getByUser(userService.get(userId));
         return cartResponseMapper.toDto(shoppingCart);
     }
