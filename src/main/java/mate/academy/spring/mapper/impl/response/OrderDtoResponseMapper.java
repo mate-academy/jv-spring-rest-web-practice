@@ -1,6 +1,7 @@
 package mate.academy.spring.mapper.impl.response;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.Ticket;
@@ -14,7 +15,7 @@ public class OrderDtoResponseMapper implements DtoResponseMapper<OrderResponseDt
         OrderResponseDto responseDto = new OrderResponseDto();
         responseDto.setId(obj.getId());
         List<Long> ticketsId = obj.getTickets()
-                .stream().map(Ticket::getId).toList();
+                .stream().map(Ticket::getId).collect(Collectors.toList());
         responseDto.setTickets(ticketsId);
         responseDto.setUser(obj.getUser().getId());
         responseDto.setOrderDate(obj.getOrderDate());
