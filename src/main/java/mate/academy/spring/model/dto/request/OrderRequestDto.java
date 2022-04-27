@@ -1,12 +1,10 @@
 package mate.academy.spring.model.dto.request;
 
-import jakarta.validation.constraints.Future;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderRequestDto {
     private List<Long> ticketsId;
-    @Future
     private LocalDateTime orderDate;
     private Long userId;
 

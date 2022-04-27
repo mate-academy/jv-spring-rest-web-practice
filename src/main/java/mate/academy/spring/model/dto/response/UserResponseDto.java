@@ -1,10 +1,8 @@
 package mate.academy.spring.model.dto.response;
 
-import mate.academy.spring.validation.Email;
-
 public class UserResponseDto {
     private Long id;
-    @Email
+
     private String email;
     private String password;
     private byte[] salt;
