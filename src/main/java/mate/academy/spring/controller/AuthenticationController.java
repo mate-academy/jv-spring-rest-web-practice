@@ -1,7 +1,6 @@
 package mate.academy.spring.controller;
 
 import jakarta.validation.Valid;
-import mate.academy.spring.mapper.impl.request.UserRequestMapper;
 import mate.academy.spring.mapper.impl.response.UserResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRequestDto;
