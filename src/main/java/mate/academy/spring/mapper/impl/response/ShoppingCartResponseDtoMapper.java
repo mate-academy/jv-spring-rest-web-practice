@@ -1,7 +1,9 @@
 package mate.academy.spring.mapper.impl.response;
 
+import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.ShoppingCart;
+import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +14,10 @@ public class ShoppingCartResponseDtoMapper implements DtoResponseMapper<Shopping
     public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
         ShoppingCartResponseDto responseDto = new ShoppingCartResponseDto();
         responseDto.setId(shoppingCart.getId());
-        responseDto.setTickets(shoppingCart.getTickets());
+        responseDto.setTicketIds(shoppingCart.getTickets().stream()
+                .map(Ticket::getId)
+                .collect(Collectors.toList()));
+        responseDto.setUserId(shoppingCart.getUser().getId());
         return responseDto;
     }
 }
