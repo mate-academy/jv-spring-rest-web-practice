@@ -2,6 +2,7 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.ShoppingCart;
@@ -22,14 +23,16 @@ public class OrderController {
     private final OrderService orderService;
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
-    private final OrderResponseMapper responseMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> orderDtoResponseMapper;
 
-    public OrderController(OrderService orderService, ShoppingCartService shoppingCartService,
-                           UserService userService, OrderResponseMapper responseMapper) {
+    public OrderController(OrderService orderService,
+                           ShoppingCartService shoppingCartService,
+                           UserService userService,
+                           DtoResponseMapper<OrderResponseDto, Order> orderDtoResponseMapper) {
         this.orderService = orderService;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
-        this.responseMapper = responseMapper;
+        this.orderDtoResponseMapper = orderDtoResponseMapper;
     }
 
     @PostMapping("/complete")
@@ -37,7 +40,7 @@ public class OrderController {
         User user = userService.get(userId);
         ShoppingCart cart = shoppingCartService.getByUser(user);
         Order completedOrder = orderService.completeOrder(cart);
-        return responseMapper.toDto(completedOrder);
+        return orderDtoResponseMapper.toDto(completedOrder);
     }
 
     @GetMapping
@@ -45,7 +48,7 @@ public class OrderController {
         User user = userService.get(userId);
         List<Order> orders = orderService.getOrdersHistory(user);
         return orders.stream()
-                .map(responseMapper::toDto)
+                .map(orderDtoResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
