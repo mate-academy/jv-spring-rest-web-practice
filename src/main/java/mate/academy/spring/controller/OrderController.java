@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.mapper.impl.response.OrderDtoResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.ShoppingCart;
@@ -39,7 +40,7 @@ public class OrderController {
         List<Order> ordersHistory = orderService.getOrdersHistory(userService.get(userId));
         return ordersHistory
                 .stream()
-                .map(orderDtoResponseMapper::toDto).toList();
+                .map(orderDtoResponseMapper::toDto).collect(Collectors.toList());
     }
 
     @PostMapping("/complete")
