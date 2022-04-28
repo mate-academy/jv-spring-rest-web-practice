@@ -8,10 +8,10 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class UserResponseMapper implements DtoResponseMapper<UserResponseDto, User> {
     @Override
-    public UserResponseDto toDto(User object) {
+    public UserResponseDto toDto(User user) {
         UserResponseDto userResponseDto = new UserResponseDto();
-        userResponseDto.setId(object.getId());
-        userResponseDto.setEmail(object.getEmail());
+        userResponseDto.setId(user.getId());
+        userResponseDto.setEmail(user.getEmail());
         return userResponseDto;
     }
 }
