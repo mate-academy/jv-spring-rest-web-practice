@@ -2,11 +2,11 @@ package mate.academy.spring.model.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 public class UserRequestDto {
     @Email
-    @NotNull
+    @NotBlank(message = "Email may not be blank")
     private String email;
     @Min(6)
     private String password;
