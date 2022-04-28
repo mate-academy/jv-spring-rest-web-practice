@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderRequestMapper implements DtoRequestMapper<Order, OrderRequestDto> {
     @Override
-    public OrderRequestDto toDto(Order order) {
+    public OrderRequestDto toModel(Order order) {
         OrderRequestDto orderRequestDto = new OrderRequestDto();
         orderRequestDto.setOrderDate(order.getOrderDate());
         orderRequestDto.setTicketId(order.getTickets()

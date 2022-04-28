@@ -22,12 +22,12 @@ public class MovieSessionRequestMapper implements DtoRequestMapper<MovieSessionR
     }
 
     @Override
-    public MovieSession toDto(MovieSessionRequestDto dto) {
+    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
-        Movie movie = movieService.get(dto.getMovieId());
-        CinemaHall cinemaHall = cinemaHallService.get(dto.getCinemaHallId());
+        Movie movie = movieService.get(movieSessionRequestDto.getMovieId());
+        CinemaHall cinemaHall = cinemaHallService.get(movieSessionRequestDto.getCinemaHallId());
         movieSession.setMovie(movie);
-        movieSession.setShowTime(dto.getShowTime());
+        movieSession.setShowTime(movieSessionRequestDto.getShowTime());
         movieSession.setCinemaHall(cinemaHall);
         return movieSession;
     }

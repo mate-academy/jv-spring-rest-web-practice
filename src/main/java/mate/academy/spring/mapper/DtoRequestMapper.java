@@ -1,5 +1,5 @@
 package mate.academy.spring.mapper;
 
 public interface DtoRequestMapper<D, C> {
-    C toDto(D dto);
+    C toModel(D dto);
 }
