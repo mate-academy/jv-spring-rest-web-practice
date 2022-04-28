@@ -1,8 +1,5 @@
 package mate.academy.spring.mapper.impl.request;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class UserRequestDto {
     private String email;
     private String password;

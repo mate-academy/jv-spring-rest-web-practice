@@ -40,7 +40,8 @@ public class OrderController {
         List<Order> ordersHistory = orderService.getOrdersHistory(userService.get(userId));
         return ordersHistory
                 .stream()
-                .map(orderDtoResponseMapper::toDto).collect(Collectors.toList());
+                .map(orderDtoResponseMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @PostMapping("/complete")
