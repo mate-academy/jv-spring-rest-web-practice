@@ -8,7 +8,7 @@ public class UserRequestDto {
     @Email
     @NotBlank(message = "Email may not be blank")
     private String email;
-    @Min(6)
+    @Min(value = 6)
     private String password;
 
     public String getEmail() {
