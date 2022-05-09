@@ -6,8 +6,8 @@ import java.util.List;
 public class OrderResponseDto {
     private Long orderId;
     private UserResponseDto userResponseDto;
-    private List<Long> ticketsId;
-    private LocalDateTime orderDateTime;
+    private List<Long> ticketIds;
+    private LocalDateTime orderDate;
 
     public Long getOrderId() {
         return orderId;
@@ -17,20 +17,20 @@ public class OrderResponseDto {
         this.orderId = orderId;
     }
 
-    public List<Long> getTicketsId() {
-        return ticketsId;
+    public List<Long> getTicketIds() {
+        return ticketIds;
     }
 
-    public void setTicketsId(List<Long> ticketsId) {
-        this.ticketsId = ticketsId;
+    public void setTicketIds(List<Long> ticketIds) {
+        this.ticketIds = ticketIds;
     }
 
-    public LocalDateTime getOrderDateTime() {
-        return orderDateTime;
+    public LocalDateTime getOrderDate() {
+        return orderDate;
     }
 
-    public void setOrderDateTime(LocalDateTime orderDateTime) {
-        this.orderDateTime = orderDateTime;
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
     }
 
     public UserResponseDto getUserResponseDto() {
