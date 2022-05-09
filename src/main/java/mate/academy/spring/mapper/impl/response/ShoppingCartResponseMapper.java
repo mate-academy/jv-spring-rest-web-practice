@@ -21,5 +21,4 @@ public class ShoppingCartResponseMapper implements DtoResponseMapper<ShoppingCar
         shoppingCartResponseDto.setTicketIds(ticketsIds);
         return shoppingCartResponseDto;
     }
-
 }
