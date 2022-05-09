@@ -1,12 +1,13 @@
 package mate.academy.spring.model.dto.request;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import mate.academy.spring.validator.Email;
 
 public class UserRequestDto {
     @NotNull
-    @Email
+    @Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+            + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
     private String email;
     @NotNull
     @Size(min = 6)

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserRequestMapper implements DtoRequestMapper<UserRequestDto, User> {
-
     @Override
     public User fromDto(UserRequestDto userRequestDto) {
         User user = new User();
