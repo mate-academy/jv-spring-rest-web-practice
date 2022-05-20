@@ -2,7 +2,6 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
