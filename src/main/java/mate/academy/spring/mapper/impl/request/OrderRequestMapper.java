@@ -28,6 +28,6 @@ public class OrderRequestMapper implements DtoRequestMapper<OrderRequestDto, Ord
                 .map(tickerRequestMapper::fromDto)
                 .collect(Collectors.toList()));
         order.setUser(userRequestMapper.fromDto(dto.getUser()));
-        return null;
+        return order;
     }
 }
