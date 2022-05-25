@@ -4,7 +4,6 @@ import java.util.Optional;
 import mate.academy.spring.dao.UserDao;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
-import mate.academy.spring.util.HashUtil;
 import org.springframework.stereotype.Service;
 
 @Service
