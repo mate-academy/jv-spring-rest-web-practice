@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, Order> {
-
     private final TicketResponseMapper ticketResponseMapper;
     private final UserResponseMapper userResponseMapper;
 

@@ -39,5 +39,4 @@ public class ShoppingCartController {
         User user = userService.get(userId);
         return shoppingCartService.getByUser(user);
     }
-
 }

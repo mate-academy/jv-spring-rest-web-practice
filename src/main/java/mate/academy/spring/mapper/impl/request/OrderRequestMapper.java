@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrderRequestMapper implements DtoRequestMapper<OrderRequestDto, Order> {
-
     private final TickerRequestMapper tickerRequestMapper;
     private final UserRequestMapper userRequestMapper;
 

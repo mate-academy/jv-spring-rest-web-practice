@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TickerRequestMapper implements DtoRequestMapper<TicketRequestDto, Ticket> {
-
     private final UserRequestMapper userRequestMapper;
     private final MovieSessionRequestMapper movieSessionRequestMapper;
 
