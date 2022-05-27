@@ -1,7 +1,8 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.response.ShoppingCartResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.MovieSession;
+import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
@@ -17,16 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
-    private final ShoppingCartResponseMapper shoppingCartResponseMapper;
+    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> responseMapper;
     private final UserService userService;
     private final MovieSessionService movieSessionService;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
-                                  ShoppingCartResponseMapper shoppingCartResponseMapper,
-                                  UserService userService,
-                                  MovieSessionService movieSessionService) {
+            DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> responseMapper,
+            UserService userService, MovieSessionService movieSessionService) {
         this.shoppingCartService = shoppingCartService;
-        this.shoppingCartResponseMapper = shoppingCartResponseMapper;
+        this.responseMapper = responseMapper;
         this.userService = userService;
         this.movieSessionService = movieSessionService;
     }
@@ -41,7 +41,7 @@ public class ShoppingCartController {
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUserId(@RequestParam Long userId) {
-        return shoppingCartResponseMapper.toDto(shoppingCartService
+        return responseMapper.toDto(shoppingCartService
                 .getByUser(userService.get(userId)));
     }
 }
