@@ -8,7 +8,8 @@ import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ShoppingCartResponseMapper implements DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> {
+public class ShoppingCartResponseMapper implements DtoResponseMapper<
+    ShoppingCartResponseDto, ShoppingCart> {
     private final UserResponseMapper userResponseMapper;
 
     public ShoppingCartResponseMapper(UserResponseMapper userResponseMapper) {
@@ -21,9 +22,9 @@ public class ShoppingCartResponseMapper implements DtoResponseMapper<ShoppingCar
         dto.setId(shoppingCart.getId());
         dto.setUser(userResponseMapper.toDto(shoppingCart.getUser()));
         dto.setTicketIds(shoppingCart.getTickets()
-            .stream()
-            .map(Ticket::getId)
-            .collect(Collectors.toList()));
+                .stream()
+                .map(Ticket::getId)
+                .collect(Collectors.toList()));
         return dto;
     }
 }
