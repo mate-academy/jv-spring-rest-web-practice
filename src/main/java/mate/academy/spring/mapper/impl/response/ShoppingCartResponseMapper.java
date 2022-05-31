@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ShoppingCartResponseMapper implements DtoResponseMapper<
-    ShoppingCartResponseDto, ShoppingCart> {
+        ShoppingCartResponseDto, ShoppingCart> {
     private final UserResponseMapper userResponseMapper;
 
     public ShoppingCartResponseMapper(UserResponseMapper userResponseMapper) {
