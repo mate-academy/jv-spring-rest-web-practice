@@ -17,11 +17,11 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
         responseDto.setId(order.getId());
         responseDto.setOrderDate(order.getOrderDate());
         responseDto.setUserId(order.getUser().getId());
-        responseDto.setTicketsId(parseToId(order.getTickets()));
+        responseDto.setTicketsIds(parseToIdsList(order.getTickets()));
         return responseDto;
     }
 
-    private List<Long> parseToId(List<Ticket> tickets) {
+    private List<Long> parseToIdsList(List<Ticket> tickets) {
         return tickets.stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());

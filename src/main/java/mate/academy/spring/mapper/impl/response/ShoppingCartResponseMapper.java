@@ -16,11 +16,11 @@ public class ShoppingCartResponseMapper implements
         ShoppingCartResponseDto responseDto = new ShoppingCartResponseDto();
         responseDto.setId(shoppingCart.getId());
         responseDto.setUserId(shoppingCart.getUser().getId());
-        responseDto.setTicketId(parseToId(shoppingCart.getTickets()));
+        responseDto.setTicketIds(parseToIdsList(shoppingCart.getTickets()));
         return responseDto;
     }
 
-    private List<Long> parseToId(List<Ticket> tickets) {
+    private List<Long> parseToIdsList(List<Ticket> tickets) {
         return tickets.stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
