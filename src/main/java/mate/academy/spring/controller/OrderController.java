@@ -12,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/orders")
 public class OrderController {
     private OrderService orderService;
     private ShoppingCartService shoppingCartService;
@@ -32,7 +34,7 @@ public class OrderController {
         this.orderDtoResponseMapper = orderDtoResponseMapper;
     }
 
-    @PostMapping("/orders/complete/{userId}")
+    @PostMapping("/complete/{userId}")
     public OrderResponseDto complete(@PathVariable Long userId) {
         return orderDtoResponseMapper
                 .toDto(orderService
@@ -40,7 +42,7 @@ public class OrderController {
                 .getByUser(userService.get(userId))));
     }
 
-    @GetMapping("/orders/{userId}")
+    @GetMapping("/{userId}")
     public List<OrderResponseDto> getOrderHistory(@PathVariable Long userId) {
         return orderService.getOrdersHistory(userService.get(userId))
                 .stream()
