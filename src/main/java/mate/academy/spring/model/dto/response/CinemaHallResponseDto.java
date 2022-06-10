@@ -4,6 +4,16 @@ public class CinemaHallResponseDto {
     private Long id;
     private int capacity;
 
+    private String description;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public int getCapacity() {
         return capacity;
     }
@@ -12,11 +22,11 @@ public class CinemaHallResponseDto {
         this.capacity = capacity;
     }
 
-    public Long getId() {
-        return id;
+    public String getDescription() {
+        return description;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
