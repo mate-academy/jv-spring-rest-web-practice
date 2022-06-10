@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users")
 public class UserController {
     private DtoResponseMapper<UserResponseDto, User> userResponseDtoMapper;
     private UserService userService;
@@ -23,7 +22,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/by-email")
+    @GetMapping("/users/by-email")
     public UserResponseDto findByEmail(@RequestParam String email) {
         return userResponseDtoMapper.toDto(userService.findByEmail(email).get());
     }
