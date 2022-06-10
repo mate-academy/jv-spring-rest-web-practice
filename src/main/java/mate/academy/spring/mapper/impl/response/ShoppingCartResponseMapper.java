@@ -13,7 +13,7 @@ public class ShoppingCartResponseMapper implements DtoResponseMapper
         ShoppingCartResponseDto shoppingCartResponseDto = new ShoppingCartResponseDto();
         shoppingCartResponseDto.setId(shoppingCart.getId());
         shoppingCartResponseDto.setTickets(shoppingCart.getTickets());
-        shoppingCartResponseDto.setUser(shoppingCart.getUser());
+        shoppingCartResponseDto.setUserId(shoppingCart.getUser().getId());
         return shoppingCartResponseDto;
     }
 }

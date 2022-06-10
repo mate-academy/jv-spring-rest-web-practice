@@ -2,8 +2,7 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.mapper.impl.request.OrderRequestMapper;
-import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
@@ -20,18 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     private final OrderService orderService;
     private final UserService userService;
-    private final OrderRequestMapper orderRequestMapper;
-    private final OrderResponseMapper orderResponseMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
     private final ShoppingCartService shoppingCartService;
 
     public OrderController(OrderService orderService,
                            UserService userService,
-                           OrderRequestMapper orderRequestMapper,
-                           OrderResponseMapper orderResponseMapper,
+                           DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper,
                            ShoppingCartService shoppingCartService) {
         this.orderService = orderService;
         this.userService = userService;
-        this.orderRequestMapper = orderRequestMapper;
         this.orderResponseMapper = orderResponseMapper;
         this.shoppingCartService = shoppingCartService;
     }
