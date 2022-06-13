@@ -24,7 +24,8 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                     + "from Order o "
                     + "left join fetch o.tickets "
                     + "left join fetch o.user "
-                    + "WHERE o.user = :user", Order.class);
+                    + "WHERE o.user = :user "
+                    + "ORDER BY o.orderDate", Order.class);
             query.setParameter("user", user);
             return query.getResultList();
         } catch (Exception e) {
