@@ -1,14 +1,9 @@
 package mate.academy.spring.model.dto.request;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-
 public class UserRequestDto {
-    @Email
-    @NotBlank(message = "Email may not be blank")
+
     private String email;
-    @Size(min = 5, max = 25)
+
     private String password;
 
     public String getEmail() {
