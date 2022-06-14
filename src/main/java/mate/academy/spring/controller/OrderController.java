@@ -8,12 +8,10 @@ import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -35,14 +33,12 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-    @ResponseStatus(HttpStatus.ACCEPTED)
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
         return orderDtoResponseMapper.toDto(orderService.completeOrder(
                         shoppingCartService.getByUser(userService.get(userId))));
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.FOUND)
     public List<OrderResponseDto> getOrdersHistoryByUserId(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId)).stream()
                 .map(orderDtoResponseMapper::toDto)

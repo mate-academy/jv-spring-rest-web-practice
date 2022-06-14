@@ -4,11 +4,9 @@ import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,7 +22,6 @@ public class UserController {
     }
 
     @GetMapping("/by-email")
-    @ResponseStatus(HttpStatus.FOUND)
     public UserResponseDto getUserByEmail(@RequestParam String email) {
         return userDtoResponseMapper.toDto(userService.findByEmail(email).get());
     }
