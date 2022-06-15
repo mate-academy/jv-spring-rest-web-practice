@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/shopping-cart")
+@RequestMapping("/shopping-carts")
 public class ShoppingCartController {
     private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> mapper;
     private final ShoppingCartService shoppingCartService;
