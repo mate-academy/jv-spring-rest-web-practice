@@ -1,10 +1,10 @@
 package mate.academy.spring.model.dto.response;
 
+import java.util.List;
 import lombok.Data;
 
 @Data
-public class MovieResponseDto {
+public class ShoppingCartResponseDto {
     private Long id;
-    private String title;
-    private String description;
+    private List<Long> ticketsIds;
 }
