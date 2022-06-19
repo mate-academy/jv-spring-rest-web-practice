@@ -10,12 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AuthenticationController {
-    private final DtoRequestMapper<UserRequestDto, User> userRequestMapper;
     private final AuthenticationService authenticationService;
 
-    public AuthenticationController(DtoRequestMapper<UserRequestDto, User> userRequestMapper,
-                                    AuthenticationService authenticationService) {
-        this.userRequestMapper = userRequestMapper;
+    public AuthenticationController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 
