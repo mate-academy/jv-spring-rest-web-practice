@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class    AuthenticationController {
+public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final DtoRequestMapper<UserRequestDto, User> dtoRequestMapper;
     private final DtoResponseMapper<UserResponseDto, User> dtoResponseMapper;
