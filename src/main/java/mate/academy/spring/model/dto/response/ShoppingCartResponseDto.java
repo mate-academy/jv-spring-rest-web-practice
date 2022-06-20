@@ -4,8 +4,7 @@ import java.util.List;
 
 public class ShoppingCartResponseDto {
     private Long id;
-    private List<Long> ticketsId;
-    private Long userId;
+    private List<Long> ticketsIds;
 
     public Long getId() {
         return id;
@@ -16,24 +15,16 @@ public class ShoppingCartResponseDto {
     }
 
     public List<Long> getTicketsId() {
-        return ticketsId;
+        return ticketsIds;
     }
 
-    public void setTicketsId(List<Long> ticketsId) {
-        this.ticketsId = ticketsId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setTicketsIds(List<Long> ticketsIds) {
+        this.ticketsIds = ticketsIds;
     }
 
     @Override
     public String toString() {
-        return "ShoppingCart{" + "id=" + id + ", ticketsId="
-                + ticketsId + ", userId=" + userId + '}';
+        return "ShoppingCart{" + "id=" + id + ", ticketsIds="
+                + ticketsIds + '}';
     }
 }

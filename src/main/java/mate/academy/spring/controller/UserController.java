@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
-    private final ShoppingCartService shoppingCartService;
     private final DtoResponseMapper<UserResponseDto, User>
             userResponseMapper;
 
@@ -22,14 +21,13 @@ public class UserController {
                           ShoppingCartService shoppingCartService,
                           DtoResponseMapper<UserResponseDto, User> userResponseMapper) {
         this.userService = userService;
-        this.shoppingCartService = shoppingCartService;
         this.userResponseMapper = userResponseMapper;
     }
 
-    @GetMapping
+    @GetMapping("/by-email")
     public UserResponseDto get(@RequestParam String email) {
         return userResponseMapper.toDto(userService.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("There is no user with email: "
-                        + email + ", or it is not valid")));
+                        + email)));
     }
 }
