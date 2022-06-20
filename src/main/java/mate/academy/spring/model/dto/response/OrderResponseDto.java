@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderResponseDto {
-
     private Long id;
     private List<Long> ticketIds;
     private LocalDateTime orderDate;
