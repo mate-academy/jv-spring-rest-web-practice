@@ -15,8 +15,9 @@ public class OrderResponseMapper
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto orderResponseDto = new OrderResponseDto();
         orderResponseDto.setId(order.getId());
-        orderResponseDto.setOrderDate(order.getOrderDate());
         orderResponseDto.setTicketsIds(parseTickets(order.getTickets()));
+        orderResponseDto.setOrderDate(order.getOrderDate());
+        orderResponseDto.setUserId(order.getUser().getId());
         return orderResponseDto;
     }
 
