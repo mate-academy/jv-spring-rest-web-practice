@@ -40,7 +40,7 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<OrderResponseDto> getOrderHistoryByUserId(@RequestParam Long userId) {
+    public List<OrderResponseDto> getOrderHistoryByUser(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId))
                 .stream()
                 .map(orderDtoResponseMapper::toDto)
