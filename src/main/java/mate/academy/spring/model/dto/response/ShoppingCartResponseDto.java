@@ -6,7 +6,6 @@ import mate.academy.spring.model.User;
 public class ShoppingCartResponseDto {
     private Long id;
     private List<Long> ticketIds;
-    private User user;
 
     public Long getId() {
         return id;
@@ -22,13 +21,5 @@ public class ShoppingCartResponseDto {
 
     public void setTicketIds(List<Long> ticketIds) {
         this.ticketIds = ticketIds;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
