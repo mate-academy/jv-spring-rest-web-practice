@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 
 public class MovieRequestDto {
     @NotNull
-    @Size(min = 5, message = "Size title should be over 5")
+    @Size(min = 1, message = "Size title should be over 1")
     private String title;
     @NotNull
     @Size(max = 220, message = "Size description can`t 220 symbols")
