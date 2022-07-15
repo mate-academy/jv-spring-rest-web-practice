@@ -32,13 +32,13 @@ public class ShoppingCartController {
         this.shoppingCartResponseMapper = shoppingCartResponseMapper;
     }
 
-    @PutMapping("/movie-sessions/?userId&movieSessionId")
+    @PutMapping("/movie-sessions")
     public void addSession(@RequestParam Long userId, @RequestParam Long movieSessionId) {
         shoppingCartService.addSession(
                 movieSessionService.get(movieSessionId), userService.get(userId));
     }
 
-    @GetMapping("/by-user?userId")
+    @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
         return shoppingCartResponseMapper.toDto(
                 shoppingCartService.getByUser(userService.get(userId)));
