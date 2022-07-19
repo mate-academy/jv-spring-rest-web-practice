@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
+    // {"movieId":, "showTime":, "cinemaHallId":}
     private final MovieSessionService movieSessionService;
     private final DtoRequestMapper<MovieSessionRequestDto, MovieSession>
             movieSessionDtoRequestMapper;

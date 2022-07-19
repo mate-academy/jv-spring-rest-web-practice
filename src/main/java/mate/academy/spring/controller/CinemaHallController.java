@@ -8,6 +8,7 @@ import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.dto.request.CinemaHallRequestDto;
 import mate.academy.spring.model.dto.response.CinemaHallResponseDto;
 import mate.academy.spring.service.CinemaHallService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,19 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/cinema-halls")
 public class CinemaHallController {
-    private final CinemaHallService cinemaHallService;
-    private final DtoRequestMapper<CinemaHallRequestDto, CinemaHall> cinemaHallDtoRequestMapper;
-    private final DtoResponseMapper<CinemaHallResponseDto, CinemaHall> cinemaHallDtoResponseMapper;
-
-    public CinemaHallController(CinemaHallService cinemaHallService,
-                                DtoRequestMapper<CinemaHallRequestDto, CinemaHall>
-                                        cinemaHallDtoRequestMapper,
-                                DtoResponseMapper<CinemaHallResponseDto, CinemaHall>
-                                        cinemaHallDtoResponseMapper) {
-        this.cinemaHallService = cinemaHallService;
-        this.cinemaHallDtoRequestMapper = cinemaHallDtoRequestMapper;
-        this.cinemaHallDtoResponseMapper = cinemaHallDtoResponseMapper;
-    }
+    // {"capacity":, "description":""}
+    private CinemaHallService cinemaHallService;
+    private DtoRequestMapper<CinemaHallRequestDto, CinemaHall> cinemaHallDtoRequestMapper;
+    private DtoResponseMapper<CinemaHallResponseDto, CinemaHall> cinemaHallDtoResponseMapper;
 
     @PostMapping
     public CinemaHallResponseDto addCinemaHall(@RequestBody CinemaHallRequestDto dto) {
@@ -42,5 +34,22 @@ public class CinemaHallController {
         return cinemaHallService.getAll().stream()
                 .map(cinemaHallDtoResponseMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @Autowired
+    public void setCinemaHallService(CinemaHallService cinemaHallService) {
+        this.cinemaHallService = cinemaHallService;
+    }
+
+    @Autowired
+    public void setCinemaHallDtoRequestMapper(DtoRequestMapper<CinemaHallRequestDto,
+            CinemaHall> cinemaHallDtoRequestMapper) {
+        this.cinemaHallDtoRequestMapper = cinemaHallDtoRequestMapper;
+    }
+
+    @Autowired
+    public void setCinemaHallDtoResponseMapper(DtoResponseMapper<CinemaHallResponseDto,
+            CinemaHall> cinemaHallDtoResponseMapper) {
+        this.cinemaHallDtoResponseMapper = cinemaHallDtoResponseMapper;
     }
 }
