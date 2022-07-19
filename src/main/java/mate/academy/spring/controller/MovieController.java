@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
-    // {"title":"","description":""}
     private final MovieService movieService;
     private final DtoRequestMapper<MovieRequestDto, Movie> movieDtoRequestMapper;
     private final DtoResponseMapper<MovieResponseDto, Movie> movieDtoResponseMapper;

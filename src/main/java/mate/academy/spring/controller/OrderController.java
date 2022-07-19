@@ -8,7 +8,6 @@ import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
-    private OrderService orderService;
-    private ShoppingCartService shoppingCartService;
-    private UserService userService;
-    private OrderResponseMapper orderResponseMapper;
+    private final OrderService orderService;
+    private final ShoppingCartService shoppingCartService;
+    private final UserService userService;
+    private final OrderResponseMapper orderResponseMapper;
+
+    public OrderController(OrderService orderService,
+                           ShoppingCartService shoppingCartService,
+                           UserService userService,
+                           OrderResponseMapper orderResponseMapper) {
+        this.orderService = orderService;
+        this.shoppingCartService = shoppingCartService;
+        this.userService = userService;
+        this.orderResponseMapper = orderResponseMapper;
+    }
 
     @PostMapping("/complete")
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
@@ -36,26 +45,5 @@ public class OrderController {
         return ordersHistory.stream()
                 .map(orderResponseMapper::toDto)
                 .collect(Collectors.toList());
-    }
-
-    @Autowired
-    public void setOrderService(OrderService orderService) {
-        this.orderService = orderService;
-    }
-
-    @Autowired
-    public void setShoppingCartService(ShoppingCartService shoppingCartService) {
-        this.shoppingCartService = shoppingCartService;
-
-    }
-
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
-    @Autowired
-    public void setOrderResponseMapper(OrderResponseMapper orderResponseMapper) {
-        this.orderResponseMapper = orderResponseMapper;
     }
 }
