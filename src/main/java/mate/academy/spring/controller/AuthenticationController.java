@@ -27,5 +27,4 @@ public class AuthenticationController {
         return mapper.toDto(authenticationService.register(requestDto.getEmail(),
                 requestDto.getPassword()));
     }
-
 }
