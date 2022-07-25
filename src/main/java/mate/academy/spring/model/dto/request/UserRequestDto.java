@@ -3,9 +3,7 @@ package mate.academy.spring.model.dto.request;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import mate.academy.spring.validation.PasswordsEqualConstraint;
 
-@PasswordsEqualConstraint
 public class UserRequestDto {
     @Email(message = "You should enter valid email address")
     @NotBlank
