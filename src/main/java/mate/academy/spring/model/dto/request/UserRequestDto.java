@@ -12,7 +12,6 @@ public class UserRequestDto {
     @NotBlank
     @Size(min = 3, max = 50)
     private String password;
-    private String passwordRepeat;
 
     public String getEmail() {
         return email;
@@ -28,13 +27,5 @@ public class UserRequestDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPasswordRepeat() {
-        return passwordRepeat;
-    }
-
-    public void setPasswordRepeat(String passwordRepeat) {
-        this.passwordRepeat = passwordRepeat;
     }
 }
