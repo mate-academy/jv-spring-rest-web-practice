@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AuthenticationController {
-    private final AuthenticationService service;
+    private final AuthenticationService authenticationService;
 
-    public AuthenticationController(AuthenticationService service) {
-        this.service = service;
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
     }
 
     @PostMapping("/register")
-    public void registration(@RequestBody UserRequestDto requestDto) {
-        service.register(requestDto.getEmail(), requestDto.getPassword());
+    public void register(@RequestBody UserRequestDto requestDto) {
+        authenticationService.register(requestDto.getEmail(), requestDto.getPassword());
     }
 }

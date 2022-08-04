@@ -2,16 +2,16 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,28 +19,30 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     private final OrderService orderService;
     private final UserService userService;
-    private final OrderResponseMapper responseMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
     private final ShoppingCartService shoppingCartService;
 
     public OrderController(OrderService orderService,
                            UserService userService,
-                           OrderResponseMapper responseMapper,
+                           DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper,
                            ShoppingCartService shoppingCartService) {
         this.orderService = orderService;
         this.userService = userService;
-        this.responseMapper = responseMapper;
+        this.orderResponseMapper = orderResponseMapper;
         this.shoppingCartService = shoppingCartService;
     }
 
-    @PostMapping("/complete?{userId}")
-    public OrderResponseDto completeOrder(@PathVariable Long userId) {
-        return responseMapper.toDto(orderService
+    @PostMapping("/complete")
+    public OrderResponseDto completeOrder(@RequestParam Long userId) {
+        return orderResponseMapper.toDto(orderService
                 .completeOrder(shoppingCartService.getByUser(userService.get(userId))));
     }
 
-    @GetMapping("userId")
-    public List<OrderResponseDto> getOrdersHistory(@PathVariable Long userId) {
+    @GetMapping
+    public List<OrderResponseDto> getOrdersHistory(@RequestParam Long userId) {
         List<Order> ordersHistory = orderService.getOrdersHistory(userService.get(userId));
-        return ordersHistory.stream().map(responseMapper::toDto).collect(Collectors.toList());
+        return ordersHistory.stream()
+                .map(orderResponseMapper::toDto)
+                .collect(Collectors.toList());
     }
 }
