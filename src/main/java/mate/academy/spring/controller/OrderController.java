@@ -34,8 +34,6 @@ public class OrderController {
         this.orderDtoResponseMapper = orderDtoResponseMapper;
     }
 
-    //Complete order - POST: /orders/complete?userId
-    //Get orders history for user - GET: /orders?userId
     @PostMapping("/complete")
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
         User user = userService.get(userId);
