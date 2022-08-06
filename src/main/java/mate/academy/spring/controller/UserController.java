@@ -21,14 +21,9 @@ public class UserController {
         this.responseMapper = responseMapper;
     }
 
-    //Get user by email - GET: /users/by-email?email
     @GetMapping("/by-email")
     public UserResponseDto findUserByEmail(@RequestParam String email) {
         Optional<User> user = userService.findByEmail(email);
-        if (user.isPresent()) {
-            return responseMapper.toDto(user.get());
-        }
-        //CurrentlyCreationException
-        return null;
+        return responseMapper.toDto(user.get());
     }
 }

@@ -33,7 +33,6 @@ public class OrderController {
         this.shoppingCartService = shoppingCartService;
     }
 
-    //Complete order - POST: /orders/complete?userId
     @PostMapping("/complete")
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
         ShoppingCart shoppingCart = shoppingCartService.getByUser(userService.get(userId));
@@ -41,7 +40,6 @@ public class OrderController {
         return orderResponseMapper.toDto(order);
     }
 
-    //    Get orders history for user - GET: /orders?userId
     @GetMapping
     public List<OrderResponseDto> getOrdersHistory(@RequestParam Long userId) {
         List<Order> orders = orderService.getOrdersHistory(userService.get(userId));

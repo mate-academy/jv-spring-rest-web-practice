@@ -10,13 +10,13 @@ import mate.academy.spring.service.MovieService;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieSessionRequestMapper implements DtoRequestMapper<MovieSessionRequestDto,
-                                                                   MovieSession> {
+public class MovieSessionRequestMapper implements
+        DtoRequestMapper<MovieSessionRequestDto, MovieSession> {
     private final CinemaHallService cinemaHallService;
     private final MovieService movieService;
 
     public MovieSessionRequestMapper(CinemaHallService cinemaHallService,
-                                     MovieService movieService) {
+            MovieService movieService) {
         this.cinemaHallService = cinemaHallService;
         this.movieService = movieService;
     }
