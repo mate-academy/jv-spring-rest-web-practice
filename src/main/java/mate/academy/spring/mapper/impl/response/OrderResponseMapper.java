@@ -1,44 +1,25 @@
 package mate.academy.spring.mapper.impl.response;
 
-import mate.academy.spring.model.User;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
+import mate.academy.spring.mapper.DtoResponseMapper;
+import mate.academy.spring.model.Order;
+import mate.academy.spring.model.Ticket;
+import mate.academy.spring.model.dto.response.OrderResponseDto;
+import org.springframework.stereotype.Component;
 
-public class OrderResponseMapper {
-    private Long id;
-    private List<Integer> tickets;
-    private LocalDateTime orderDate;
-    private User userId;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Integer> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Integer> tickets) {
-        this.tickets = tickets;
-    }
-
-    public LocalDateTime getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(LocalDateTime orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
+@Component
+public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, Order> {
+    @Override
+    public OrderResponseDto toDto(Order order) {
+        OrderResponseDto responseDto = new OrderResponseDto();
+        responseDto.setId(order.getId());
+        List<Long> tickets = order.getTickets().stream()
+                .map(Ticket::getId)
+                .collect(Collectors.toList());
+        responseDto.setTickets(tickets);
+        responseDto.setOrderDate(order.getOrderDate());
+        responseDto.setUserId(order.getUser().getId());
+        return responseDto;
     }
 }
