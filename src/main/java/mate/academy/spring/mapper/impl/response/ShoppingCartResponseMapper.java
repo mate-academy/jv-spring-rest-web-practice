@@ -14,7 +14,6 @@ public class ShoppingCartResponseMapper
     @Override
     public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
         ShoppingCartResponseDto shoppingCartDto = new ShoppingCartResponseDto();
-        shoppingCartDto.setId(shoppingCart.getId());
         shoppingCartDto.setUserId(shoppingCart.getUser().getId());
         shoppingCartDto.setTickets(shoppingCart.getTickets().stream()
                 .map(Ticket::getId)
