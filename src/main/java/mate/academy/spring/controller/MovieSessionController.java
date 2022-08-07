@@ -10,6 +10,7 @@ import mate.academy.spring.model.dto.request.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.response.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -40,6 +42,7 @@ public class MovieSessionController {
     }
 
     @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
     public MovieSessionResponseDto addMovieSession(@RequestBody MovieSessionRequestDto dto) {
         MovieSession movieSession
                 = movieSessionService.add(movieSessionDtoRequestMapper.fromDto(dto));
@@ -47,6 +50,7 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
+    @ResponseStatus(code = HttpStatus.OK)
     public List<MovieSessionResponseDto> getAllAvailableSessions(@RequestParam Long movieId,
                                                           @RequestParam
                                                           @DateTimeFormat(pattern = "dd.MM.yyyy")
@@ -57,6 +61,7 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
     public void update(@PathVariable Long id,
                        @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionDtoRequestMapper.fromDto(movieSessionRequestDto);
@@ -65,6 +70,7 @@ public class MovieSessionController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         movieSessionService.remove(id);
     }

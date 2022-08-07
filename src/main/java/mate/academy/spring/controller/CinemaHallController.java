@@ -8,10 +8,12 @@ import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.dto.request.CinemaHallRequestDto;
 import mate.academy.spring.model.dto.response.CinemaHallResponseDto;
 import mate.academy.spring.service.CinemaHallService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -32,12 +34,14 @@ public class CinemaHallController {
     }
 
     @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
     public CinemaHallResponseDto addCinemaHall(@RequestBody CinemaHallRequestDto dto) {
         CinemaHall cinemaHall = cinemaHallService.add(cinemaHallDtoRequestMapper.fromDto(dto));
         return cinemaHallDtoResponseMapper.toDto(cinemaHall);
     }
 
     @GetMapping
+    @ResponseStatus(code = HttpStatus.OK)
     public List<CinemaHallResponseDto> getAllCinemaHalls() {
         return cinemaHallService.getAll().stream()
                 .map(cinemaHallDtoResponseMapper::toDto)
