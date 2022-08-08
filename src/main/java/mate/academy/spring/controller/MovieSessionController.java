@@ -42,7 +42,6 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    @ResponseStatus(code = HttpStatus.CREATED)
     public MovieSessionResponseDto addMovieSession(@RequestBody MovieSessionRequestDto dto) {
         MovieSession movieSession
                 = movieSessionService.add(movieSessionDtoRequestMapper.fromDto(dto));
@@ -61,7 +60,6 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.OK)
     public void update(@PathVariable Long id,
                        @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionDtoRequestMapper.fromDto(movieSessionRequestDto);
@@ -70,7 +68,6 @@ public class MovieSessionController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         movieSessionService.remove(id);
     }
