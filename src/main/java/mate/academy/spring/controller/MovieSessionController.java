@@ -49,7 +49,6 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    @ResponseStatus(code = HttpStatus.OK)
     public List<MovieSessionResponseDto> getAllAvailableSessions(@RequestParam Long movieId,
                                                           @RequestParam
                                                           @DateTimeFormat(pattern = "dd.MM.yyyy")
