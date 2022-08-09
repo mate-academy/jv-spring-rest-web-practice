@@ -45,7 +45,7 @@ public class OrderController {
         return orderService
                 .getOrdersHistory(userService.get(userId))
                 .stream()
-                .map(o -> orderDtoResponseMapper.toDto(o))
+                .map(orderDtoResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
