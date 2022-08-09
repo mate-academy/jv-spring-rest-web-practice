@@ -25,7 +25,8 @@ public class UserController {
     @GetMapping("/by-email")
     public UserResponseDto getUserByEmail(@PathVariable String email) {
         return responseMapper.toDto(userService.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException(
+                .orElseThrow(() -> new NoSuchElementException(
+
                         "Can't get user by email: " + email)));
     }
 }
