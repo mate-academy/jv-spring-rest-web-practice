@@ -6,7 +6,8 @@ import mate.academy.spring.model.dto.response.UserResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserResponseMapper implements DtoResponseMapper<UserResponseDto, User> {
+public class UserResponseMapper
+        implements DtoResponseMapper<UserResponseDto, User> {
     @Override
     public UserResponseDto toDto(User user) {
         UserResponseDto userResponseDto = new UserResponseDto();
