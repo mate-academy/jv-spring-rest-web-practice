@@ -1,5 +1,7 @@
 package mate.academy.spring.model.dto.response;
 
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 
 public class MovieSessionResponseDto {
