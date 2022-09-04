@@ -1,17 +1,13 @@
 package mate.academy.spring.mapper.impl.request;
 
-import mate.academy.spring.dao.TicketDao;
-import mate.academy.spring.mapper.DtoRequestMapper;
-import mate.academy.spring.model.CinemaHall;
-import mate.academy.spring.model.Movie;
-import mate.academy.spring.model.Order;
-import mate.academy.spring.model.dto.request.OrderRequestDto;
-import mate.academy.spring.service.OrderService;
-import mate.academy.spring.service.UserService;
-import org.springframework.stereotype.Component;
-
 import java.util.Optional;
 import java.util.stream.Collectors;
+import mate.academy.spring.dao.TicketDao;
+import mate.academy.spring.mapper.DtoRequestMapper;
+import mate.academy.spring.model.Order;
+import mate.academy.spring.model.dto.request.OrderRequestDto;
+import mate.academy.spring.service.UserService;
+import org.springframework.stereotype.Component;
 
 @Component
 public class OrderRequestMapper implements DtoRequestMapper<OrderRequestDto,
