@@ -1,7 +1,6 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.response.MovieSessionResponseMapper;
-import mate.academy.spring.mapper.impl.response.ShoppingCartResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
@@ -23,15 +22,19 @@ public class ShoppingCartController {
     private final MovieSessionService movieSessionService;
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
-    private final MovieSessionResponseMapper movieSessionResponseMapper;
-    private final ShoppingCartResponseMapper shoppingCartResponseMapper;
+    private final DtoResponseMapper<MovieSessionResponseDto, MovieSession>
+            movieSessionResponseMapper;
+    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart>
+            shoppingCartResponseMapper;
 
     @Autowired
     public ShoppingCartController(MovieSessionService movieSessionService,
                                   ShoppingCartService shoppingCartService,
                                   UserService userService,
-                                  MovieSessionResponseMapper movieSessionResponseMapper,
-                                  ShoppingCartResponseMapper shoppingCartResponseMapper) {
+                                  DtoResponseMapper<MovieSessionResponseDto,
+                                          MovieSession> movieSessionResponseMapper,
+                                  DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart>
+                                          shoppingCartResponseMapper) {
         this.movieSessionService = movieSessionService;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;

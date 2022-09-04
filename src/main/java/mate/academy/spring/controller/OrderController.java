@@ -2,9 +2,7 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.dao.TicketDao;
-import mate.academy.spring.mapper.impl.request.OrderRequestMapper;
-import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
@@ -24,22 +22,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     private final OrderService orderService;
     private final UserService userService;
-    private final TicketDao ticketDao;
-    private final OrderRequestMapper orderRequestMapper;
-    private final OrderResponseMapper orderResponseMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
     private final ShoppingCartService shoppingCartService;
 
     @Autowired
     public OrderController(OrderService orderService,
-                           OrderRequestMapper orderRequestMapper,
                            UserService userService,
-                           TicketDao ticketDao,
-                           OrderResponseMapper orderResponseMapper,
+                           DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper,
                            ShoppingCartService shoppingCartService) {
         this.orderService = orderService;
-        this.orderRequestMapper = orderRequestMapper;
         this.userService = userService;
-        this.ticketDao = ticketDao;
         this.orderResponseMapper = orderResponseMapper;
         this.shoppingCartService = shoppingCartService;
     }
