@@ -14,5 +14,4 @@ public class UserRequestMapper implements DtoRequestMapper<UserRequestDto, User>
         user.setPassword(userRequestDto.getPassword());
         return user;
     }
-
 }
