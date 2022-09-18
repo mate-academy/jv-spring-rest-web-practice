@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
-    private final DtoResponseMapper<UserResponseDto,User> userResponseMapper;
+    private final DtoResponseMapper<UserResponseDto, User> userResponseMapper;
 
     public AuthenticationController(AuthenticationService authenticationService,
                                     UserResponseMapper userResponseMapper) {
