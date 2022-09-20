@@ -28,6 +28,6 @@ public class UserController {
         if (userByEmail.isPresent()) {
             return responseMapper.toDto(userByEmail.get());
         }
-        return new UserResponseDto();
+        throw new RuntimeException("Can`t get user by email " + email);
     }
 }
