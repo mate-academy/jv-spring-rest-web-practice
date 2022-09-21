@@ -1,13 +1,8 @@
 package mate.academy.spring.model.dto.response;
 
-import mate.academy.spring.model.Ticket;
-import mate.academy.spring.model.User;
-
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.List;
+import mate.academy.spring.model.User;
 
 public class OrderResponseDto {
     private Long id;

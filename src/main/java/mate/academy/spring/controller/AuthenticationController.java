@@ -23,12 +23,15 @@ public class AuthenticationController {
     @PostMapping("/register")
     public UserResponseDto registration(@RequestBody UserRequestDto userRequestDto) {
         return userResponseMapper.toDto(
-                authenticationService.register(userRequestDto.getEmail(), userRequestDto.getPassword()));
+                authenticationService.register(userRequestDto.getEmail(),
+                        userRequestDto.getPassword()));
     }
 
     @PostMapping("/login")
-    public UserResponseDto login(@RequestBody UserRequestDto userRequestDto) throws AuthenticationException {
+    public UserResponseDto login(@RequestBody UserRequestDto userRequestDto)
+            throws AuthenticationException {
         return userResponseMapper.toDto(
-                authenticationService.login(userRequestDto.getEmail(), userRequestDto.getPassword()));
+                authenticationService.login(userRequestDto.getEmail(),
+                        userRequestDto.getPassword()));
     }
 }
