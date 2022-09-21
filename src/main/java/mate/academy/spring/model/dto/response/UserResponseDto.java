@@ -2,6 +2,7 @@ package mate.academy.spring.model.dto.response;
 
 public class UserResponseDto {
     private Long id;
+    private String email;
 
     public Long getId() {
         return id;
@@ -18,6 +19,4 @@ public class UserResponseDto {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    private String email;
 }
