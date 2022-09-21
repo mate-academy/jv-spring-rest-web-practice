@@ -4,7 +4,6 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 public class ShoppingCartRequestDto {
-
     private List<Long> ticketIds;
     @NotNull
     private Long userId;
