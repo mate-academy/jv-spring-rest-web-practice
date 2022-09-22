@@ -19,7 +19,7 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
         for (Ticket ticket : order.getTickets()) {
             ticketsIds.add(ticket.getId());
         }
-        orderResponseDto.setTickets(ticketsIds);
+        orderResponseDto.setTicketsIds(ticketsIds);
         return orderResponseDto;
     }
 }
