@@ -8,7 +8,6 @@ import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,8 +38,8 @@ public class OrderController {
                         .getByUser(userService.get(id))));
     }
 
-    @GetMapping("/{id}")
-    public List<OrderResponseDto> getAllByUser(@PathVariable Long id) {
+    @GetMapping
+    public List<OrderResponseDto> getAllByUser(@RequestParam Long id) {
         return orderService.getOrdersHistory(userService.get(id)).stream()
                 .map(responseDtoMapper::toDto)
                 .collect(Collectors.toList());
