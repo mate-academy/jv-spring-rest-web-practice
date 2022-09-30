@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
     private final UserResponseMapper mapper;
@@ -21,6 +21,7 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto findUserByEmail(@RequestParam String email) {
-        return userService.findByEmail(email).map(mapper::toDto).get();
+        return userService.findByEmail(email).map(mapper::toDto)
+                .orElseThrow(() -> new NullPointerException());
     }
 }
