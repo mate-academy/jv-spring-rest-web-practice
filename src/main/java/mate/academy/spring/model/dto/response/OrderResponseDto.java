@@ -1,7 +1,7 @@
 package mate.academy.spring.model.dto.response;
 
-import java.util.List;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class OrderResponseDto {
     private Long id;

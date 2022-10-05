@@ -1,7 +1,7 @@
 package mate.academy.spring.model.dto.request;
 
-import java.util.List;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class OrderRequestDto {
     private List<Long> ticketIds;
