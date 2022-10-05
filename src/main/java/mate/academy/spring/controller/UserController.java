@@ -28,6 +28,6 @@ public class UserController {
         if (optionalUser.isPresent()) {
             return userResponseMapper.toDto(optionalUser.get());
         }
-        return new UserResponseDto();
+        throw new RuntimeException("Can't find user with this email: " + email);
     }
 }
