@@ -1,7 +1,8 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.response.UserResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.service.UserService;
+import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,16 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
-    private final UserResponseMapper userResponseMapper;
+    private final DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper;
 
     public UserController(UserService userService,
-                          UserResponseMapper userResponseMapper) {
+                          DtoResponseMapper<UserResponseDto,
+                                  User> userDtoResponseMapper) {
         this.userService = userService;
-        this.userResponseMapper = userResponseMapper;
+        this.userDtoResponseMapper = userDtoResponseMapper;
     }
 
     @GetMapping("/by-email")
     public UserResponseDto findByEmail(@RequestParam String email) {
-        return userResponseMapper.toDto(userService.findByEmail(email).get());
+        return userDtoResponseMapper.toDto(userService.findByEmail(email).get());
     }
 }
