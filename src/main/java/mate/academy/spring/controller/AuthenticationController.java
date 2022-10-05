@@ -2,6 +2,7 @@ package mate.academy.spring.controller;
 
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
+import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.security.AuthenticationService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +22,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public UserResponseDto registration(@RequestBody String email,
-                                    @RequestBody String password) {
-        return userDtoResponseMapper.toDto(authenticationService.register(email, password));
+    public UserResponseDto registration(@RequestBody UserRequestDto userRequestDto) {
+        return userDtoResponseMapper.toDto(authenticationService
+                .register(userRequestDto.getEmail(), userRequestDto.getPassword()));
     }
 }
