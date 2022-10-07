@@ -25,9 +25,7 @@ public class UserController {
     @GetMapping("/by-email")
     public UserResponseDto findByEmail(@RequestParam String email) {
         Optional<User> optionalUser = userService.findByEmail(email);
-        if (optionalUser.isPresent()) {
-            return userResponseMapper.toDto(optionalUser.get());
-        }
-        throw new RuntimeException("Can't find user with this email: " + email);
+        return userResponseMapper.toDto(optionalUser.orElseThrow(
+                () -> new RuntimeException("Can't find user with this email: " + email)));
     }
 }
