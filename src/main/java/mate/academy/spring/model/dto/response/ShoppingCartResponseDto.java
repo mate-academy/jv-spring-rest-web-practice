@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ShoppingCartResponseDto {
-    private Long id;
     private List<Long> ticketIds;
     private Long userId;
 
@@ -23,13 +22,5 @@ public class ShoppingCartResponseDto {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

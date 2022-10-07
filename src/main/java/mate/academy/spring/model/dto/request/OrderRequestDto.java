@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderRequestDto {
-    private Long id;
     private List<Long> ticketIds;
     private LocalDateTime orderDate;
     private Long userId;
@@ -31,13 +30,5 @@ public class OrderRequestDto {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }
