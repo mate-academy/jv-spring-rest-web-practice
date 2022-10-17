@@ -18,17 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
     private UserService userService;
-    private DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> mapper;
+    private DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> shoppingCartDtoResponseMapper;
     private MovieSessionService movieSessionService;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   UserService userService,
                                   DtoResponseMapper<ShoppingCartResponseDto,
-                                          ShoppingCart> mapper,
+                                          ShoppingCart> shoppingCartDtoResponseMapper,
                                   MovieSessionService movieSessionService) {
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
-        this.mapper = mapper;
+        this.shoppingCartDtoResponseMapper = shoppingCartDtoResponseMapper;
         this.movieSessionService = movieSessionService;
     }
 
@@ -37,11 +37,12 @@ public class ShoppingCartController {
                                                    @RequestParam Long movieSessionId) {
         User user = userService.get(userId);
         shoppingCartService.addSession(movieSessionService.get(movieSessionId), user);
-        return mapper.toDto(shoppingCartService.getByUser(user));
+        return shoppingCartDtoResponseMapper.toDto(shoppingCartService.getByUser(user));
     }
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
-        return mapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
+        return shoppingCartDtoResponseMapper
+                .toDto(shoppingCartService.getByUser(userService.get(userId)));
     }
 }
