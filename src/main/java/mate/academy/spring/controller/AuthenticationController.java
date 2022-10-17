@@ -12,18 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthenticationController {
     private AuthenticationService authenticationService;
-    private DtoResponseMapper<UserResponseDto, User> mapper;
+    private DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper;
 
     public AuthenticationController(AuthenticationService authenticationService,
-                                    DtoResponseMapper<UserResponseDto, User> mapper) {
+                                    DtoResponseMapper<UserResponseDto,
+                                            User> userDtoResponseMapper) {
         this.authenticationService = authenticationService;
-        this.mapper = mapper;
+        this.userDtoResponseMapper = userDtoResponseMapper;
     }
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody UserRegistrationDto userRegistrationDto) {
         User user = authenticationService.register(userRegistrationDto.getEmail(),
                 userRegistrationDto.getPassword());
-        return mapper.toDto(user);
+        return userDtoResponseMapper.toDto(user);
     }
 }

@@ -18,33 +18,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/shopping-cart")
 public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
-    private DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> mapper;
+    private DtoResponseMapper<ShoppingCartResponseDto,
+            ShoppingCart> shoppingCartDtoResponseMapper;
     private MovieSessionService movieSessionService;
     private UserService userService;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   DtoResponseMapper<ShoppingCartResponseDto,
-                                          ShoppingCart> mapper,
+                                          ShoppingCart> shoppingCartDtoResponseMapper,
                                   MovieSessionService movieSessionService,
                                   UserService userService) {
         this.shoppingCartService = shoppingCartService;
-        this.mapper = mapper;
+        this.shoppingCartDtoResponseMapper = shoppingCartDtoResponseMapper;
         this.movieSessionService = movieSessionService;
         this.userService = userService;
     }
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getShoppingCartByUser(@RequestParam Long userId) {
-        return mapper.toDto(
+        return shoppingCartDtoResponseMapper.toDto(
                 shoppingCartService.getByUser(userService.get(userId)));
     }
 
     @PutMapping("/movie-sessions")
     public ShoppingCartResponseDto addSession(@RequestParam Long userId,
                                               @RequestParam Long movieSessionId) {
-        User user = userService.get(userId);;
+        User user = userService.get(userId);
+        ;
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         shoppingCartService.addSession(movieSession, user);
-        return mapper.toDto(shoppingCartService.getByUser(user));
+        return shoppingCartDtoResponseMapper.toDto(shoppingCartService.getByUser(user));
     }
 }
