@@ -27,5 +27,4 @@ public class AuthenticationController {
                 .toDto(authenticationService
                         .register(userRequestDto.getEmail(), userRequestDto.getPassword()));
     }
-
 }
