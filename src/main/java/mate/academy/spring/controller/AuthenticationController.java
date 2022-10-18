@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.mapper.impl.response.UserResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRequestDto;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
-    private final UserResponseMapper userResponseMapper;
+    private final DtoResponseMapper<UserResponseDto, User> userResponseMapper;
     private final UserService userService;
 
     public AuthenticationController(AuthenticationService authenticationService,
@@ -27,9 +28,7 @@ public class AuthenticationController {
     @PostMapping("/register")
     public UserResponseDto registration(@RequestBody UserRequestDto requestDto) {
         authenticationService.register(requestDto.getEmail(), requestDto.getPassword());
-        User user = userService.findByEmail(requestDto.getEmail())
-                .orElseThrow(() -> new RuntimeException("Can't find user by email: "
-                        + requestDto.getEmail()));
+        User user = authenticationService.register(requestDto.getEmail(), requestDto.getPassword());
         return userResponseMapper.toDto(user);
     }
 }
