@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
-    OrderService orderService;
-    ShoppingCartService shoppingCartService;
-    UserService userService;
-    DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
+    private OrderService orderService;
+    private ShoppingCartService shoppingCartService;
+    private UserService userService;
+    private DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
 
     public OrderController(OrderService orderService,
             ShoppingCartService shoppingCartService,
