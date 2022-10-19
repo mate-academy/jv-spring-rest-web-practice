@@ -1,9 +1,5 @@
 package mate.academy.spring.model.dto.response;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
 public class UserResponseDto {
     private Long id;
     private String email;
