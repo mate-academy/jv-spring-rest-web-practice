@@ -45,6 +45,5 @@ public class OrderController {
     public OrderResponseDto complete(@RequestParam Long userId) {
         ShoppingCart shoppingCart = shoppingCartService.getByUser(userService.get(userId));
         return orderMapper.toDto(orderService.completeOrder(shoppingCart));
-
     }
 }
