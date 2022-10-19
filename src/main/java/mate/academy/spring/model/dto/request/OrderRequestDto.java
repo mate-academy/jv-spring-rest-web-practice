@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderRequestDto {
-    List<Long> ticketsId;
-    LocalDateTime localDateTime;
-    Long userId;
+    private List<Long> ticketsId;
+    private LocalDateTime localDateTime;
+    private Long userId;
 
     public List<Long> getTicketsId() {
         return ticketsId;

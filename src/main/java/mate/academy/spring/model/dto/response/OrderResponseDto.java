@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderResponseDto {
-    Long id;
-    List<Long> ticketsId;
-    LocalDateTime localDateTime;
-    Long userId;
+    private Long id;
+    private List<Long> ticketsId;
+    private LocalDateTime localDateTime;
+    private Long userId;
 
     public Long getId() {
         return id;
