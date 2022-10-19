@@ -6,6 +6,7 @@ public class UserResponseDto {
     private Long id;
     @NotNull
     private String email;
+
     public Long getId() {
         return id;
     }
