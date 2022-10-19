@@ -1,4 +1,4 @@
-package mate.academy.spring.mapper.impl.register;
+package mate.academy.spring.model.dto.register;
 
 public class UserRegisterDto {
     String email;
