@@ -1,4 +1,4 @@
-package mate.academy.spring.model.dto;
+package mate.academy.spring.model.dto.response;
 
 import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.User;
