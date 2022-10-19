@@ -1,6 +1,5 @@
 package mate.academy.spring.controller;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.ShoppingCart;
