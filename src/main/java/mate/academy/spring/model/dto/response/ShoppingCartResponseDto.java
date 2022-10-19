@@ -1,7 +1,10 @@
 package mate.academy.spring.model.dto.response;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+@Component
 public class ShoppingCartResponseDto {
     private Long id;
     private List<Long> ticketsId;

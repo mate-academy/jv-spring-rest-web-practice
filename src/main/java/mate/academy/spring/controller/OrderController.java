@@ -38,6 +38,7 @@ public class OrderController {
     private OrderResponseMapper mapper;
     private MovieSessionService movieSessionService;
     private SessionFactory sessionFactory;
+    private ShoppingCartService cartService;
 
     @Autowired
     public OrderController(UserService userService,
@@ -47,7 +48,8 @@ public class OrderController {
                            OrderResponseMapper mapper,
                            CinemaHallService cinemaHallService,
                            MovieSessionService movieSessionService,
-                           SessionFactory sessionFactory) {
+                           SessionFactory sessionFactory,
+                           ShoppingCartService cartService) {
         this.shoppingCartService = shoppingCartService;
         this.orderService = orderService;
         this.movieService = movieService;
@@ -56,6 +58,7 @@ public class OrderController {
         this.cinemaHallService = cinemaHallService;
         this.movieSessionService = movieSessionService;
         this.sessionFactory = sessionFactory;
+        this.cartService = cartService;
     }
 
     @PostMapping("/complete")
@@ -114,6 +117,8 @@ public class OrderController {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.setUser(oleh);
         shoppingCart.setTickets(List.of(ticketOleh, ticketInessa));
+
+        cartService.registerNewShoppingCart(oleh);
 
     }
 }
