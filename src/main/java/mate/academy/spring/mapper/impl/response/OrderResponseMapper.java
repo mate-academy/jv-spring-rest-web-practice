@@ -19,6 +19,6 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
                 .collect(Collectors.toList()));
         orderResponseDto.setOrderDate(order.getOrderDate());
         orderResponseDto.setUserId(order.getUser().getId());
-        return null;
+        return orderResponseDto;
     }
 }
