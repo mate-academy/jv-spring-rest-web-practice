@@ -10,6 +10,7 @@ public class UserResponseMapper implements DtoResponseMapper<UserResponseDto, Us
     @Override
     public UserResponseDto toDto(User user) {
         UserResponseDto userResponseDto = new UserResponseDto();
+        userResponseDto.setId(user.getId());
         userResponseDto.setEmail(user.getEmail());
         return userResponseDto;
     }
