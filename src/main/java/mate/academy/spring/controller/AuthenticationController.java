@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 public class AuthenticationController {
-    private final AuthenticationService service;
-    private final UserResponseMapper mapper;
+    private final AuthenticationService authenticationService;
+    private final UserResponseMapper userResponseMapper;
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody UserRequestDto dto) {
-        return mapper.toDto(service.register(dto.getEmail(), dto.getPassword()));
+        return userResponseMapper.toDto(authenticationService
+                .register(dto.getEmail(), dto.getPassword()));
     }
 }

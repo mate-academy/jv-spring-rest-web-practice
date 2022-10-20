@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 @AllArgsConstructor
 public class UserController {
-    private final UserService service;
-    private final DtoResponseMapper<UserResponseDto, User> mapper;
+    private final UserService userService;
+    private final DtoResponseMapper<UserResponseDto, User> dtoResponseMapper;
 
     @GetMapping
     public UserResponseDto getByEmail(@RequestParam String email) {
-        return mapper.toDto(service.findByEmail(email).get());
+        return dtoResponseMapper.toDto(userService.findByEmail(email).get());
     }
 }
