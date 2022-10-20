@@ -1,9 +1,10 @@
 package mate.academy.spring.model.dto.request;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 public class UserRequestDto {
-    @NotNull
+    @Email
     private String email;
     @NotNull
     private String password;
