@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
     private UserService userService;
-    private DtoResponseMapper<UserResponseDto, User> userResponseMapper;;
+    private DtoResponseMapper<UserResponseDto, User> userResponseMapper;
 
     @Autowired
     public UserController(UserService userService,
