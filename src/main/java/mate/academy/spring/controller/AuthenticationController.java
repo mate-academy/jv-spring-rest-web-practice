@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import javax.validation.Valid;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRegistrationDto;
@@ -25,7 +26,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.OK)
-    public UserResponseDto register(@RequestBody UserRegistrationDto registrationDto) {
+    public UserResponseDto register(@RequestBody @Valid UserRegistrationDto registrationDto) {
         User user = authenticationService.register(registrationDto.getEmail(),
                 registrationDto.getPassword());
         return userDtoResponseMapper.toDto(user);
