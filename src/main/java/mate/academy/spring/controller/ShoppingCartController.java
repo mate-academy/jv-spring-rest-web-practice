@@ -8,6 +8,7 @@ import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,6 +42,10 @@ public class ShoppingCartController {
         return mapper.toDto(shoppingCart);
     }
 
-
-    //    - Get by user - GET: /shopping-carts/by-user?userId
+    @GetMapping("/by-user")
+    public ShoppingCartResponseDto get(@RequestParam Long userId) {
+        User user = userService.get(userId);
+        ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
+        return mapper.toDto(shoppingCart);
+    }
 }
