@@ -33,7 +33,7 @@ public class ShoppingCartController {
         this.movieSessionService = movieSessionService;
     }
 
-    @GetMapping
+    @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
         return shoppingCartDtoResponseMapper
                 .toDto(shoppingCartService
