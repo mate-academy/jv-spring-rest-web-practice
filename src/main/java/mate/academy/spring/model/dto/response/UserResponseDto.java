@@ -1,10 +1,7 @@
 package mate.academy.spring.model.dto.response;
 
-import com.sun.istack.NotNull;
-
 public class UserResponseDto {
     private Long id;
-    @NotNull
     private String email;
 
     public Long getId() {
