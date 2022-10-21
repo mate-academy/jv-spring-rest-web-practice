@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -24,7 +26,8 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam @Valid String email) {
-        User user = userService.findByEmail(email).get();
-        return responseMapper.toDto(user);
+        Optional<User> optionalUser = userService.findByEmail(email);
+        return responseMapper.toDto(optionalUser.orElseThrow(
+                () -> new RuntimeException("Can't find user with this email: " + email)));
     }
 }
