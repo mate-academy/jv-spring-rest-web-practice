@@ -40,7 +40,6 @@ public class ShoppingCartController {
     @PutMapping("/movie-sessions")
     public void addMovieSession(@RequestParam Long userId,
                                 @RequestParam Long movieSessionID) {
-
         shoppingCartService.addSession(movieSessionService.get(movieSessionID),
                 userService.get(userId));
     }
