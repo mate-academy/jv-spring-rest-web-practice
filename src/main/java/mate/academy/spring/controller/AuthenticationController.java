@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 public class AuthenticationController {
     private final AuthenticationService service;
@@ -15,7 +17,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public void registration(@RequestBody UserRequestDto requestDto) {
+    public void registration(@RequestBody @Valid UserRequestDto requestDto) {
         service.register(requestDto.getEmail(), requestDto.getPassword());
     }
 }
