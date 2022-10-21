@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 @RequestMapping("/orders")
 public class OrderController {
     private UserService userService;
@@ -29,14 +31,14 @@ public class OrderController {
         this.orderDtoResponseMapper = orderDtoResponseMapper;
     }
 
-    @PostMapping("/orders/complete")
+    @PostMapping("/complete")
     public OrderResponseDto completeOrder(@RequestBody Long userId) {
         return orderDtoResponseMapper.toDto(orderService
                 .completeOrder(shoppingCartService.getByUser(userService.get(userId))));
     }
 
     @GetMapping
-    public List<OrderResponseDto> getAllOrders(Long userId) {
+    public List<OrderResponseDto> getOrdersHistory(Long userId) {
         return orderService.getOrdersHistory(userService.get(userId))
                 .stream()
                 .map(orderDtoResponseMapper::toDto)
