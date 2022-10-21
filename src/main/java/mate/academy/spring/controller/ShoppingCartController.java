@@ -30,7 +30,7 @@ public class ShoppingCartController {
         return dtoResponseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
     }
 
-    @GetMapping( "/by-user")
+    @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
         return dtoResponseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
     }
