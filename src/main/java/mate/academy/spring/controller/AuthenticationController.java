@@ -16,8 +16,8 @@ public class AuthenticationController {
     private final UserResponseMapper userResponseMapper;
 
     @PostMapping("/register")
-    public UserResponseDto register(@RequestBody UserRequestDto dto) {
+    public UserResponseDto register(@RequestBody UserRequestDto requestDto) {
         return userResponseMapper.toDto(authenticationService
-                .register(dto.getEmail(), dto.getPassword()));
+                .register(requestDto.getEmail(), requestDto.getPassword()));
     }
 }
