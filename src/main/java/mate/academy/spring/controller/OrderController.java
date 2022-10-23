@@ -24,7 +24,8 @@ public class OrderController {
     private final DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
 
     public OrderController(ShoppingCartService shoppingCartService, UserService userService,
-                           OrderService orderService, DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper) {
+                           OrderService orderService,
+                           DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper) {
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
         this.orderService = orderService;
