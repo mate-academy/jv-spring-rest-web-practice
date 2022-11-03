@@ -3,7 +3,6 @@ package mate.academy.spring.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoResponseMapper;
-import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
@@ -26,11 +25,11 @@ public class OrderController {
     public OrderController(OrderService orderService,
                            ShoppingCartService shoppingCartService,
                            UserService userService,
-                           OrderResponseMapper orderDtoResponseMapper) {
+                           DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper) {
         this.orderService = orderService;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
-        this.orderResponseMapper = orderDtoResponseMapper;
+        this.orderResponseMapper = orderResponseMapper;
     }
 
     @PostMapping("/complete")
