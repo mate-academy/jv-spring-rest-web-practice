@@ -34,7 +34,7 @@ public class ShoppingCartController {
         this.shoppingCartDtoResponseMapper = shoppingCartDtoResponseMapper;
     }
 
-    @PutMapping
+    @PutMapping("/movie-sessions")
     public ShoppingCartResponseDto completeMovieSession(
             @RequestParam Long movieSessionId,
             @RequestParam Long userId) {
