@@ -16,7 +16,7 @@ public class OrderRequestMapper implements DtoRequestMapper<OrderRequestDto, Ord
     }
 
     @Override
-    public Order fromDto(OrderRequestDto dto) {
+    public Order toModel(OrderRequestDto dto) {
         Order order = new Order();
         order.setOrderDate(dto.getOrderDate());
         order.setUser(userService.get(dto.getUserId()));
