@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.response.ShoppingCartResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
+import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
@@ -15,16 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
 
-    private final ShoppingCartResponseMapper shoppingCartResponseMapper;
+    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart>
+            shoppingCartDtoResponseMapper;
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
     private final MovieSessionService movieSessionService;
 
-    public ShoppingCartController(ShoppingCartResponseMapper shoppingCartResponseMapper,
+    public ShoppingCartController(DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart>
+                                          shoppingCartDtoResponseMapper,
                                   ShoppingCartService shoppingCartService,
                                   UserService userService,
                                   MovieSessionService movieSessionService) {
-        this.shoppingCartResponseMapper = shoppingCartResponseMapper;
+        this.shoppingCartDtoResponseMapper = shoppingCartDtoResponseMapper;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
         this.movieSessionService = movieSessionService;
@@ -38,7 +41,7 @@ public class ShoppingCartController {
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
-        return shoppingCartResponseMapper.toDto(
+        return shoppingCartDtoResponseMapper.toDto(
                 shoppingCartService.getByUser(userService.get(userId)));
     }
 }
