@@ -5,7 +5,6 @@ import mate.academy.spring.validation.Email;
 
 public class UserRequestDto {
     @Email
-    @NotNull
     private String email;
     @NotNull
     private String password;
