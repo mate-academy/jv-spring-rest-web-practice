@@ -41,7 +41,7 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/movie-sessions")
-    public ShoppingCartResponseDto create(@RequestParam Long userId,
+    public ShoppingCartResponseDto addMovieSessionToShoppingCart(@RequestParam Long userId,
                        @RequestParam Long movieSessionId) {
         User user = userService.get(userId);
         MovieSession movieSession = movieSessionService.get(movieSessionId);
