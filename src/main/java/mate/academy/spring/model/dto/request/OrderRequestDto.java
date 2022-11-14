@@ -1,7 +1,5 @@
 package mate.academy.spring.model.dto.request;
 
-import mate.academy.spring.model.User;
-
 import java.time.LocalDateTime;
 import java.util.List;
 

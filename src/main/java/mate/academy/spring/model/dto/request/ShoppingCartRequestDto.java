@@ -5,6 +5,7 @@ import java.util.List;
 public class ShoppingCartRequestDto {
     private List<Long> ticketId;
     private Long userId;
+
     public Long getUserId() {
         return userId;
     }
