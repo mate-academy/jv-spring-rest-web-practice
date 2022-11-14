@@ -1,8 +1,6 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.DtoRequestMapper;
 import mate.academy.spring.mapper.DtoResponseMapper;
-import mate.academy.spring.model.dto.request.ShoppingCartRequestDto;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
@@ -33,16 +31,16 @@ public class OrderController {
         this.orderDtoResponseMapper = orderDtoResponseMapper;
     }
 
-    @GetMapping("/orders/{userId}")
-    public List<OrderResponseDto> getOrdersHistory(@PathVariable Long userId) {
+    @GetMapping
+    public List<OrderResponseDto> getOrdersHistory(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId))
                 .stream()
                 .map(orderDtoResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    @PostMapping("/complete/{userId}")
-    public OrderResponseDto complete(@PathVariable Long userId) {
+    @PostMapping("/complete")
+    public OrderResponseDto complete(@RequestParam Long userId) {
         ShoppingCart shoppingCart = shoppingCartService.getByUser(userService.get(userId));
         return orderDtoResponseMapper.toDto(orderService.completeOrder(shoppingCart));
 
