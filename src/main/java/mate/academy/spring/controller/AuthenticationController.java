@@ -1,8 +1,8 @@
 package mate.academy.spring.controller;
 
 import mate.academy.spring.exception.AuthenticationException;
-import mate.academy.spring.mapper.impl.request.UserRequestMapper;
-import mate.academy.spring.mapper.impl.response.UserResponseMapper;
+import mate.academy.spring.mapper.DtoRequestMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -16,16 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     private final UserService userService;
     private final ShoppingCartService shoppingCartService;
-    private final UserRequestMapper requestMapper;
-    private final UserResponseMapper responseMapper;
+    private final DtoRequestMapper<UserRequestDto, User> requestMapper;
+    private final DtoResponseMapper<UserResponseDto, User> responseMapper;
 
     public AuthenticationController(UserService userService,
                                     ShoppingCartService shoppingCartService,
-                                    UserRequestMapper requestMapper,
-                                    UserResponseMapper responseMapper) {
+                                    DtoRequestMapper<UserRequestDto, User> requestMapper,
+                                    DtoResponseMapper<UserResponseDto, User> responseMapper) {
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
         this.requestMapper = requestMapper;
+
         this.responseMapper = responseMapper;
     }
 

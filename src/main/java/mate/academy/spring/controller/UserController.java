@@ -2,6 +2,7 @@ package mate.academy.spring.controller;
 
 import java.util.Optional;
 import mate.academy.spring.exception.AuthenticationException;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.mapper.impl.response.UserResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
-    private final UserResponseMapper responseMapper;
+    private final DtoResponseMapper<UserResponseDto, User> responseMapper;
 
     public UserController(UserService userService,
                           UserResponseMapper responseMapper) {
