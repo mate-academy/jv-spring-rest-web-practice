@@ -48,5 +48,7 @@ public class OrderController {
     public OrderResponseDto complete(@PathVariable Long userId,
                                      @RequestBody ShoppingCartRequestDto shoppingCartRequestDto) {
         ShoppingCart shoppingCart = shoppingCartDtoRequestMapper.fromDto(shoppingCartRequestDto);
+        return orderDtoResponseMapper.toDto(orderService.completeOrder(shoppingCart));
+
     }
 }
