@@ -26,7 +26,6 @@ public class AuthenticationController {
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
         this.requestMapper = requestMapper;
-
         this.responseMapper = responseMapper;
     }
 
