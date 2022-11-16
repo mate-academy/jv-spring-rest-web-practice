@@ -19,12 +19,4 @@ public class UserRequestDto {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    @Override
-    public String toString() {
-        return "UserRequestDto{"
-                + "email='" + email + '\''
-                + ", password='" + password + '\''
-                + '}';
-    }
 }

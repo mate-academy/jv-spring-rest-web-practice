@@ -19,12 +19,4 @@ public class UserResponseDto {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    @Override
-    public String toString() {
-        return "UserResponseDto{"
-                + "id=" + id
-                + ", email='" + email + '\''
-                + '}';
-    }
 }

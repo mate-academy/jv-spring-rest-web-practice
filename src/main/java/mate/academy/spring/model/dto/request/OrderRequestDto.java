@@ -31,13 +31,4 @@ public class OrderRequestDto {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
-
-    @Override
-    public String toString() {
-        return "OrderRequestDto{"
-                + "ticketIds=" + ticketIds
-                + ", orderDate=" + orderDate
-                + ", userId=" + userId
-                + '}';
-    }
 }

@@ -31,13 +31,4 @@ public class OrderResponseDto {
     public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
-
-    @Override
-    public String toString() {
-        return "OrderResponseDto{"
-                + "id=" + id
-                + ", ticketIds=" + ticketIds
-                + ", orderDate=" + orderDate
-                + '}';
-    }
 }

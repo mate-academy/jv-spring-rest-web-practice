@@ -4,6 +4,15 @@ import java.util.List;
 
 public class ShoppingCartResponseDto {
     private List<Long> ticketIds;
+    private Long userId;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public List<Long> getTicketIds() {
         return ticketIds;
@@ -11,12 +20,5 @@ public class ShoppingCartResponseDto {
 
     public void setTicketIds(List<Long> ticketIds) {
         this.ticketIds = ticketIds;
-    }
-
-    @Override
-    public String toString() {
-        return "ShoppingCartResponseDto{"
-                + "ticketIds=" + ticketIds
-                + '}';
     }
 }

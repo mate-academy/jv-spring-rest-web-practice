@@ -21,12 +21,4 @@ public class ShoppingCartRequestDto {
     public void setTicketId(List<Long> ticketId) {
         this.ticketId = ticketId;
     }
-
-    @Override
-    public String toString() {
-        return "ShoppingCartRequestDto{"
-                + "ticketId=" + ticketId
-                + ", userId=" + userId
-                + '}';
-    }
 }
