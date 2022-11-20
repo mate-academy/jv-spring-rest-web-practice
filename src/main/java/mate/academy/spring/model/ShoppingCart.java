@@ -45,7 +45,6 @@ public class ShoppingCart {
         this.user = user;
     }
 
-
     @Override
     public String toString() {
         return "ShoppingCart{"
