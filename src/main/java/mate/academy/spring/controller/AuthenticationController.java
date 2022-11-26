@@ -6,10 +6,11 @@ import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.security.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
-@RestController
+@Controller
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final DtoResponseMapper<UserResponseDto, User> authenticationResponseMapper;
@@ -23,7 +24,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public UserResponseDto register(UserRequestDto userRequestDto) {
+    public UserResponseDto register(@RequestBody UserRequestDto userRequestDto) {
         return authenticationResponseMapper.toDto(
                 authenticationService.register(
                         userRequestDto.getEmail(),
