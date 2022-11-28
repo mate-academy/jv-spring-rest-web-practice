@@ -1,15 +1,13 @@
 package mate.academy.spring.dao.impl;
 
+import java.util.Optional;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.TicketDao;
 import mate.academy.spring.exception.DataProcessingException;
-import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.Ticket;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
 
 @Repository
 public class TicketDaoImpl extends AbstractDao<Ticket> implements TicketDao {
