@@ -13,15 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
-    // we do not need OrderRequestDto, as we use ShoppingCart as a param,
-    // which has an id identical to userId it belongs to
-
     private final OrderService orderService;
     private final OrderResponseMapper orderResponseMapper;
     private final UserService userService;
     private final ShoppingCartService shoppingCartService;
 
-    public OrderController(OrderService orderService, OrderResponseMapper orderResponseMapper, UserService userService, ShoppingCartService shoppingCartService) {
+    public OrderController(OrderService orderService, OrderResponseMapper orderResponseMapper,
+                           UserService userService, ShoppingCartService shoppingCartService) {
         this.orderService = orderService;
         this.orderResponseMapper = orderResponseMapper;
         this.userService = userService;
