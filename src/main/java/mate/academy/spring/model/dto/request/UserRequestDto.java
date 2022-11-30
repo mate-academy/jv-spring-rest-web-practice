@@ -1,6 +1,5 @@
 package mate.academy.spring.model.dto.request;
 
-import javax.persistence.Column;
 import mate.academy.spring.validation.EmailValidation;
 import mate.academy.spring.validation.PasswordValidation;
 

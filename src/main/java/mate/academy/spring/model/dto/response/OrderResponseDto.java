@@ -7,6 +7,7 @@ public class OrderResponseDto {
     private Long id;
     private List<Long> ticketIds;
     private LocalDateTime orderDate;
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -39,6 +40,4 @@ public class OrderResponseDto {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
-
-    private Long userId;
 }

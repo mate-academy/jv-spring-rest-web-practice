@@ -1,7 +1,5 @@
 package mate.academy.spring.model.dto.response;
 
-import javax.persistence.Column;
-
 public class UserResponseDto {
     private Long id;
     private String email;
