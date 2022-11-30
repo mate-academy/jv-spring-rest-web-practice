@@ -1,7 +1,9 @@
 package mate.academy.spring.controller;
 
 import java.util.NoSuchElementException;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.mapper.impl.response.UserResponseMapper;
+import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,17 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private UserService userService;
-    private UserResponseMapper userResponseMapper;
+    private final UserService userService;
+    private final DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper;
 
-    public UserController(UserService userService, UserResponseMapper userResponseMapper) {
+    public UserController(UserService userService, UserResponseMapper userDtoResponseMapper) {
         this.userService = userService;
-        this.userResponseMapper = userResponseMapper;
+        this.userDtoResponseMapper = userDtoResponseMapper;
     }
 
     @GetMapping("/by-email")
     public UserResponseDto findByEmail(@RequestParam String email) {
-        return userResponseMapper.toDto(
+        return userDtoResponseMapper.toDto(
                 userService.findByEmail(email).orElseThrow(NoSuchElementException::new));
     }
 }
