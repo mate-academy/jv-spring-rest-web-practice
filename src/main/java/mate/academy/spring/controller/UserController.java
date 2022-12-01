@@ -2,7 +2,6 @@ package mate.academy.spring.controller;
 
 import java.util.NoSuchElementException;
 import mate.academy.spring.mapper.DtoResponseMapper;
-import mate.academy.spring.mapper.impl.response.UserResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.UserService;
@@ -17,7 +16,8 @@ public class UserController {
     private final UserService userService;
     private final DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper;
 
-    public UserController(UserService userService, UserResponseMapper userDtoResponseMapper) {
+    public UserController(UserService userService,
+                          DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper) {
         this.userService = userService;
         this.userDtoResponseMapper = userDtoResponseMapper;
     }
