@@ -3,9 +3,12 @@ package mate.academy.spring.model.dto.response;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
-public class CinemaHallResponseDto {
+public class ShoppingCartResponseDto {
     private Long id;
-    private int capacity;
+    private List<Long> ticketsId;
+    private Long userId;
 }
