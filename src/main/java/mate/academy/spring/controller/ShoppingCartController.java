@@ -1,7 +1,6 @@
 package mate.academy.spring.controller;
 
 import mate.academy.spring.mapper.DtoResponseMapper;
-import mate.academy.spring.mapper.impl.response.ShoppingCartResponseMapper;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
@@ -47,6 +46,7 @@ public class ShoppingCartController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void addMovieSession(@RequestParam Long userId,
                                                    @RequestParam Long movieSessionId) {
-        shoppingCartService.addSession(movieSessionService.get(movieSessionId), userService.get(userId));
+        shoppingCartService.addSession(movieSessionService.get(movieSessionId),
+                userService.get(userId));
     }
 }
