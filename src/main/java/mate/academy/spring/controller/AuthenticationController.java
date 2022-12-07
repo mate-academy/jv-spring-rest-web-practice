@@ -26,7 +26,7 @@ public class AuthenticationController {
 
     @PostMapping()
     public void register(@RequestBody UserRequestDto userRequestDto) {
-        User registeredUser = authenticationService.register(
+        authenticationService.register(
                 userRequestDto.getEmail(), userRequestDto.getPassword());
     }
 }
