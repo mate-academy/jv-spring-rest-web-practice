@@ -34,8 +34,6 @@ public class ShoppingCartController {
         this.movieSessionService = movieSessionService;
     }
 
-    // Add movie session - PUT: /shopping-carts/movie-sessions?userId&movieSessionId
-
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getUserShoppingCart(@RequestParam Long userId) {
         ShoppingCart userShoppingCart = shoppingCartService.getByUser(userService.get(userId));

@@ -36,7 +36,7 @@ public class OrderController {
 
     @PostMapping("/complete")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public OrderResponseDto complete(@RequestParam Long userId) {
+    public OrderResponseDto completeOrder(@RequestParam Long userId) {
         Order order = orderService.completeOrder(shoppingCartService
                 .getByUser(userService.get(userId)));
         return orderResponseMapper.toDto(order);
@@ -44,7 +44,7 @@ public class OrderController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<OrderResponseDto> history(@RequestParam Long userId) {
+    public List<OrderResponseDto> getOrderHistory(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId)).stream()
                 .map(orderResponseMapper::toDto)
                 .collect(Collectors.toList());
