@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import mate.academy.spring.exception.UserNotFoundException;
 import mate.academy.spring.mapper.DtoRequestMapper;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
@@ -28,6 +29,8 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam String email) {
-        return userDtoResponseMapper.toDto(userService.findByEmail(email).get());
+        return userDtoResponseMapper.toDto(userService.findByEmail(email).orElseThrow(
+                () -> new UserNotFoundException("User with " + email + " email not found!")
+        ));
     }
 }

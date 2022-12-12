@@ -7,7 +7,7 @@ import java.util.List;
 public class OrderResponseDto {
     private Long id;
     private List<Long> ticketsIds;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH:mm")
+    @JsonFormat(pattern = "dd.MM.yyyy HH:mm")
     private LocalDateTime orderDate;
     private Long userId;
 

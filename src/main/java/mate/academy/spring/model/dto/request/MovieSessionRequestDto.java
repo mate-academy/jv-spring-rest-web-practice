@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class MovieSessionRequestDto {
     private Long movieId;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH:mm")
+    @JsonFormat(pattern = "dd.MM.yyyy HH:mm")
     private LocalDateTime showTime;
     private Long cinemaHallId;
 
