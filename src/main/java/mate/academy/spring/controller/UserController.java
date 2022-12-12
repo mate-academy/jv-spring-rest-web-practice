@@ -3,7 +3,6 @@ package mate.academy.spring.controller;
 import jakarta.validation.Valid;
 import java.util.NoSuchElementException;
 import mate.academy.spring.mapper.DtoResponseMapper;
-import mate.academy.spring.mapper.impl.response.UserResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.UserService;
