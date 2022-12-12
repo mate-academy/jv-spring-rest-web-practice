@@ -2,6 +2,7 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.ShoppingCart;
@@ -21,16 +22,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     private final OrderService orderService;
     private final UserService userService;
-    private final OrderResponseMapper orderResponseMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> dtoResponseMapper;
     private final ShoppingCartService shoppingCartService;
 
     @Autowired
     public OrderController(OrderService orderService, UserService userService,
-                           OrderResponseMapper orderResponseMapper,
+                           DtoResponseMapper<OrderResponseDto, Order> dtoResponseMapper,
                            ShoppingCartService shoppingCartService) {
         this.orderService = orderService;
         this.userService = userService;
-        this.orderResponseMapper = orderResponseMapper;
+        this.dtoResponseMapper = dtoResponseMapper;
         this.shoppingCartService = shoppingCartService;
     }
 
@@ -38,7 +39,7 @@ public class OrderController {
     public List<OrderResponseDto> getOrdersByUser(@RequestParam Long id) {
         return orderService.getOrdersHistory(userService.get(id))
                 .stream()
-                .map(orderResponseMapper::toDto)
+                .map(dtoResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -46,6 +47,6 @@ public class OrderController {
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
         ShoppingCart userShoppingCart = shoppingCartService.getByUser(userService.get(userId));
         Order order = orderService.completeOrder(userShoppingCart);
-        return orderResponseMapper.toDto(order);
+        return dtoResponseMapper.toDto(order);
     }
 }

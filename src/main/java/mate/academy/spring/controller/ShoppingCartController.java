@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.mapper.impl.response.ShoppingCartResponseMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.ShoppingCart;
@@ -21,23 +22,23 @@ public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
     private final MovieSessionService movieSessionService;
-    private final ShoppingCartResponseMapper shoppingCartResponseMapper;
+    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> dtoResponseMapper;
 
     @Autowired
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   UserService userService,
                                   MovieSessionService movieSessionService,
-                                  ShoppingCartResponseMapper shoppingCartResponseMapper) {
+                                  DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> dtoResponseMapper) {
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
         this.movieSessionService = movieSessionService;
-        this.shoppingCartResponseMapper = shoppingCartResponseMapper;
+        this.dtoResponseMapper = dtoResponseMapper;
     }
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
         ShoppingCart byUser = shoppingCartService.getByUser(userService.get(userId));
-        return shoppingCartResponseMapper.toDto(byUser);
+        return dtoResponseMapper.toDto(byUser);
     }
 
     @PutMapping("/movie-sessions")
@@ -46,6 +47,6 @@ public class ShoppingCartController {
         User user = userService.get(userId);
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         shoppingCartService.addSession(movieSession, user);
-        return shoppingCartResponseMapper.toDto(shoppingCartService.getByUser(user));
+        return dtoResponseMapper.toDto(shoppingCartService.getByUser(user));
     }
 }
