@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class OrderResponseDto {
     private Long id;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH:mm")
+    @JsonFormat(pattern = "dd.MM.yyyy HH:mm")
     private LocalDateTime orderDate;
     private Long userId;
     private List<Long> ticketsIds;
