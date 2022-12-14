@@ -21,8 +21,8 @@ public class UserController {
         this.userResponseMapper = userResponseMapper;
     }
 
-    @GetMapping("/{id}")
-    public UserResponseDto getUser(@PathVariable Long id) {
-        return userResponseMapper.toDto(userService.get(id));
+    @GetMapping("by-email")
+    public UserResponseDto getUserByEmail(@PathVariable String email) {
+        return userResponseMapper.toDto(userService.findByEmail(email).get());
     }
 }
