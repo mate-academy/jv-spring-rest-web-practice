@@ -1,6 +1,5 @@
 package mate.academy.spring.mapper.impl.response;
 
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.ShoppingCart;
@@ -16,8 +15,8 @@ public class ShoppingCartResponseMapper implements
     public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
         ShoppingCartResponseDto dto = new ShoppingCartResponseDto();
         dto.setId(shoppingCart.getId());
-        dto.setTicketsId(new ArrayList<>(shoppingCart.getTickets().stream()
-                .map(Ticket::getId).collect(Collectors.toList())));
+        dto.setTicketsId(shoppingCart.getTickets().stream()
+                .map(Ticket::getId).collect(Collectors.toList()));
         return dto;
     }
 }
