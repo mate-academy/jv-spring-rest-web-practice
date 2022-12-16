@@ -24,9 +24,10 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto getUsersByEmail(@RequestParam String email) {
-        if (userService.findByEmail(email).isEmpty()) {
-            throw new NoSuchElementException("Can't find user by email " + email);
-        }
-        return dtoResponseMapper.toDto(userService.findByEmail(email).get());
+        return dtoResponseMapper
+                .toDto(userService
+                .findByEmail(email)
+                .orElseThrow(()
+                        -> new NoSuchElementException("Can't find user by email " + email)));
     }
 }
