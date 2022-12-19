@@ -7,7 +7,6 @@ public class MovieSessionResponseDto {
     private Long id;
     private String movieTitle;
     @JsonFormat(pattern = "dd.MM.yyyy HH:mm")
-
     private LocalDateTime showTime;
     private int cinemaHallCapacity;
 
