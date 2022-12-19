@@ -1,5 +1,7 @@
 package mate.academy.spring.model.dto.response;
 
+import org.springframework.stereotype.Component;
+
 public class UserResponseDto {
     private Long id;
     private String email;
