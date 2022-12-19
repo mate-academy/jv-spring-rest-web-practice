@@ -6,6 +6,7 @@ import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,13 @@ public class OrderController {
     private ShoppingCartService shoppingCartService;
     private UserService userService;
 
+    @Autowired
+    public OrderController(DtoResponseMapper<OrderResponseDto, Order> dtoResponse, OrderService orderService, ShoppingCartService shoppingCartService, UserService userService) {
+        this.dtoResponse = dtoResponse;
+        this.orderService = orderService;
+        this.shoppingCartService = shoppingCartService;
+        this.userService = userService;
+    }
 
     @PostMapping("/complete")
     OrderResponseDto complete(@RequestParam Long id) {
