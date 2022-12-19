@@ -1,7 +1,6 @@
 package mate.academy.spring.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoRequestMapper;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.CinemaHall;
@@ -41,6 +40,6 @@ public class CinemaHallController {
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
                 .map(cinemaHallDtoResponseMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
