@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import javax.persistence.EntityNotFoundException;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -22,7 +23,7 @@ public class UserController {
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam String email) {
         User user = userService.findByEmail(email).orElseThrow(() ->
-                new RuntimeException("User by email " + email + " not found!"));
+                new EntityNotFoundException("User by email " + email + " not found!"));
         return userDtoResponseMapper.toDto(user);
     }
 }
