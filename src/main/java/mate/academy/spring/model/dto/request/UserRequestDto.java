@@ -9,7 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserRequestDto {
-    @NotEmpty
     @Email
     private String email;
     @NotEmpty

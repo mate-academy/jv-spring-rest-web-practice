@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-
     private final UserService userService;
     private final DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper;
 
@@ -28,7 +27,7 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam @Valid String email) {
-        return userDtoResponseMapper.toDto(userService.findByEmail(email).get());
+        return userDtoResponseMapper.toDto(userService.findByEmail(email).orElseThrow(
+                () -> new RuntimeException("Can't get user with email:" + email)));
     }
-
 }
