@@ -25,6 +25,6 @@ public class UserController {
     @GetMapping("/by-email")
     public UserResponseDto getUserByEmail(@RequestParam String email) {
         return userDtoResponseMapper.toDto(userService.findByEmail(email).orElseThrow(()
-                -> new EntityNotFoundException("Can`t get user bu email " + email)));
+                -> new EntityNotFoundException("Can`t get user by email " + email)));
     }
 }
