@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import javax.validation.Valid;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.ShoppingCart;
@@ -37,8 +38,8 @@ public class ShoppingCartController {
     }
 
     @PutMapping
-    public void addMovieSession(@RequestParam Long movieSessionId,
-                    @RequestParam Long userId) {
+    public void addMovieSession(@RequestParam @Valid Long movieSessionId,
+                    @RequestParam @Valid Long userId) {
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         User user = userService.get(userId);
         shoppingCartService.addSession(movieSession, user);
