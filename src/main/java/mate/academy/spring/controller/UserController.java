@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
@@ -25,6 +26,7 @@ public class UserController {
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam String email) {
         Optional<User> optionalUser = userService.findByEmail(email);
-        return responseMapper.toDto(optionalUser.orElseThrow());
+        return responseMapper.toDto(optionalUser.orElseThrow((() ->
+                new NoSuchElementException("Can't get a user by email: " + email))));
     }
 }
