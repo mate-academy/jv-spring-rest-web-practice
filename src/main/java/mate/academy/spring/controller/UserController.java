@@ -15,7 +15,8 @@ public class UserController {
     private UserService userService;
     private DtoResponseMapper<UserResponseDto, User> dtoResponse;
 
-    public UserController(UserService userService, DtoResponseMapper<UserResponseDto, User> dtoResponse) {
+    public UserController(UserService userService,
+                          DtoResponseMapper<UserResponseDto, User> dtoResponse) {
         this.userService = userService;
         this.dtoResponse = dtoResponse;
     }

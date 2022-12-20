@@ -1,5 +1,7 @@
 package mate.academy.spring.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
@@ -7,10 +9,11 @@ import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/orders")
@@ -21,7 +24,11 @@ public class OrderController {
     private UserService userService;
 
     @Autowired
-    public OrderController(DtoResponseMapper<OrderResponseDto, Order> dtoResponse, OrderService orderService, ShoppingCartService shoppingCartService, UserService userService) {
+    public OrderController(DtoResponseMapper<OrderResponseDto,
+                           Order> dtoResponse,
+                           OrderService orderService,
+                           ShoppingCartService shoppingCartService,
+                           UserService userService) {
         this.dtoResponse = dtoResponse;
         this.orderService = orderService;
         this.shoppingCartService = shoppingCartService;
@@ -29,14 +36,17 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-    OrderResponseDto complete(@RequestParam Long id) {
-        return dtoResponse.toDto(orderService.completeOrder(shoppingCartService.getByUser(userService.get(id))));
+    OrderResponseDto complete(@RequestParam Long userId) {
+        return dtoResponse
+                .toDto(orderService
+                        .completeOrder(shoppingCartService
+                                .getByUser(userService.get(userId))));
     }
 
     @GetMapping
-    List<OrderResponseDto> getOrderHistory(@RequestParam Long id) {
+    List<OrderResponseDto> getOrderHistory(@RequestParam Long userId) {
         return orderService
-                .getOrdersHistory(userService.get(id))
+                .getOrdersHistory(userService.get(userId))
                 .stream()
                 .map(o -> dtoResponse.toDto(o))
                 .collect(Collectors.toList());

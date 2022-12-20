@@ -1,12 +1,10 @@
 package mate.academy.spring.mapper.impl.response;
 
+import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
-import java.util.stream.Collectors;
 
 @Component
 public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, Order> {
@@ -15,7 +13,7 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto dto = new OrderResponseDto();
         dto.setId(order.getId());
-        dto.setOrderDate(LocalDateTime.now());
+        dto.setOrderDate(order.getOrderDate());
         dto.setUserId(order.getUser().getId());
         dto.setTicketsId(order.getTickets()
                 .stream()
