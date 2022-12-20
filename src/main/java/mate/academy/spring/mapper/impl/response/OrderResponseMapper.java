@@ -12,13 +12,14 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
 
     @Override
     public OrderResponseDto toDto(Order object) {
-        OrderResponseDto orderResponseDto = new OrderResponseDto();
-        orderResponseDto.setId(object.getId());
-        orderResponseDto.setOrderDate(object.getOrderDate());
-        orderResponseDto.setTicketsIds(object.getTickets().stream()
+        OrderResponseDto responseDto = new OrderResponseDto();
+        responseDto.setId(object.getId());
+        responseDto.setOrderDate(object.getOrderDate());
+        responseDto.setTicketsIds(object.getTickets().stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList()));
-        orderResponseDto.setUserId(object.getUser().getId());
-        return orderResponseDto;
+        responseDto.setUserId(object.getUser().getId());
+        return responseDto;
+
     }
 }
