@@ -1,14 +1,15 @@
 package mate.academy.spring.mapper.impl.response;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import org.springframework.stereotype.Component;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
-public class OrderResponseMapper {
+public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, Order> {
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto responseDto = new OrderResponseDto();
         responseDto.setId(order.getId());
