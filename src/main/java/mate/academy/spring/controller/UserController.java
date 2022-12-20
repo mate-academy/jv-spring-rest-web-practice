@@ -16,16 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private UserService userService;
     private DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper;
-    private DtoRequestMapper<UserRequestDto, User> userDtoRequestMapper;
 
     public UserController(UserService userService,
                           DtoResponseMapper<UserResponseDto, User>
-                                  userDtoResponseMapper,
-                          DtoRequestMapper<UserRequestDto, User>
-                                  userDtoRequestMapper) {
+                                  userDtoResponseMapper) {
         this.userService = userService;
         this.userDtoResponseMapper = userDtoResponseMapper;
-        this.userDtoRequestMapper = userDtoRequestMapper;
     }
 
     @GetMapping("/by-email")
