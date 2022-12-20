@@ -1,8 +1,10 @@
 package mate.academy.spring.model.dto.response;
 
+import java.util.List;
+
 public class ShoppingCartResponseDto {
     private Long id;
-    private String email;
+    private List<Long> ticketsId;
 
     public Long getId() {
         return id;
@@ -12,11 +14,12 @@ public class ShoppingCartResponseDto {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public List<Long> getTicketsId() {
+        return ticketsId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTicketsId(List<Long> ticketsId) {
+        this.ticketsId = ticketsId;
     }
 }
+
