@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     private final OrderService orderService;
     private final UserService userService;
-    private  final ShoppingCartService shoppingCartService;
+    private final ShoppingCartService shoppingCartService;
     private final DtoResponseMapper<OrderResponseDto, Order> orderDtoResponseMapper;
 
     public OrderController(OrderService orderService, UserService userService,
@@ -40,7 +40,8 @@ public class OrderController {
 
     @PostMapping("/complete")
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
-        Order order = orderService.completeOrder(shoppingCartService.getByUser(userService.get(userId)));
+        Order order = orderService.completeOrder(shoppingCartService
+                .getByUser(userService.get(userId)));
         return orderDtoResponseMapper.toDto(order);
     }
 }

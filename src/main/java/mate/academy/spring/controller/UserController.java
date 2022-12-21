@@ -24,7 +24,7 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto findByEmail(@RequestParam String email) {
-        return userDtoResponseMapper.toDto(userService.findByEmail(email)
-                .orElseThrow(() -> new NoSuchElementException("There is no user with such email" + email)));
+        return userDtoResponseMapper.toDto(userService.findByEmail(email).orElseThrow(() ->
+                new NoSuchElementException("There is no user with such email" + email)));
     }
 }
