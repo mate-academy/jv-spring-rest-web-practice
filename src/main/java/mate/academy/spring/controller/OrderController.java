@@ -45,5 +45,4 @@ public class OrderController {
         ShoppingCart shoppingCart = shoppingCartService.getByUser(userService.get(userId));
         return orderResponseMapper.toDto(orderService.completeOrder(shoppingCart));
     }
-
 }
