@@ -1,4 +1,3 @@
-
 package mate.academy.spring.model.dto.response;
 
 import java.util.List;
