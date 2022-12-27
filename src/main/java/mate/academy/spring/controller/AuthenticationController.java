@@ -16,7 +16,6 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final DtoResponseMapper<UserResponseDto, User> responseMapper;
 
-    @Autowired
     public AuthenticationController(AuthenticationService authenticationService,
                                     DtoResponseMapper<UserResponseDto, User> responseMapper) {
         this.authenticationService = authenticationService;

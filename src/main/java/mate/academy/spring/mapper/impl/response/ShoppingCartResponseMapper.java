@@ -12,11 +12,11 @@ public class ShoppingCartResponseMapper
         implements DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> {
     @Override
     public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
-        ShoppingCartResponseDto dto = new ShoppingCartResponseDto();
-        dto.setCartId(shoppingCart.getId());
-        dto.setTicketIds(shoppingCart.getTickets().stream()
+        ShoppingCartResponseDto shoppingCartResponseDto = new ShoppingCartResponseDto();
+        shoppingCartResponseDto.setCartId(shoppingCart.getId());
+        shoppingCartResponseDto.setTicketIds(shoppingCart.getTickets().stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList()));
-        return dto;
+        return shoppingCartResponseDto;
     }
 }
