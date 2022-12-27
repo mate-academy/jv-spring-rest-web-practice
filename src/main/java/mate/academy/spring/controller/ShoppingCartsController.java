@@ -22,7 +22,6 @@ public class ShoppingCartsController {
     private final MovieSessionService movieSessionService;
     private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> responseMapper;
 
-    @Autowired
     public ShoppingCartsController(ShoppingCartService shoppingCartService,
                                    UserService userService,
                                    MovieSessionService movieSessionService,
