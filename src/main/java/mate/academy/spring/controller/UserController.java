@@ -1,7 +1,7 @@
 package mate.academy.spring.controller;
 
 import java.util.Optional;
-import mate.academy.spring.mapper.impl.response.UserResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.UserService;
@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
-    private final UserResponseMapper userResponseMapper;
+    private final DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper;
 
     public UserController(UserService userService,
-                          UserResponseMapper userResponseMapper) {
+                          DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper) {
         this.userService = userService;
-        this.userResponseMapper = userResponseMapper;
+        this.userDtoResponseMapper = userDtoResponseMapper;
     }
 
     @GetMapping("/by-email")
     public UserResponseDto findByEmail(@RequestParam String email) {
         Optional<User> optionalUser = userService.findByEmail(email);
-        return userResponseMapper.toDto(optionalUser.orElseThrow(
+        return userDtoResponseMapper.toDto(optionalUser.orElseThrow(
                 () -> new RuntimeException("Can't find user with email: " + email)));
     }
 }

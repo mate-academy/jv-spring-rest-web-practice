@@ -2,7 +2,7 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
@@ -21,28 +21,30 @@ public class OrderController {
     private final OrderService orderService;
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
-    private final OrderResponseMapper orderResponseMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> orderDtoResponseMapper;
 
     public OrderController(OrderService orderService,
-                           ShoppingCartService shoppingCartService, UserService userService,
-                           OrderResponseMapper orderResponseMapper) {
+                           ShoppingCartService shoppingCartService,
+                           UserService userService,
+                           DtoResponseMapper<OrderResponseDto,
+                                   Order> orderDtoResponseMapper) {
         this.orderService = orderService;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
-        this.orderResponseMapper = orderResponseMapper;
+        this.orderDtoResponseMapper = orderDtoResponseMapper;
     }
 
     @PostMapping("/complete")
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
         ShoppingCart currentCart = shoppingCartService.getByUser(userService.get(userId));
-        return orderResponseMapper.toDto(orderService.completeOrder(currentCart));
+        return orderDtoResponseMapper.toDto(orderService.completeOrder(currentCart));
     }
 
     @GetMapping
     public List<OrderResponseDto> getOrdersHistory(@RequestParam Long userId) {
         List<Order> ordersHistory = orderService.getOrdersHistory(userService.get(userId));
         return ordersHistory.stream()
-                .map(orderResponseMapper::toDto)
+                .map(orderDtoResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
