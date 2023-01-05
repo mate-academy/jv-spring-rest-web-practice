@@ -3,13 +3,11 @@ package mate.academy.spring.model.dto.response;
 import java.time.LocalDateTime;
 import java.util.List;
 import mate.academy.spring.model.Ticket;
-import mate.academy.spring.model.User;
 
 public class OrderResponseDto {
     private Long id;
     private List<Ticket> tickets;
     private LocalDateTime orderDate;
-    private User user;
 
     public Long getId() {
         return id;
@@ -33,13 +31,5 @@ public class OrderResponseDto {
 
     public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
