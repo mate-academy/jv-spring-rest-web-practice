@@ -11,10 +11,10 @@ import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -35,8 +35,8 @@ public class OrderController {
         this.userService = userService;
     }
 
-    @PostMapping("/complete/{userId}")
-    public OrderResponseDto complete(@PathVariable Long userId,
+    @PostMapping("/complete")
+    public OrderResponseDto complete(@RequestParam Long userId,
                                           @RequestBody ShoppingCartRequestDto
                                                   shoppingCartRequestDto) {
         Order completeOrder = orderService.completeOrder(shoppingCartRequestMapper
@@ -44,8 +44,8 @@ public class OrderController {
         return orderResponseMapper.toDto(completeOrder);
     }
 
-    @GetMapping("/{userId}")
-    public List<OrderResponseDto> getHistory(@PathVariable Long userId) {
+    @GetMapping
+    public List<OrderResponseDto> getHistory(@RequestParam Long userId) {
         User user = userService.get(userId);
         List<Order> ordersHistory = orderService.getOrdersHistory(user);
         return ordersHistory.stream()
