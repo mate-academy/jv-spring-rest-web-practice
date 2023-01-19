@@ -14,4 +14,5 @@ public class MovieRequestMapper implements DtoRequestMapper<MovieRequestDto, Mov
         movie.setDescription(dto.getDescription());
         return movie;
     }
+
 }
