@@ -2,12 +2,11 @@ package mate.academy.spring.model.dto.response;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.User;
 
 public class OrderResponseDto {
     private Long id;
-    private List<Ticket> tickets;
+    private List<Long> ticketId;
     private LocalDateTime orderDate;
     private User user;
 
@@ -19,12 +18,12 @@ public class OrderResponseDto {
         this.id = id;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
+    public List<Long> getTicketId() {
+        return ticketId;
     }
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setTicketId(List<Long> ticketId) {
+        this.ticketId = ticketId;
     }
 
     public LocalDateTime getOrderDate() {
@@ -47,7 +46,7 @@ public class OrderResponseDto {
     public String toString() {
         return "Order{"
                 + " id=" + id
-                + ", tickets=" + tickets
+                + ", tickets=" + ticketId
                 + ", orderDate=" + orderDate
                 + ", user=" + user
                 + '}';
