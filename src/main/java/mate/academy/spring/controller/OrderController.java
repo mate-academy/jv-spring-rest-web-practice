@@ -35,7 +35,7 @@ public class OrderController {
     }
 
     @PostMapping("/complete/{userId}")
-    public OrderResponseDto createOrder(@PathVariable Long userId) {
+    public OrderResponseDto completeOrder(@PathVariable Long userId) {
         ShoppingCart shoppingCart = shoppingCartService.getByUser(userService.get(userId));
         Order order = orderService.completeOrder(shoppingCart);
         return orderMapper.toDto(order);
