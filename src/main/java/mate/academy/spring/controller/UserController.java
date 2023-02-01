@@ -27,7 +27,6 @@ public class UserController {
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam String email) {
         Optional<User> userOptional = userService.findByEmail(email);
-        return userOptional.isPresent()
-                ? userOptional.map(userDtoResponseMapper::toDto).get() : null;
+        return userOptional.map(userDtoResponseMapper::toDto).get();
     }
 }
