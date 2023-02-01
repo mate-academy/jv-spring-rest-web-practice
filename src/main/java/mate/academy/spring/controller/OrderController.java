@@ -43,7 +43,7 @@ public class OrderController {
         return dtoOrderResponseMapper.toDto(orderService.completeOrder(shoppingCart));
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<OrderResponseDto> getByUserId(@RequestParam String userId) {
         User user = userService.get(Long.parseLong(userId));
         return orderService.getOrdersHistory(user)
