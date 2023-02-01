@@ -6,7 +6,7 @@ import mate.academy.spring.model.User;
 
 public class ShoppingCartResponseDto {
     private Long id;
-    private List<Ticket> tickets;
+    private List<Long> ticketIds;
     private User user;
 
     public Long getId() {
