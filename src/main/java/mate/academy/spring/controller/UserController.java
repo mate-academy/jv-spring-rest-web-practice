@@ -7,8 +7,8 @@ import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,8 +24,8 @@ public class UserController {
         this.userDtoResponseMapper = userDtoResponseMapper;
     }
 
-    @GetMapping("/by-email?{email}")
-    public UserResponseDto getByEmail(@PathVariable String email) {
+    @GetMapping("/by-email")
+    public UserResponseDto getByEmail(@RequestParam String email) {
         Optional<User> userOptional = userService.findByEmail(email);
         return userOptional.isPresent()
                 ? userOptional.map(userDtoResponseMapper::toDto).get() : null;

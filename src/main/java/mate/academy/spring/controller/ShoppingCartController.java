@@ -9,9 +9,9 @@ import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -35,16 +35,16 @@ public class ShoppingCartController {
         this.shoppingCartResponseMapper = shoppingCartResponseMapper;
     }
 
-    @PutMapping("/movie-sessions?{userId}&{movieSessionId}")
-    public ShoppingCartResponseDto addMovieSessionByUserId(@PathVariable Long userId,
-                                                           @PathVariable Long movieSessionId) {
+    @PutMapping("/movie-sessions")
+    public ShoppingCartResponseDto addMovieSessionByUserId(@RequestParam Long userId,
+                                                           @RequestParam Long movieSessionId) {
         User user = userService.get(userId);
         shoppingCartService.addSession(movieSessionService.get(movieSessionId), user);
         return shoppingCartResponseMapper.toDto(shoppingCartService.getByUser(user));
     }
 
-    @GetMapping("/by-user?{userId}")
-    public ShoppingCartResponseDto getByUserId(@PathVariable Long userId) {
+    @GetMapping("/by-user")
+    public ShoppingCartResponseDto getByUserId(@RequestParam Long userId) {
         return shoppingCartResponseMapper
                 .toDto(shoppingCartService.getByUser(userService.get(userId)));
     }
