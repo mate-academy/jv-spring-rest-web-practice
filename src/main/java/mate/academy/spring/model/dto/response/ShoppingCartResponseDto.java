@@ -5,7 +5,7 @@ import mate.academy.spring.model.Ticket;
 
 public class ShoppingCartResponseDto {
     private List<Long> tickets;
-    private Long userid;
+    private Long userId;
 
     public List<Long> getTickets() {
         return tickets;
@@ -16,10 +16,10 @@ public class ShoppingCartResponseDto {
     }
 
     public Long getUserid() {
-        return userid;
+        return userId;
     }
 
     public void setUserid(Long userid) {
-        this.userid = userid;
+        this.userId = userid;
     }
 }
