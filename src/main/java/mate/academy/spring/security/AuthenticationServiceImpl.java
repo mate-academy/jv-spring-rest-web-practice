@@ -11,10 +11,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
+    private final AuthenticationService authenticationService;
     private final ShoppingCartService shoppingCartService;
 
     public AuthenticationServiceImpl(UserService userService,
+                                     AuthenticationService authenticationService,
                                      ShoppingCartService shoppingCartService) {
+        this.authenticationService = authenticationService;
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
     }
@@ -30,12 +33,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User register(String email, String password) {
-        User user = new User();
-        user.setEmail(email);
-        user.setPassword(password);
-        userService.add(user);
-        shoppingCartService.registerNewShoppingCart(user);
-        return user;
+        User registeredUser = authenticationService.register(email, password);
+        shoppingCartService.registerNewShoppingCart(registeredUser);
+        return registeredUser;
     }
 
     private boolean matchPasswords(String rawPassword, User userFromDb) {
