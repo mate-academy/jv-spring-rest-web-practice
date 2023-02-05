@@ -1,7 +1,6 @@
 package mate.academy.spring.controller;
 
 import jakarta.validation.constraints.Email;
-import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
