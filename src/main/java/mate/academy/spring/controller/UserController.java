@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
 import jakarta.validation.constraints.Email;
+import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -26,6 +27,7 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam @Email String email) {
-        return mapper.toDto(service.findByEmail(email).orElse(new User()));
+        return mapper.toDto(service.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Email " + email + " is wrong!")));
     }
 }
