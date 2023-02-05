@@ -1,7 +1,6 @@
 package mate.academy.spring.controller;
 
 import jakarta.validation.constraints.Email;
-import java.util.Optional;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -27,10 +26,6 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam @Email String email) {
-        Optional<User> userOptional = service.findByEmail(email);
-        if (userOptional.isEmpty()) {
-            return new UserResponseDto();
-        }
-        return mapper.toDto(userOptional.get());
+        return mapper.toDto(service.findByEmail(email).orElse(new User()));
     }
 }
