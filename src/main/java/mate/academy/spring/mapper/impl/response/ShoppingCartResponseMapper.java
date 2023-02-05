@@ -13,8 +13,8 @@ public class ShoppingCartResponseMapper implements
     @Override
     public ShoppingCartResponseDto toDto(ShoppingCart cart) {
         ShoppingCartResponseDto response = new ShoppingCartResponseDto();
-        response.setUserid(cart.getId());
-        response.setTickets(cart
+        response.setUserId(cart.getId());
+        response.setTicketIds(cart
                 .getTickets()
                 .stream()
                 .map(Ticket::getId)
