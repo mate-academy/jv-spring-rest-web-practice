@@ -9,7 +9,8 @@ import mate.academy.spring.service.UserService;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ShoppingCartRequestMapper implements DtoRequestMapper<ShoppingCartRequestDto, ShoppingCart> {
+public class ShoppingCartRequestMapper implements DtoRequestMapper<ShoppingCartRequestDto,
+        ShoppingCart> {
 
     private final UserService userService;
     private final TicketDao ticketDao;
