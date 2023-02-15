@@ -2,8 +2,7 @@ package mate.academy.spring.controller;
 
 import javax.validation.Valid;
 import mate.academy.spring.mapper.DtoRequestMapper;
-import mate.academy.spring.mapper.impl.request.UserRequestMapper;
-import mate.academy.spring.mapper.impl.response.UserResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -18,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final DtoRequestMapper<UserRequestDto, User> dtoRequestMapper;
-    private final UserResponseMapper dtoResponseMapper;
+    private final DtoResponseMapper<UserResponseDto, User> dtoResponseMapper;
 
     public AuthenticationController(AuthenticationService authenticationService,
-                                    UserRequestMapper dtoRequestMapper,
-                                    UserResponseMapper dtoResponseMapper) {
+                                    DtoRequestMapper<UserRequestDto, User> dtoRequestMapper,
+                                    DtoResponseMapper<UserResponseDto, User> dtoResponseMapper) {
         this.authenticationService = authenticationService;
         this.dtoRequestMapper = dtoRequestMapper;
         this.dtoResponseMapper = dtoResponseMapper;
