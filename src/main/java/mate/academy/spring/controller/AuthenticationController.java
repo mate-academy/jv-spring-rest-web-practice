@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
 import javax.validation.Valid;
+import mate.academy.spring.mapper.DtoRequestMapper;
 import mate.academy.spring.mapper.impl.request.UserRequestMapper;
 import mate.academy.spring.mapper.impl.response.UserResponseMapper;
 import mate.academy.spring.model.User;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
-    private final UserRequestMapper dtoRequestMapper;
+    private final DtoRequestMapper<UserRequestDto, User> dtoRequestMapper;
     private final UserResponseMapper dtoResponseMapper;
 
     public AuthenticationController(AuthenticationService authenticationService,

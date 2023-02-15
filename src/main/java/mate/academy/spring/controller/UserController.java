@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
 import javax.persistence.EntityNotFoundException;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.mapper.impl.response.UserResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
-    private final UserResponseMapper dtoResponseMapper;
+    private final DtoResponseMapper<UserResponseDto, User> dtoResponseMapper;
 
     public UserController(UserService userService, UserResponseMapper dtoResponseMapper) {
         this.userService = userService;

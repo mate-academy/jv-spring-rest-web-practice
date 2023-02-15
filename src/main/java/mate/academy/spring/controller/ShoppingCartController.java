@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.mapper.impl.response.ShoppingCartResponseMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.ShoppingCart;
@@ -20,7 +21,7 @@ public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
     private final MovieSessionService movieSessionService;
     private final UserService userService;
-    private final ShoppingCartResponseMapper dtoResponseMapper;
+    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> dtoResponseMapper;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   MovieSessionService movieSessionService, UserService userService,
