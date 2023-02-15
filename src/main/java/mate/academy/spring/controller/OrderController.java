@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.User;
@@ -38,7 +39,7 @@ public class OrderController {
         User user = userService.get(userId);
         return orderService.getOrdersHistory(user).stream()
                 .map(dtoResponseMapper::toDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @PostMapping("/complete")
