@@ -25,9 +25,7 @@ public class UserController {
     @GetMapping("/by-email")
     public UserResponseDto findByEmail(@RequestParam String email) {
         Optional<User> optionalUser = userService.findByEmail(email);
-        if (optionalUser.isEmpty()) {
-            throw new NoSuchElementException("User by email " + email + " doesn't exist");
-        }
-        return userResponseMapper.toDto(optionalUser.get());
+        return userResponseMapper.toDto(optionalUser.orElseThrow(() ->
+                new NoSuchElementException("User by email " + email + " doesn't exist")));
     }
 }
