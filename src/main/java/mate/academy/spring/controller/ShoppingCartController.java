@@ -1,6 +1,5 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.request.ShoppingCartRequestMapper;
 import mate.academy.spring.mapper.impl.response.ShoppingCartResponseMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.User;
@@ -17,25 +16,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
-    private final ShoppingCartRequestMapper shoppingCartRequestMapper;
     private final ShoppingCartResponseMapper shoppingCartResponseMapper;
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
     private final MovieSessionService movieSessionService;
 
-    public ShoppingCartController(ShoppingCartRequestMapper sessionDtoRequestMapper,
-                                  ShoppingCartResponseMapper sessionDtoResponseMapper,
+    public ShoppingCartController(ShoppingCartResponseMapper sessionDtoResponseMapper,
                                   ShoppingCartService shoppingCartService,
                                   UserService userService,
                                   MovieSessionService movieSessionService) {
-        this.shoppingCartRequestMapper = sessionDtoRequestMapper;
         this.shoppingCartResponseMapper = sessionDtoResponseMapper;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
         this.movieSessionService = movieSessionService;
     }
 
-    @PutMapping
+    @PutMapping("/movie-session")
     public void addMovieSession(@RequestParam Long userId,
                                 @RequestParam Long movieSessionId) {
         MovieSession movieSession = movieSessionService.get(movieSessionId);
@@ -43,7 +39,7 @@ public class ShoppingCartController {
         shoppingCartService.addSession(movieSession, user);
     }
 
-    @GetMapping
+    @GetMapping("by-user")
     public ShoppingCartResponseDto getByUserId(@RequestParam Long userId) {
         User user = userService.get(userId);
         return shoppingCartResponseMapper.toDto(shoppingCartService.getByUser(user));
