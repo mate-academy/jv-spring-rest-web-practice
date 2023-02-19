@@ -9,16 +9,6 @@ public class OrderResponseDto {
     private LocalDateTime orderDate;
     private Long userId;
 
-    public OrderResponseDto(Long id, List<Long> ticketIds, LocalDateTime orderDate, Long userId) {
-        this.id = id;
-        this.ticketIds = ticketIds;
-        this.orderDate = orderDate;
-        this.userId = userId;
-    }
-
-    public OrderResponseDto() {
-    }
-
     public Long getId() {
         return id;
     }
