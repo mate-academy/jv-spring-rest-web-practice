@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
-import mate.academy.spring.model.dto.request.OrderRequestDto;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
@@ -46,8 +45,8 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-    public OrderResponseDto complete(@RequestBody OrderRequestDto orderRequestDto) {
-        User user = userService.get(orderRequestDto.getUserId());
+    public OrderResponseDto complete(@RequestBody Long userId) {
+        User user = userService.get(userId);
         ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
         return orderResponseMapper.toDto(orderService.completeOrder(shoppingCart));
     }

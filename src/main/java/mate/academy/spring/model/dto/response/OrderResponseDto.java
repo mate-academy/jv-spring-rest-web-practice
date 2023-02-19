@@ -16,6 +16,9 @@ public class OrderResponseDto {
         this.userId = userId;
     }
 
+    public OrderResponseDto() {
+    }
+
     public Long getId() {
         return id;
     }
