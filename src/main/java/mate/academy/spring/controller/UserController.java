@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.NoSuchElementException;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -24,6 +26,6 @@ public class UserController {
     @GetMapping("/by-email")
     public UserResponseDto findByEmail(@PathVariable String email) {
         return userDtoResponseMapper.toDto(userService.findByEmail(email).orElseThrow(
-                () -> new RuntimeException("Can't find user by this email " + email)));
+                () -> new NoSuchElementException("Can't find user by this email " + email)));
     }
 }
