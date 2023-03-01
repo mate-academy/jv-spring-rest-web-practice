@@ -21,9 +21,8 @@ public class UserController {
         this.userResponseMapper = userResponseMapper;
     }
 
-    // GET: /users/by-email?email
     @GetMapping("/by-email")
-    public UserResponseDto getUserByEmail(@RequestParam String email) {
+    public UserResponseDto findByEmail(@RequestParam String email) {
         User user = userService.findByEmail(email).orElseThrow(
                 () -> new NoSuchElementException("Can't find user by email: " + email)
         );

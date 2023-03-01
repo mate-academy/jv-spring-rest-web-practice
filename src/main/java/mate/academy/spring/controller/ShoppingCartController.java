@@ -31,18 +31,15 @@ public class ShoppingCartController {
         this.movieSessionService = movieSessionService;
     }
 
-    //GET: /shopping-carts/by-user?userId
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getCart(@RequestParam Long userId) {
         ShoppingCart byUser = shoppingCartService.getByUser(userService.get(userId));
         return shoppingCartResponseMapper.toDto(byUser);
     }
 
-    //PUT: /shopping-carts/movie-sessions?userId&movieSessionId
-    @PostMapping("/movie-session")
+    @PostMapping("/movie-sessions")
     public void addMovieSession(@RequestParam Long userId, @RequestParam Long movieSessionId) {
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         movieSessionService.add(movieSession);
     }
-
 }
