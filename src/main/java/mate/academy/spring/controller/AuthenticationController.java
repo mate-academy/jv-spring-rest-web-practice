@@ -18,5 +18,4 @@ public class AuthenticationController {
     public void register(@RequestBody UserRequestDto requestDto) {
         authenticationService.register(requestDto.getEmail(), requestDto.getPassword());
     }
-
 }
