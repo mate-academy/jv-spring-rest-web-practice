@@ -32,7 +32,7 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<OrdersResponseDto> getAllOrders(@RequestParam Long userId) {
+    public List<OrdersResponseDto> getOrdersHistory(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId))
                 .stream()
                 .map(ordersResponseMapper::toDto)
