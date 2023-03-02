@@ -34,8 +34,8 @@ public class ShoppingCartController {
     }
 
     @GetMapping("by-user")
-    public ShoppingCartResponseDto getCartByUser(@RequestParam Long id) {
-        return cartDtoResponseMapper.toDto(shoppingCartService.getByUser(userService.get(id)));
+    public ShoppingCartResponseDto getCartByUser(@RequestParam Long userId) {
+        return cartDtoResponseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
     }
 
     @PutMapping("/movie-sessions")
