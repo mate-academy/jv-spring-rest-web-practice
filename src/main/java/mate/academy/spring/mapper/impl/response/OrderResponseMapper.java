@@ -14,7 +14,7 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
         OrderResponseDto orderResponseDto = new OrderResponseDto();
         orderResponseDto.setId(object.getId());
         orderResponseDto.setOrderDate(object.getOrderDate());
-        orderResponseDto.setTicketsIds(object.getTickets()
+        orderResponseDto.setTicketIds(object.getTickets()
                 .stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList()));
