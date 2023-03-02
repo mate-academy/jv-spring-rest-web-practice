@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/by-email")
-    public UserResponseDto get(@RequestParam String email) {
+    public UserResponseDto getUser(@RequestParam String email) {
         User user = userService.findByEmail(email)
                 .orElseThrow(() -> new NoSuchElementException(
                         "Can't find user by email: " + email));
