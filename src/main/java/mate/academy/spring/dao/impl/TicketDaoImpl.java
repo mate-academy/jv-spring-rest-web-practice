@@ -11,5 +11,4 @@ public class TicketDaoImpl extends AbstractDao<Ticket> implements TicketDao {
     public TicketDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
-
 }
