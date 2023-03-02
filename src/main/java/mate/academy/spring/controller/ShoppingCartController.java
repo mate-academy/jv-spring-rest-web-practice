@@ -40,7 +40,7 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/by-user")
-    public ShoppingCartResponseDto getSession(@RequestParam Long userId) {
+    public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
         User user = userService.get(userId);
         return shoppingCartDtoResponseMapper.toDto(shoppingCartService.getByUser(user));
     }
