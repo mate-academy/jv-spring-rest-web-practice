@@ -45,7 +45,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public OrderResponseDto create(@RequestParam Long userId) {
+    public OrderResponseDto complete(@RequestParam Long userId) {
         ShoppingCart userShoppingCart = shoppingCartService.getByUser(userService.get(userId));
         Order order = orderService.completeOrder(userShoppingCart);
         return movieSessionDtoResponseMapper.toDto(order);

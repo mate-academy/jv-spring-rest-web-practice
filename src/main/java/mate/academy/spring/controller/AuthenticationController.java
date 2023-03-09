@@ -5,32 +5,36 @@ import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.model.dto.response.UserResponseDto;
-import mate.academy.spring.service.UserService;
+import mate.academy.spring.security.AuthenticationService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AuthenticationController {
-    private final UserService userService;
+    private final AuthenticationService authenticationService;
     private final DtoRequestMapper<UserRequestDto, User>
             userDtoRequestMapper;
     private final DtoResponseMapper<UserResponseDto, User>
             userDtoResponseMapper;
 
     public AuthenticationController(
-            UserService userService,
+            AuthenticationService authenticationService,
             DtoRequestMapper<UserRequestDto, User> userDtoRequestMapper,
             DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper
     ) {
-        this.userService = userService;
+        this.authenticationService = authenticationService;
         this.userDtoRequestMapper = userDtoRequestMapper;
         this.userDtoResponseMapper = userDtoResponseMapper;
     }
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody UserRequestDto userRequestDto) {
-        User registeredUser = userService.add(userDtoRequestMapper.fromDto(userRequestDto));
+        User registeredUser = authenticationService.register(
+                userRequestDto.getEmail(),
+                userRequestDto.getPassword()
+        );
+
         return userDtoResponseMapper.toDto(registeredUser);
     }
 }
