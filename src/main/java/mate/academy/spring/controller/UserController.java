@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import mate.academy.spring.exception.AuthenticationException;
 import mate.academy.spring.mapper.impl.response.UserResponseMapper;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.UserService;
@@ -20,7 +21,8 @@ public class UserController {
     }
 
     @GetMapping("/by-email")
-    public UserResponseDto get(@RequestParam String email) {
-        return userResponseMapper.toDto(userService.findByEmail(email).get());
+    public UserResponseDto get(@RequestParam String email) throws AuthenticationException {
+        return userResponseMapper.toDto(userService.findByEmail(email).orElseThrow(()
+                -> new AuthenticationException("Can't find user by this email: " + email)));
     }
 }
