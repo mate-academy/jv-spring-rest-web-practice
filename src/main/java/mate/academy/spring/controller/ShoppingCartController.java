@@ -14,13 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
-
     private final ShoppingCartService shoppingCartService;
-
     private final ShoppingCartResponseMapper shoppingCartResponseMapper;
-
     private final MovieSessionService movieSessionService;
-
     private final UserService userService;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
