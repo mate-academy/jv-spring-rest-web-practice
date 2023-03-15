@@ -20,7 +20,7 @@ public class TicketDaoImpl extends AbstractDao<Ticket> implements TicketDao {
         try (Session session = sessionFactory.openSession()) {
             return Optional.ofNullable(session.get(Ticket.class, id));
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get Ticket by id, e", e);
+            throw new DataProcessingException("Can't get Ticket by id", e);
         }
     }
 }
