@@ -1,7 +1,7 @@
 package mate.academy.spring.controller;
 
 import jakarta.validation.Valid;
-import mate.academy.spring.mapper.impl.request.UserRequestMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.mapper.impl.response.UserResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRequestDto;
@@ -16,15 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/register")
 public class AuthenticationController {
-    private final UserRequestMapper userRequestMapper;
     private final AuthenticationService authenticationService;
-    private final UserResponseMapper userResponseMapper;
+    private final DtoResponseMapper<UserResponseDto, User> userResponseMapper;
 
     @Autowired
-    public AuthenticationController(UserRequestMapper userRequestMapper,
-                                    AuthenticationService authenticationService,
+    public AuthenticationController(AuthenticationService authenticationService,
                                     UserResponseMapper userResponseMapper) {
-        this.userRequestMapper = userRequestMapper;
         this.authenticationService = authenticationService;
         this.userResponseMapper = userResponseMapper;
     }
