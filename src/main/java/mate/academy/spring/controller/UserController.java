@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.mapper.impl.response.UserResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
-    private final UserResponseMapper userResponseMapper;
+    private final DtoResponseMapper<UserResponseDto, User> userResponseMapper;
 
     public UserController(UserService userService, UserResponseMapper userResponseMapper) {
         this.userService = userService;
@@ -22,7 +23,8 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto getUserByEmail(@RequestParam String email) {
-        User userFromDB = userService.findByEmail(email).get();
+        User userFromDB = userService.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Can't find user by email: " + email));
         return userResponseMapper.toDto(userFromDB);
     }
 }

@@ -17,10 +17,10 @@ public class ShoppingCartResponseMapper
         ShoppingCartResponseDto shoppingCartResponseDto = new ShoppingCartResponseDto();
         shoppingCartResponseDto.setId(shoppingCart.getId());
         List<Ticket> tickets = shoppingCart.getTickets();
-        List<Long> longList = tickets.stream()
+        List<Long> ticketIds = tickets.stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
-        shoppingCartResponseDto.setTickets(longList);
+        shoppingCartResponseDto.setTickets(ticketIds);
         return shoppingCartResponseDto;
     }
 }
