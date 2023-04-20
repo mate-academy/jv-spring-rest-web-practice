@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
-
     private final OrderService orderService;
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
-    private final DtoResponseMapper<OrderResponseDto, Order> orderResponceMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
 
     public OrderController(OrderService orderService,
                            ShoppingCartService shoppingCartService, UserService userService,
@@ -29,20 +28,20 @@ public class OrderController {
         this.orderService = orderService;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
-        this.orderResponceMapper = orderResponceMapper;
+        this.orderResponseMapper = orderResponceMapper;
     }
 
     @PostMapping("/complete")
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
         Order completedOrder = orderService
                 .completeOrder(shoppingCartService.getByUser(userService.get(userId)));
-        return orderResponceMapper.toDto(completedOrder);
+        return orderResponseMapper.toDto(completedOrder);
     }
 
     @GetMapping
     public List<OrderResponseDto> getOrdersHistory(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId))
-                .stream().map(orderResponceMapper::toDto)
+                .stream().map(orderResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
 }

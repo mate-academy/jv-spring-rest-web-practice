@@ -2,19 +2,17 @@ package mate.academy.spring.model.dto.request;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import mate.academy.spring.model.Ticket;
-import mate.academy.spring.model.User;
 
 public class OrderRequestDto {
-    private List<Ticket> tickets;
+    private List<TicketRequestDto> tickets;
     private LocalDateTime orderDate;
-    private User user;
+    private UserRequestDto user;
 
-    public List<Ticket> getTickets() {
+    public List<TicketRequestDto> getTickets() {
         return tickets;
     }
 
-    public void setTickets(List<Ticket> tickets) {
+    public void setTickets(List<TicketRequestDto> tickets) {
         this.tickets = tickets;
     }
 
@@ -26,11 +24,11 @@ public class OrderRequestDto {
         this.orderDate = orderDate;
     }
 
-    public User getUser() {
+    public UserRequestDto getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserRequestDto user) {
         this.user = user;
     }
 }
