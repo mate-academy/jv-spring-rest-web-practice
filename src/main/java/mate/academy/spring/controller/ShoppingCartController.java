@@ -34,7 +34,7 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/movie-sessions")
-    public ShoppingCartResponseDto addSession(@RequestParam Long userId,
+    public ShoppingCartResponseDto addMovieSessionToShoppingCart(@RequestParam Long userId,
                                               @RequestParam Long movieSessionId) {
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         User user = userService.get(userId);
@@ -44,7 +44,7 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/by-user")
-    public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
+    public ShoppingCartResponseDto getShoppingCartByUserId(@RequestParam Long userId) {
         User user = userService.get(userId);
         ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
         return cartDtoResponseMapper.toDto(shoppingCart);
