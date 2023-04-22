@@ -8,6 +8,7 @@ import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.ShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +16,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final TicketDao ticketDao;
     private final ShoppingCartDao shoppingCartDao;
 
+    @Autowired
     public ShoppingCartServiceImpl(TicketDao ticketDao,
                                    ShoppingCartDao shoppingCartDao) {
         this.ticketDao = ticketDao;
