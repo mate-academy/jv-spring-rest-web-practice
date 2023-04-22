@@ -2,7 +2,8 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
+import mate.academy.spring.model.Order;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
@@ -19,26 +20,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
-    private OrderService orderService;
-    private UserService userService;
-    private OrderResponseMapper orderResponseMapper;
-
-    private ShoppingCartService shoppingCartService;
+    private final OrderService orderService;
+    private final UserService userService;
+    private final ShoppingCartService shoppingCartService;
+    private final DtoResponseMapper<OrderResponseDto, Order> responseMapper;
 
     @Autowired
     public OrderController(OrderService orderService, UserService userService,
-                           OrderResponseMapper orderResponseMapper,
-                           ShoppingCartService shoppingCartService) {
+                           ShoppingCartService shoppingCartService,
+                           DtoResponseMapper<OrderResponseDto, Order> responseMapper) {
         this.orderService = orderService;
         this.userService = userService;
-        this.orderResponseMapper = orderResponseMapper;
         this.shoppingCartService = shoppingCartService;
+        this.responseMapper = responseMapper;
     }
 
     @GetMapping
     public List<OrderResponseDto> getOrderHistory(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId)).stream()
-                .map(orderResponseMapper::toDto)
+                .map(responseMapper::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -46,6 +46,6 @@ public class OrderController {
     public OrderResponseDto complete(@RequestParam Long userId) {
         User user = userService.get(userId);
         ShoppingCart cart = shoppingCartService.getByUser(user);
-        return orderResponseMapper.toDto(orderService.completeOrder(cart));
+        return responseMapper.toDto(orderService.completeOrder(cart));
     }
 }

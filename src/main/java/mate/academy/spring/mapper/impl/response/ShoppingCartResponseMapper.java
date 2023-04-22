@@ -19,7 +19,6 @@ public class ShoppingCartResponseMapper
                 .stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList()));
-        shoppingCartResponseDto.setUserId(shoppingCart.getUser().getId());
         return shoppingCartResponseDto;
     }
 }
