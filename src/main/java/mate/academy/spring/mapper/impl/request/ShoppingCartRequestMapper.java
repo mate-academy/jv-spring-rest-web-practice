@@ -3,6 +3,7 @@ package mate.academy.spring.mapper.impl.request;
 import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoRequestMapper;
 import mate.academy.spring.model.ShoppingCart;
+import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.ShoppingCartRequestDto;
 import mate.academy.spring.service.TicketService;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,10 @@ public class ShoppingCartRequestMapper implements
     @Override
     public ShoppingCart fromDto(ShoppingCartRequestDto dto) {
         ShoppingCart shoppingCart = new ShoppingCart();
-        shoppingCart.setTickets(dto.getTicketIds().stream()
+        User user = new User();
+        user.setId(dto.getUserId());
+        shoppingCart.setUser(user);
+        shoppingCart.setTickets(dto.getTicketsIds().stream()
                 .map(ticketService::get)
                 .collect(Collectors.toList()));
         return shoppingCart;
