@@ -7,7 +7,6 @@ import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +21,6 @@ public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
     private final ShoppingCartResponseMapper shoppingCartResponseMapper;
 
-    @Autowired
     public ShoppingCartController(UserService userService,
                                   MovieSessionService movieSessionService,
                                   ShoppingCartService shoppingCartService,
