@@ -7,7 +7,7 @@ public class OrderResponseDto {
     private Long id;
     private List<Long> ticketsId;
     private LocalDateTime orderDate;
-    private String userEmail;
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -33,11 +33,11 @@ public class OrderResponseDto {
         this.orderDate = orderDate;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

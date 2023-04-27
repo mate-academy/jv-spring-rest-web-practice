@@ -18,7 +18,7 @@ public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, 
                 .stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList()));
-        orderResponseDto.setUserEmail(object.getUser().getEmail());
+        orderResponseDto.setUserId(object.getUser().getId());
         return orderResponseDto;
     }
 }
