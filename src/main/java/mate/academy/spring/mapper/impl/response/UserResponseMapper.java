@@ -3,10 +3,17 @@ package mate.academy.spring.mapper.impl.response;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserResponseMapper implements DtoResponseMapper<UserResponseDto, User> {
     @Override
-    public UserResponseDto toDto(User object) {
-        return null;
+    public UserResponseDto toDto(User user) {
+        UserResponseDto userResponseDto = new UserResponseDto();
+        userResponseDto.setId(userResponseDto.getId());
+        userResponseDto.setEmail(userResponseDto.getEmail());
+        userResponseDto.setPassword(userResponseDto.getPassword());
+        userResponseDto.setSalt(userResponseDto.getSalt());
+        return userResponseDto;
     }
 }
