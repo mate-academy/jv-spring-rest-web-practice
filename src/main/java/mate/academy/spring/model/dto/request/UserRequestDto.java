@@ -1,7 +1,5 @@
 package mate.academy.spring.model.dto.request;
 
-import javax.persistence.Column;
-
 public class UserRequestDto {
     private String email;
     private String password;
