@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import java.util.NoSuchElementException;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/users")
@@ -16,7 +16,9 @@ public class UserCotroller {
     private final UserService userService;
     private final DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper;
 
-    public UserCotroller(UserService userService, DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper) {
+    public UserCotroller(UserService userService,
+                         DtoResponseMapper<UserResponseDto, User>
+                                 userDtoResponseMapper) {
         this.userService = userService;
         this.userDtoResponseMapper = userDtoResponseMapper;
     }
