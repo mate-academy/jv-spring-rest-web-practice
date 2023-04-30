@@ -5,7 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MovieRequestDto {
-    private String title;
-    private String description;
+public class UserRequestDto {
+    private String email;
+    private String password;
+    private byte[] salt;
 }

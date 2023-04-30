@@ -5,7 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CinemaHallResponseDto {
+public class UserResponseDto {
     private Long id;
-    private int capacity;
+    private String email;
+    private String password;
+    private byte[] salt;
 }
