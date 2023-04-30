@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/register")
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
@@ -17,7 +16,7 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public User register(@RequestParam UserRequestDto userRequestDto) {
         return authenticationService.register(userRequestDto.getEmail(),
                 userRequestDto.getPassword());
