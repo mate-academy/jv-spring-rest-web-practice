@@ -2,20 +2,20 @@ package mate.academy.spring.mapper.impl.response;
 
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.ShoppingCart;
-import mate.academy.spring.model.dto.response.ShopingCartResponseDto;
+import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ShoppingCartResponseMapper
-        implements DtoResponseMapper<ShopingCartResponseDto, ShoppingCart> {
+        implements DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> {
     @Override
-    public ShopingCartResponseDto toDto(ShoppingCart shoppingCart) {
-        ShopingCartResponseDto shopingCartResponseDto = new ShopingCartResponseDto();
-        shopingCartResponseDto.setId(shoppingCart.getId());
-        shopingCartResponseDto.setTicketIds(shoppingCart.getTickets()
+    public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
+        ShoppingCartResponseDto shoppingCartResponseDto = new ShoppingCartResponseDto();
+        shoppingCartResponseDto.setId(shoppingCart.getId());
+        shoppingCartResponseDto.setTicketIds(shoppingCart.getTickets()
                 .stream()
                 .map(e -> e.getId())
                 .toList());
-        return shopingCartResponseDto;
+        return shoppingCartResponseDto;
     }
 }
