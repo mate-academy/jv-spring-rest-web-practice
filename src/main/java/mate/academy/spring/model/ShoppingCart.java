@@ -21,11 +21,11 @@ public class ShoppingCart {
     @JoinColumn(name = "id")
     private User user;
 
-    public Long getId() {
+    public java.lang.Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(java.lang.Long id) {
         this.id = id;
     }
 

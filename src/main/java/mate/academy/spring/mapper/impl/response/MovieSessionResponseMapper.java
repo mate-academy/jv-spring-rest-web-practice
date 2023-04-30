@@ -1,6 +1,5 @@
 package mate.academy.spring.mapper.impl.response;
 
-import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.response.MovieSessionResponseDto;
 import org.springframework.stereotype.Component;

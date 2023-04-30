@@ -29,7 +29,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public Optional<User> get(Long id) {
+    public Optional<User> get(java.lang.Long id) {
         try (Session session = sessionFactory.openSession()) {
             return Optional.ofNullable(session.get(User.class, id));
         } catch (Exception e) {
