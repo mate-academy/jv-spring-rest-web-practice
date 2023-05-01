@@ -33,7 +33,7 @@ public class ShoppingCartController {
         this.shoppingCartDtoResponseMapper = shoppingCartDtoResponseMapper;
     }
 
-    @PutMapping({"movie-sessions"})
+    @PutMapping({"/movie-sessions"})
     public ShoppingCartResponseDto add(@RequestParam Long userId,
                                        @RequestParam Long movieSessionId) {
         User user = userService.get(userId);
