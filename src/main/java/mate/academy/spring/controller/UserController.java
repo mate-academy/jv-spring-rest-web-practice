@@ -27,6 +27,6 @@ public class UserController {
     public UserResponseDto findByEmail(@RequestParam String email) {
         return userDtoResponseMapper.toDto(userService.findByEmail(
                 email).orElseThrow(() -> new NoSuchElementException(
-                        "Can't find by email" + email)));
+                        "Can't find by email " + email)));
     }
 }
