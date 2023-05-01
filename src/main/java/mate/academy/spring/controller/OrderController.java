@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
 import mate.academy.spring.model.Order;
@@ -43,6 +44,6 @@ public class OrderController {
         return orderService.getOrdersHistory(userService.get(userId))
                 .stream()
                 .map(orderResponseMapper::toDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 }
