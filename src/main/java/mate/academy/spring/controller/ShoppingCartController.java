@@ -1,7 +1,8 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.response.ShoppingCartResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.MovieSession;
+import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
@@ -19,21 +20,22 @@ public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
     private MovieSessionService movieSessionService;
     private UserService userService;
-    private ShoppingCartResponseMapper shoppingCartResponseMapper;
+    private DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> dtoResponseMapper;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   MovieSessionService movieSessionService,
                                   UserService userService,
-                                  ShoppingCartResponseMapper shoppingCartResponseMapper) {
+                                  DtoResponseMapper<ShoppingCartResponseDto,
+                                          ShoppingCart> dtoResponseMapper) {
         this.shoppingCartService = shoppingCartService;
         this.movieSessionService = movieSessionService;
         this.userService = userService;
-        this.shoppingCartResponseMapper = shoppingCartResponseMapper;
+        this.dtoResponseMapper = dtoResponseMapper;
     }
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
-        return shoppingCartResponseMapper.toDto(
+        return dtoResponseMapper.toDto(
                 shoppingCartService.getByUser(userService.get(userId)));
     }
 
@@ -43,7 +45,7 @@ public class ShoppingCartController {
         User user = userService.get(userId);
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         shoppingCartService.addSession(movieSession, user);
-        return shoppingCartResponseMapper.toDto(
-                shoppingCartService.getByUser(userService.get(userId)));
+        return dtoResponseMapper.toDto(
+                shoppingCartService.getByUser(user));
     }
 }

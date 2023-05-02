@@ -2,7 +2,8 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
+import mate.academy.spring.model.Order;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
@@ -19,21 +20,21 @@ public class OrderController {
     private OrderService orderService;
     private UserService userService;
     private ShoppingCartService shoppingCartService;
-    private OrderResponseMapper orderResponseMapper;
+    private DtoResponseMapper<OrderResponseDto, Order> dtoResponseMapper;
 
     public OrderController(OrderService orderService,
                            UserService userService,
                            ShoppingCartService shoppingCartService,
-                           OrderResponseMapper orderResponseMapper) {
+                           DtoResponseMapper<OrderResponseDto, Order> dtoResponseMapper) {
         this.orderService = orderService;
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
-        this.orderResponseMapper = orderResponseMapper;
+        this.dtoResponseMapper = dtoResponseMapper;
     }
 
     @PostMapping("/complete")
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
-        return orderResponseMapper.toDto(
+        return dtoResponseMapper.toDto(
                 orderService.completeOrder(
                         shoppingCartService.getByUser(userService.get(userId))));
     }
@@ -41,7 +42,7 @@ public class OrderController {
     @GetMapping
     public List<OrderResponseDto> getOrderHistory(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId)).stream()
-                .map(orderResponseMapper::toDto)
+                .map(dtoResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
