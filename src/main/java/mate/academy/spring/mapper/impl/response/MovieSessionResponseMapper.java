@@ -10,11 +10,11 @@ public class MovieSessionResponseMapper implements DtoResponseMapper<MovieSessio
                                                                      MovieSession> {
     @Override
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
-        MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
-        movieSessionResponseDto.setId(movieSession.getId());
-        movieSessionResponseDto.setMovieTitle(movieSession.getMovie().getTitle());
-        movieSessionResponseDto.setShowTime(movieSession.getShowTime());
-        movieSessionResponseDto.setCinemaHallCapacity(movieSession.getCinemaHall().getCapacity());
-        return movieSessionResponseDto;
+        return new MovieSessionResponseDto(
+                movieSession.getId(),
+                movieSession.getMovie().getTitle(),
+                movieSession.getShowTime(),
+                movieSession.getCinemaHall().getCapacity()
+        );
     }
 }

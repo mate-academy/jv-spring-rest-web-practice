@@ -4,9 +4,23 @@ import java.time.LocalDateTime;
 
 public class MovieSessionResponseDto {
     private Long id;
+    private final String title;
     private String movieTitle;
     private LocalDateTime showTime;
+    private final int capacity;
     private int cinemaHallCapacity;
+
+    public MovieSessionResponseDto(
+            Long id,
+            String title,
+            LocalDateTime showTime,
+            int capacity
+    ) {
+        this.id = id;
+        this.title = title;
+        this.showTime = showTime;
+        this.capacity = capacity;
+    }
 
     public String getMovieTitle() {
         return movieTitle;
