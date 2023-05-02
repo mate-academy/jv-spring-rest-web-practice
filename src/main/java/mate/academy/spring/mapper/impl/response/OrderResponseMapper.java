@@ -10,15 +10,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, Order> {
     @Override
-    public OrderResponseDto toDto(Order object) {
+    public OrderResponseDto toDto(Order order) {
         OrderResponseDto orderResponseDto = new OrderResponseDto();
-        orderResponseDto.setOrderDate(object.getOrderDate());
-        orderResponseDto.setId(object.getId());
-        orderResponseDto.setTicketsId(object.getTickets()
+        orderResponseDto.setOrderDate(order.getOrderDate());
+        orderResponseDto.setId(order.getId());
+        orderResponseDto.setTicketsId(order.getTickets()
                 .stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList()));
-        orderResponseDto.setUserId(object.getUser().getId());
+        orderResponseDto.setUserId(order.getUser().getId());
         return orderResponseDto;
     }
 }
