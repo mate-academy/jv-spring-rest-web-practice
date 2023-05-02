@@ -33,14 +33,14 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-    public OrderResponseDto add(@RequestParam Long userId) {
+    public OrderResponseDto complete(@RequestParam Long userId) {
         User user = userService.get(userId);
         Order order = orderService.completeOrder(shoppingCartService.getByUser(user));
         return orderResponseMapper.toDto(order);
     }
 
     @GetMapping
-    public List<OrderResponseDto> gerOrders(@RequestParam Long userId) {
+    public List<OrderResponseDto> getAllByUser(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId))
                 .stream()
                 .map(orderResponseMapper::toDto)

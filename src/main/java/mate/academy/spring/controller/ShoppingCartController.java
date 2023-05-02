@@ -21,30 +21,30 @@ public class ShoppingCartController {
     private final MovieSessionService movieSessionService;
     private final UserService userService;
     private final DtoResponseMapper<ShoppingCartResponseDto,
-            ShoppingCart> shoppingCartDtoResponseMapper;
+            ShoppingCart> shoppingCartResponseMapper;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   MovieSessionService movieSessionService, UserService userService,
                                   DtoResponseMapper<ShoppingCartResponseDto,
-                                          ShoppingCart> shoppingCartDtoResponseMapper) {
+                                          ShoppingCart> shoppingCartResponseMapper) {
         this.shoppingCartService = shoppingCartService;
         this.movieSessionService = movieSessionService;
         this.userService = userService;
-        this.shoppingCartDtoResponseMapper = shoppingCartDtoResponseMapper;
+        this.shoppingCartResponseMapper = shoppingCartResponseMapper;
     }
 
     @PutMapping({"/movie-sessions"})
-    public ShoppingCartResponseDto add(@RequestParam Long userId,
-                                       @RequestParam Long movieSessionId) {
+    public ShoppingCartResponseDto addMovieSession(@RequestParam Long userId,
+                                                   @RequestParam Long movieSessionId) {
         User user = userService.get(userId);
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         shoppingCartService.addSession(movieSession, user);
-        return shoppingCartDtoResponseMapper.toDto(shoppingCartService.getByUser(user));
+        return shoppingCartResponseMapper.toDto(shoppingCartService.getByUser(user));
     }
 
     @GetMapping("/by-user")
-    public ShoppingCartResponseDto get(@RequestParam Long userId) {
-        return shoppingCartDtoResponseMapper.toDto(shoppingCartService
+    public ShoppingCartResponseDto getByUserId(@RequestParam Long userId) {
+        return shoppingCartResponseMapper.toDto(shoppingCartService
                 .getByUser(userService.get(userId)));
     }
 }
