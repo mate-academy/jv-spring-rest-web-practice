@@ -1,11 +1,10 @@
 package mate.academy.spring.model.dto.response;
 
 import java.util.List;
-import mate.academy.spring.model.Ticket;
 
 public class ShoppingCartResponseDto {
     private java.lang.Long id;
-    private List<Ticket> tickets;
+    private List<Long> ticketsIds;
 
     public java.lang.Long getId() {
         return id;
@@ -15,11 +14,11 @@ public class ShoppingCartResponseDto {
         this.id = id;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
+    public List<Long> getTicketsIds() {
+        return ticketsIds;
     }
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setTicketsIds(List<Long> ticketsIds) {
+        this.ticketsIds = ticketsIds;
     }
 }
