@@ -19,10 +19,10 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public void register(@RequestBody UserRequestDto requestDto) throws AuthenticationException {
+    public void register(@RequestBody UserRequestDto requestDto) {
         if (userService.findByEmail(requestDto.getEmail()).isEmpty()) {
             service.register(requestDto.getEmail(), requestDto.getPassword());
         }
-        throw new AuthenticationException("This email already registered!");
+        throw new RuntimeException("This email already registered!");
     }
 }
