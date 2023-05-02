@@ -27,7 +27,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public UserResponseDto save(@RequestBody UserRequestDto userRequestDto) {
-        if (userService.findByEmail(userRequestDto.getEmail()).isPresent()){
+        if (userService.findByEmail(userRequestDto.getEmail()).isPresent()) {
             throw new DataProcessingException("User with this email already exist: "
                     + userRequestDto.getEmail());
         }
