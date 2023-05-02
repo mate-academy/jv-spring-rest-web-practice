@@ -8,5 +8,5 @@ public interface UserService {
 
     Optional<User> findByEmail(String email);
 
-    User get(java.lang.Long id);
+    User get(Long id);
 }

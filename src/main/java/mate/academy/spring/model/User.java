@@ -18,11 +18,11 @@ public class User {
     private String password;
     private byte[] salt;
 
-    public java.lang.Long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(java.lang.Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
