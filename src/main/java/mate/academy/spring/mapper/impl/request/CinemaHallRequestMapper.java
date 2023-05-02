@@ -1,5 +1,6 @@
 package mate.academy.spring.mapper.impl.request;
 
+import mate.academy.spring.mapper.DtoRequestMapper;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.dto.request.CinemaHallRequestDto;
 import org.springframework.stereotype.Component;

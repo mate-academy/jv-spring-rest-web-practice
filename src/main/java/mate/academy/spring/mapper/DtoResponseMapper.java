@@ -1,4 +1,4 @@
-package mate.academy.spring.mapper.impl.response;
+package mate.academy.spring.mapper;
 
 public interface DtoResponseMapper<D, C> {
     D toDto(C object);

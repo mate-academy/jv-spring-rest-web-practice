@@ -1,6 +1,6 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.response.DtoResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
@@ -20,6 +20,17 @@ public class ShoppingCartController {
     private UserService userService;
     private DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart>
             shoppingCartResponseMapper;
+
+    public ShoppingCartController(ShoppingCartService shoppingCartService,
+                                  MovieSessionService movieSessionService,
+                                  UserService userService,
+                                  DtoResponseMapper<ShoppingCartResponseDto,
+            ShoppingCart> shoppingCartResponseMapper) {
+        this.shoppingCartService = shoppingCartService;
+        this.movieSessionService = movieSessionService;
+        this.userService = userService;
+        this.shoppingCartResponseMapper = shoppingCartResponseMapper;
+    }
 
     @PutMapping("/movie-sessions")
     public ShoppingCartResponseDto addMovieSession(@RequestParam Long userId,
