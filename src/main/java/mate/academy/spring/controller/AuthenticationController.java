@@ -1,14 +1,15 @@
 package mate.academy.spring.controller;
 
+import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.security.AuthenticationService;
 import mate.academy.spring.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/register")
+@RequestMapping
 public class AuthenticationController {
     private final UserService userService;
     private final AuthenticationService authenticationService;
@@ -19,13 +20,8 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping
-    public boolean register(@RequestParam String email, @RequestParam String password) {
-        if (userService.findByEmail(email).isPresent()) {
-            return false;
-        } else {
-            authenticationService.register(email, password);
-            return true;
-        }
+    @PostMapping("/register")
+    public void register(@RequestBody UserRequestDto dto) {
+        authenticationService.register(dto.getEmail(), dto.getPassword());
     }
 }
