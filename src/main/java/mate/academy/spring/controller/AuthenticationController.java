@@ -16,13 +16,6 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public void register(@RequestBody UserRequestDto userRequestDto) {
-        try {
-            authenticationService.register(
-                    userRequestDto.getEmail(), userRequestDto.getPassword());
-        } catch (Exception exception) {
-            throw new RuntimeException("Can't register user with email: "
-                    + userRequestDto.getEmail());
-        }
-
+        authenticationService.register(userRequestDto.getEmail(), userRequestDto.getPassword());
     }
 }
