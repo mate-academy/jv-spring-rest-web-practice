@@ -6,7 +6,6 @@ import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,6 @@ public class ShoppingCartController {
     private final ShoppingCartResponseMapper responseMapper;
     private final MovieSessionService movieSessionService;
 
-    @Autowired
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   UserService userService,
                                   ShoppingCartResponseMapper responseMapper,
@@ -39,10 +37,10 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/movie-sessions")
-    public void addMovieSession(@RequestParam Long userId,
+    public ShoppingCartResponseDto addMovieSession(@RequestParam Long userId,
                                 @RequestParam Long movieSessionId) {
-        User user = new User();
-        user.setId(userId);
+        User user = userService.get(userId);
         shoppingCartService.addSession(movieSessionService.get(movieSessionId), user);
+        return responseMapper.toDto(shoppingCartService.getByUser(user));
     }
 }

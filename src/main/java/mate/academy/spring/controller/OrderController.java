@@ -8,7 +8,7 @@ import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
-import org.springframework.beans.factory.annotation.Autowired;
+import mate.academy.spring.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,30 +20,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     private final OrderService orderService;
     private final ShoppingCartService shoppingCartService;
-    private final DtoResponseMapper<OrderResponseDto, Order> orderResponseDto;
+    private final UserService userService;
+    private final DtoResponseMapper<OrderResponseDto, Order> responseMapper;
 
-    @Autowired
     public OrderController(OrderService orderService,
                            ShoppingCartService shoppingCartService,
+                           UserService userService,
                            DtoResponseMapper<OrderResponseDto, Order> orderResponseDto) {
         this.orderService = orderService;
         this.shoppingCartService = shoppingCartService;
-        this.orderResponseDto = orderResponseDto;
+        this.userService = userService;
+        this.responseMapper = orderResponseDto;
     }
 
     @PostMapping("/complete")
-    public void complete(@RequestParam Long userId) {
-        User user = new User();
-        user.setId(userId);
-        orderService.completeOrder(shoppingCartService.getByUser(user));
+    public OrderResponseDto complete(@RequestParam Long userId) {
+        User user = userService.get(userId);
+        return responseMapper.toDto(
+                orderService.completeOrder(
+                        shoppingCartService.getByUser(user)));
     }
 
     @GetMapping()
     public List<OrderResponseDto> getOrderHistory(@RequestParam Long userId) {
-        User user = new User();
-        user.setId(userId);
+        User user = userService.get(userId);
         return orderService.getOrdersHistory(user).stream()
-                .map(orderResponseDto::toDto)
+                .map(responseMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
