@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ShoppingCartResponseMapper implements
         DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> {
-
     public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
         ShoppingCartResponseDto shoppingCartDto = new ShoppingCartResponseDto();
         List<Long> ticketsId = shoppingCart.getTickets().stream()

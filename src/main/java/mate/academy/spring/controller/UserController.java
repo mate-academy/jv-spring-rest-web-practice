@@ -25,10 +25,7 @@ public class UserController {
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam String email) throws AuthenticationException {
         Optional<User> userOptional = userService.findByEmail(email);
-        if (userOptional.isEmpty()) {
-            throw new AuthenticationException("There is no user with this email!");
-        } else {
-            return userResponseMapper.toDto(userOptional.get());
-        }
+        return userResponseMapper.toDto(userOptional.orElseThrow(
+                () -> new AuthenticationException("There is no user with this email!")));
     }
 }
