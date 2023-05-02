@@ -1,6 +1,6 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.exception.DataProcessingException;
+import java.util.NoSuchElementException;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.mapper.impl.response.UserResponseMapper;
 import mate.academy.spring.model.User;
@@ -25,7 +25,7 @@ public class UserController {
     @GetMapping("/by-email")
     public UserResponseDto get(@RequestParam String email) {
         User user = userService.findByEmail(email).orElseThrow(() ->
-                new DataProcessingException("Can't get user with email: " + email));
+                new NoSuchElementException("Can't get user with email: " + email));
         return userResponseMapper.toDto(user);
     }
 }
