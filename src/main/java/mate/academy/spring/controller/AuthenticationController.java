@@ -1,7 +1,9 @@
 package mate.academy.spring.controller;
 
+import mate.academy.spring.exception.AuthenticationException;
 import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.security.AuthenticationService;
+import mate.academy.spring.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,13 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthenticationController {
     private final AuthenticationService service;
+    private UserService userService;
 
     public AuthenticationController(AuthenticationService service) {
         this.service = service;
     }
 
     @PostMapping("/register")
-    public void register(@RequestBody UserRequestDto requestDto) {
-        service.register(requestDto.getEmail(), requestDto.getPassword());
+    public void register(@RequestBody UserRequestDto requestDto) throws AuthenticationException {
+        if (userService.findByEmail(requestDto.getEmail()).isEmpty()) {
+            service.register(requestDto.getEmail(), requestDto.getPassword());
+        }
+        throw new AuthenticationException("This email already registered!");
     }
 }
