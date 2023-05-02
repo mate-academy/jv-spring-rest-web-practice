@@ -6,7 +6,6 @@ import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
 public class ShoppingCartResponseMapper implements

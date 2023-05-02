@@ -6,7 +6,6 @@ import mate.academy.spring.model.Order;
 import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
 public class OrderResponseMapper implements DtoResponseMapper<OrderResponseDto, Order> {
