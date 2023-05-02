@@ -36,9 +36,10 @@ public class OrderController {
 
     @PostMapping("/complete")
     public OrderResponseDto add(@RequestParam Long userId) {
-        User user = userService.get(userId);
-        ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
-        return orderResponseMapper.toDto(orderService.completeOrder(shoppingCart));
+        return orderResponseMapper
+                .toDto(orderService
+                        .completeOrder(shoppingCartService
+                                .getByUser(userService.get(userId))));
     }
 
     @GetMapping
