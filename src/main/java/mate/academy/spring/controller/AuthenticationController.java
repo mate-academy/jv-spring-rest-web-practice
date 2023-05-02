@@ -13,8 +13,9 @@ public class AuthenticationController {
     private final AuthenticationService service;
     private UserService userService;
 
-    public AuthenticationController(AuthenticationService service) {
+    public AuthenticationController(AuthenticationService service, UserService userService) {
         this.service = service;
+        this.userService = userService;
     }
 
     @PostMapping("/register")
