@@ -39,7 +39,7 @@ public class OrderController {
                 shoppingCartService.getByUser(userService.get(userId))));
     }
 
-    @GetMapping
+    @GetMapping("/by-user")
     public List<OrderResponseDto> getOrderHistory(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId)).stream()
                 .map(responseMapper::toDto)
