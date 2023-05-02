@@ -19,7 +19,7 @@ public class ShoppingCartResponseDto {
         return ticketsIds;
     }
 
-    public void setTicketsId(List<Long> ticketsIds) {
+    public void setTicketsIds(List<Long> ticketsIds) {
         this.ticketsIds = ticketsIds;
     }
 
@@ -27,7 +27,7 @@ public class ShoppingCartResponseDto {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserIds(Long userId) {
         this.userId = userId;
     }
 }
