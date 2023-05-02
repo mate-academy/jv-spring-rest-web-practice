@@ -27,11 +27,12 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody UserRequestDto userRequestDto) {
-        User user = userService.findByEmail(userRequestDto.getEmail()).orElse(null);
-        if (user == null) {
-            user = authenticationService.register(userRequestDto.getEmail(),
-                    userRequestDto.getPassword());
+        if (userService.findByEmail(userRequestDto.getEmail()).isEmpty()) {
+            return userDtoResponseMapper.toDto(
+                    authenticationService.register(userRequestDto.getEmail(),
+                    userRequestDto.getPassword()));
         }
-        return userDtoResponseMapper.toDto(user);
+        return userDtoResponseMapper.toDto(
+                userService.findByEmail(userRequestDto.getEmail()).get());
     }
 }
