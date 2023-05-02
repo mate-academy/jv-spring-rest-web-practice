@@ -2,6 +2,7 @@ package mate.academy.spring.security;
 
 import java.util.Optional;
 import mate.academy.spring.exception.AuthenticationException;
+import mate.academy.spring.exception.RegistrationException;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
@@ -29,7 +30,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public User register(String email, String password) {
+    public User register(String email, String password) throws RegistrationException {
+        if (userService.findByEmail(email).isPresent()) {
+            throw new RegistrationException("This email is already taken " + email);
+        }
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
