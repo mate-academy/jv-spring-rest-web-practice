@@ -3,8 +3,6 @@ package mate.academy.spring.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
-import mate.academy.spring.model.ShoppingCart;
-import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
@@ -35,9 +33,9 @@ public class OrderController {
 
     @PostMapping("/complete")
     public OrderResponseDto completeOrder(@RequestParam Long userId) {
-        User user = userService.get(userId);
-        ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
-        return orderResponseMapper.toDto(orderService.completeOrder(shoppingCart));
+        return orderResponseMapper.toDto(
+                orderService.completeOrder(
+                        shoppingCartService.getByUser(userService.get(userId))));
     }
 
     @GetMapping

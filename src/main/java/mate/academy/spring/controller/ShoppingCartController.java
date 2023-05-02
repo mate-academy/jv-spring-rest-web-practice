@@ -1,9 +1,9 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.response.ShoppingCartMapper;
+import mate.academy.spring.mapper.impl.response.ShoppingCartResponseMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.User;
-import mate.academy.spring.model.dto.response.ShoppingCartDto;
+import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
@@ -19,29 +19,31 @@ public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
     private MovieSessionService movieSessionService;
     private UserService userService;
-    private ShoppingCartMapper shoppingCartMapper;
+    private ShoppingCartResponseMapper shoppingCartResponseMapper;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   MovieSessionService movieSessionService,
                                   UserService userService,
-                                  ShoppingCartMapper shoppingCartMapper) {
+                                  ShoppingCartResponseMapper shoppingCartResponseMapper) {
         this.shoppingCartService = shoppingCartService;
         this.movieSessionService = movieSessionService;
         this.userService = userService;
-        this.shoppingCartMapper = shoppingCartMapper;
+        this.shoppingCartResponseMapper = shoppingCartResponseMapper;
     }
 
     @GetMapping("/by-user")
-    public ShoppingCartDto getByUser(@RequestParam Long userId) {
-        return shoppingCartMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
+    public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
+        return shoppingCartResponseMapper.toDto(
+                shoppingCartService.getByUser(userService.get(userId)));
     }
 
-    @PutMapping
-    public ShoppingCartDto update(@RequestParam Long userId,
-                                  @RequestParam Long movieSessionId) {
+    @PutMapping("/movie-sessions")
+    public ShoppingCartResponseDto update(@RequestParam Long userId,
+                                          @RequestParam Long movieSessionId) {
         User user = userService.get(userId);
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         shoppingCartService.addSession(movieSession, user);
-        return shoppingCartMapper.toDto(shoppingCartService.getByUser(user));
+        return shoppingCartResponseMapper.toDto(
+                shoppingCartService.getByUser(userService.get(userId)));
     }
 }
