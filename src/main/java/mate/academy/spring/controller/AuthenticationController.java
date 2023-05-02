@@ -3,7 +3,6 @@ package mate.academy.spring.controller;
 import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.security.AuthenticationService;
 import mate.academy.spring.service.UserService;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
