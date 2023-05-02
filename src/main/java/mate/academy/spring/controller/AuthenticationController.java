@@ -27,9 +27,8 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody UserRequestDto userRequestDto) {
-        if (userService.findByEmail(userRequestDto.getEmail()).isPresent()) {
-            throw new RuntimeException("User with email: " + userRequestDto.getEmail() + " exist");
-        }
+        userService.findByEmail(userRequestDto.getEmail()).orElseThrow(() ->
+                new RuntimeException("User with email: " + userRequestDto.getEmail() + " exist"));
         User user = authenticationService
                 .register(userRequestDto.getEmail(), userRequestDto.getPassword());
         return userDtoResponseMapper.toDto(user);
