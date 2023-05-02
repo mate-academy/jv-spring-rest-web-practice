@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Order;
-import mate.academy.spring.model.ShoppingCart;
-import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
@@ -36,16 +34,13 @@ public class OrderController {
 
     @PostMapping("/complete")
     public OrderResponseDto complete(@RequestParam Long userId) {
-        User user = userService.get(userId);
-        ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
-        Order order = orderService.completeOrder(shoppingCart);
-        return orderDtoResponseMapper.toDto(order);
+        return orderDtoResponseMapper.toDto(orderService.completeOrder(
+                shoppingCartService.getByUser(userService.get(userId))));
     }
 
-    @GetMapping
+    @GetMapping("/by-user")
     public List<OrderResponseDto> getOrdersHistoryForUser(@RequestParam Long userId) {
-        User user = userService.get(userId);
-        return orderService.getOrdersHistory(user).stream()
+        return orderService.getOrdersHistory(userService.get(userId)).stream()
                 .map(orderDtoResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
