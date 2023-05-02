@@ -1,6 +1,6 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.response.UserResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRequestDto;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthenticationController {
     private final AuthenticationService authService;
-    private final UserResponseMapper userResponseMapper;
+    private final DtoResponseMapper<UserResponseDto, User> userResponseMapper;
 
     public AuthenticationController(AuthenticationService authService,
-                                    UserResponseMapper userResponseMapper) {
+                                    DtoResponseMapper<UserResponseDto, User> userResponseMapper) {
         this.authService = authService;
         this.userResponseMapper = userResponseMapper;
     }
