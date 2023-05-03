@@ -6,7 +6,7 @@ import mate.academy.spring.model.Ticket;
 
 public class OrderResponseDto {
     private Long id;
-    private List<Ticket> tickets;
+    private List<Long> ticketIds;
     private LocalDateTime orderDate;
     private Long userId;
 
@@ -18,12 +18,12 @@ public class OrderResponseDto {
         this.id = id;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
+    public List<Long> getTicketIds() {
+        return ticketIds;
     }
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setTicketIds(List<Long> ticketIds) {
+        this.ticketIds = ticketIds;
     }
 
     public LocalDateTime getOrderDate() {
