@@ -13,7 +13,6 @@ public class UserRequestMapper
         User user = new User();
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
-        user.setSalt(dto.getSalt());
         return user;
     }
 }

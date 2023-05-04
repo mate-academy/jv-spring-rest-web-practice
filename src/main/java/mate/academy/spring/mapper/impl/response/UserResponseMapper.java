@@ -13,8 +13,6 @@ public class UserResponseMapper
         UserResponseDto responseDto = new UserResponseDto();
         responseDto.setId(user.getId());
         responseDto.setEmail(user.getEmail());
-        responseDto.setPassword(user.getPassword());
-        responseDto.setSalt(user.getSalt());
         return responseDto;
     }
 }
