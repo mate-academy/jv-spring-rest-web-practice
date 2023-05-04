@@ -1,7 +1,5 @@
 package mate.academy.spring.mapper.impl.response;
 
-import java.util.ArrayList;
-import java.util.List;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.Ticket;
@@ -16,12 +14,8 @@ public class OrderResponseMapper
         OrderResponseDto responseDto = new OrderResponseDto();
         responseDto.setId(order.getId());
         responseDto.setOrderDate(order.getOrderDate());
-        List<Long> ticketId = new ArrayList<>();
-        List<Ticket> ticketList = order.getTickets();
-        for (Ticket ticket : ticketList) {
-            ticketId.add(ticket.getId());
-        }
-        responseDto.setTicketIds(ticketId);
+        responseDto.setTicketIds(order.getTickets()
+                .stream().map(Ticket::getId).toList());
         return responseDto;
     }
 }
