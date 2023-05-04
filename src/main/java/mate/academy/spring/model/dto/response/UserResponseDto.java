@@ -1,12 +1,8 @@
 package mate.academy.spring.model.dto.response;
 
-import java.util.Arrays;
-
 public class UserResponseDto {
     private Long id;
     private String email;
-    private String password;
-    private byte[] salt;
 
     public Long getId() {
         return id;
@@ -22,31 +18,5 @@ public class UserResponseDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public byte[] getSalt() {
-        return salt;
-    }
-
-    public void setSalt(byte[] salt) {
-        this.salt = salt;
-    }
-
-    @Override
-    public String toString() {
-        return "UserResponseDto{"
-                + "id=" + id + '\''
-                + ", email='" + email + '\''
-                + ", password='" + password + '\''
-                + ", salt=" + Arrays.toString(salt)
-                + '}';
     }
 }

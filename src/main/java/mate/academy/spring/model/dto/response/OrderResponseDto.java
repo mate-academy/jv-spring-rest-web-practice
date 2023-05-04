@@ -4,9 +4,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderResponseDto {
+    private Long id;
     private List<Long> ticketsId;
     private LocalDateTime orderDate;
     private Long userId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public List<Long> getTicketsId() {
         return ticketsId;
@@ -30,14 +39,5 @@ public class OrderResponseDto {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    @Override
-    public String toString() {
-        return "OrderResponseDto{"
-                + "ticketsId=" + ticketsId + '\''
-                + ", orderDate=" + orderDate + '\''
-                + ", userId=" + userId + '\''
-                + '}';
     }
 }

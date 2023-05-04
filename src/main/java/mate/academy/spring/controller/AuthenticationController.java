@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/register")
+@RequestMapping
 public class AuthenticationController {
     private final UserResponseMapper userResponseMapper;
     private final AuthenticationService authenticationService;
@@ -21,7 +21,7 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public UserResponseDto register(@RequestBody UserRequestDto userDto) {
         String email = userDto.getEmail();
         String password = userDto.getPassword();
