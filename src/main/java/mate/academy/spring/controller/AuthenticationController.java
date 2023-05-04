@@ -28,7 +28,7 @@ public class AuthenticationController {
     public UserResponseDto register(@RequestBody UserRequestDto requestDto) {
         String email = requestDto.getEmail();
         if (userService.findByEmail(email).isPresent()) {
-            throw new RuntimeException("Invalid registration data!");
+            throw new RuntimeException("User with email '" + email + "' already exists!");
         }
         User user = authService.register(email, requestDto.getPassword());
         return userResponseMapper.toDto(user);
