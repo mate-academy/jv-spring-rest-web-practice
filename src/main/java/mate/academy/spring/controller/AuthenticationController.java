@@ -20,7 +20,8 @@ public class AuthenticationController {
         try {
             authenticationService.register(userRequestDto.getEmail(), userRequestDto.getPassword());
         } catch (AuthenticationException e) {
-            throw new RuntimeException("Try to use another email " + e);
+            throw new RuntimeException("Can't register user with email: "
+                    + userRequestDto.getEmail(), e);
         }
     }
 }
