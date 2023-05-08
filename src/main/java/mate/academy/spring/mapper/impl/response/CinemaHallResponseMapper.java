@@ -10,9 +10,9 @@ public class CinemaHallResponseMapper implements DtoResponseMapper<CinemaHallRes
                                                                    CinemaHall> {
     @Override
     public CinemaHallResponseDto toDto(CinemaHall cinemaHall) {
-        CinemaHallResponseDto cinemaHallResponseDto = new CinemaHallResponseDto();
-        cinemaHallResponseDto.setId(cinemaHall.getId());
-        cinemaHallResponseDto.setCapacity(cinemaHall.getCapacity());
-        return cinemaHallResponseDto;
+        return new CinemaHallResponseDto(
+                cinemaHall.getId(),
+                cinemaHall.getCapacity()
+        );
     }
 }

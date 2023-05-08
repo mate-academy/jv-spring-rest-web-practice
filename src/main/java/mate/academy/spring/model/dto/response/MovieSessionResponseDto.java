@@ -8,6 +8,24 @@ public class MovieSessionResponseDto {
     private LocalDateTime showTime;
     private int cinemaHallCapacity;
 
+    public MovieSessionResponseDto(Long id,
+                                   String movieTitle,
+                                   LocalDateTime showTime,
+                                   int cinemaHallCapacity) {
+        this.id = id;
+        this.movieTitle = movieTitle;
+        this.showTime = showTime;
+        this.cinemaHallCapacity = cinemaHallCapacity;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getMovieTitle() {
         return movieTitle;
     }
@@ -30,13 +48,5 @@ public class MovieSessionResponseDto {
 
     public void setCinemaHallCapacity(int cinemaHallCapacity) {
         this.cinemaHallCapacity = cinemaHallCapacity;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }
