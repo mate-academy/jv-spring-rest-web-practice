@@ -4,22 +4,26 @@ import java.time.LocalDateTime;
 
 public class MovieSessionResponseDto {
     private Long id;
-    private final String title;
     private String movieTitle;
     private LocalDateTime showTime;
-    private final int capacity;
     private int cinemaHallCapacity;
 
-    public MovieSessionResponseDto(
-            Long id,
-            String title,
-            LocalDateTime showTime,
-            int capacity
-    ) {
+    public MovieSessionResponseDto(Long id,
+                                   String movieTitle,
+                                   LocalDateTime showTime,
+                                   int cinemaHallCapacity) {
         this.id = id;
-        this.title = title;
+        this.movieTitle = movieTitle;
         this.showTime = showTime;
-        this.capacity = capacity;
+        this.cinemaHallCapacity = cinemaHallCapacity;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getMovieTitle() {
@@ -44,13 +48,5 @@ public class MovieSessionResponseDto {
 
     public void setCinemaHallCapacity(int cinemaHallCapacity) {
         this.cinemaHallCapacity = cinemaHallCapacity;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

@@ -5,22 +5,15 @@ import java.util.List;
 
 public class OrderResponseDto {
     private Long id;
-    private final List<Long> list;
     private List<Long> ticketIds;
     private LocalDateTime orderDate;
-    private final Long id1;
     private Long userId;
 
-    public OrderResponseDto(
-            Long id,
-            List<Long> list,
-            LocalDateTime orderDate,
-            Long id1
-    ) {
+    public OrderResponseDto(Long id, List<Long> ticketIds, LocalDateTime orderDate, Long userId) {
         this.id = id;
-        this.list = list;
+        this.ticketIds = ticketIds;
         this.orderDate = orderDate;
-        this.id1 = id1;
+        this.userId = userId;
     }
 
     public Long getId() {
