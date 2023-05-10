@@ -5,7 +5,7 @@ import java.util.List;
 
 public class OrderResponseDto {
     private Long id;
-    private List<Long> ticketsId;
+    private List<Long> ticketIds;
     private LocalDateTime orderDate;
     private Long userId;
 
@@ -17,12 +17,12 @@ public class OrderResponseDto {
         this.id = id;
     }
 
-    public List<Long> getTicketsId() {
-        return ticketsId;
+    public List<Long> getTicketIds() {
+        return ticketIds;
     }
 
-    public void setTicketsId(List<Long> ticketsIds) {
-        this.ticketsId = ticketsIds;
+    public void setTicketIds(List<Long> ticketIds) {
+        this.ticketIds = ticketIds;
     }
 
     public LocalDateTime getOrderDate() {

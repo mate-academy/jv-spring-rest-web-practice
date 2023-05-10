@@ -2,6 +2,7 @@ package mate.academy.spring.controller;
 
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.ShoppingCart;
+import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
@@ -37,9 +38,10 @@ public class ShoppingCartController {
 
     @PostMapping("/movie-sessions")
     public ShoppingCartResponseDto addMovieSession(@RequestParam Long userId,
-                                                   Long movieSessionId) {
+                                                   @RequestParam Long movieSessionId) {
+        User user = userService.get(userId);
         shoppingCartService.addSession(
-                movieSessionService.get(movieSessionId), userService.get(userId));
-        return mapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
+                movieSessionService.get(movieSessionId), user);
+        return mapper.toDto(shoppingCartService.getByUser(user));
     }
 }
