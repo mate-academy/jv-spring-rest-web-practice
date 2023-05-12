@@ -29,14 +29,12 @@ public class ShoppingCartController {
         this.dtoResponseMapper = dtoResponseMapper;
     }
 
-    // Add movie session - PUT: /shopping-carts/movie-sessions?userId&movieSessionId
     @PutMapping("/movie-sessions")
     public void addSession(@RequestParam Long userId, @RequestParam Long movieSessionId) {
         shoppingCartService.addSession(movieSessionService.get(movieSessionId),
                 userService.get(userId));
     }
 
-    // Get by user - GET: /shopping-carts/by-user?userId
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
         return dtoResponseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
