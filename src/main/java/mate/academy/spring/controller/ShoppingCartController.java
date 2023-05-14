@@ -1,6 +1,5 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.request.ShoppingCartRequestMapper;
 import mate.academy.spring.mapper.impl.response.ShoppingCartResponseMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.User;
@@ -18,18 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
-    private ShoppingCartRequestMapper shoppingCartRequestMapper;
     private ShoppingCartResponseMapper shoppingCartResponseMapper;
     private UserService userService;
     private MovieSessionService movieSessionService;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
-                                  ShoppingCartRequestMapper shoppingCartRequestMapper,
                                   ShoppingCartResponseMapper shoppingCartResponseMapper,
                                   UserService userService,
                                   MovieSessionService movieSessionService) {
         this.shoppingCartService = shoppingCartService;
-        this.shoppingCartRequestMapper = shoppingCartRequestMapper;
         this.shoppingCartResponseMapper = shoppingCartResponseMapper;
         this.userService = userService;
         this.movieSessionService = movieSessionService;
