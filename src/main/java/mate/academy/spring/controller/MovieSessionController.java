@@ -32,8 +32,8 @@ public class MovieSessionController {
     public MovieSessionController(MovieSessionService movieSessionService,
                                   DtoRequestMapper<MovieSessionRequestDto, MovieSession>
                                           dtoRequestMapper,
-                                  DtoResponseMapper<MovieSessionResponseDto, MovieSession>
-                                          dtoResponseMapper) {
+                                  DtoResponseMapper<MovieSessionResponseDto,
+            MovieSession> dtoResponseMapper) {
         this.movieSessionService = movieSessionService;
         this.movieSessionDtoRequestMapper = dtoRequestMapper;
         this.movieSessionDtoResponseMapper = dtoResponseMapper;
@@ -41,25 +41,29 @@ public class MovieSessionController {
 
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto dto) {
-        MovieSession movieSession
-                = movieSessionService.add(movieSessionDtoRequestMapper.fromDto(dto));
+        MovieSession movieSession = movieSessionService
+                .add(movieSessionDtoRequestMapper.fromDto(dto));
         return movieSessionDtoResponseMapper.toDto(movieSession);
     }
 
     @GetMapping("/available")
     public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
-                                                          @RequestParam
-                                                          @DateTimeFormat(pattern = "dd.MM.yyyy")
-                                                            LocalDate date) {
-        return movieSessionService.findAvailableSessions(movieId, date).stream()
+                                   @RequestParam @DateTimeFormat
+                                   (pattern = "dd.MM.yyyy")
+                                    LocalDate date) {
+        return movieSessionService
+                .findAvailableSessions(movieId, date)
+                .stream()
                 .map(movieSessionDtoResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
     public void update(@PathVariable Long id,
-                       @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        MovieSession movieSession = movieSessionDtoRequestMapper.fromDto(movieSessionRequestDto);
+                       @RequestBody MovieSessionRequestDto
+                        movieSessionRequestDto) {
+        MovieSession movieSession = movieSessionDtoRequestMapper
+                .fromDto(movieSessionRequestDto);
         movieSession.setId(id);
         movieSessionService.update(movieSession);
     }
