@@ -8,8 +8,8 @@ import mate.academy.spring.model.dto.request.MovieSessionRequestDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieSessionRequestMapper
-    implements DtoRequestMapper<MovieSessionRequestDto, MovieSession> {
+public class MovieSessionRequestMapper implements DtoRequestMapper<MovieSessionRequestDto,
+                                                                   MovieSession> {
     @Override
     public MovieSession fromDto(MovieSessionRequestDto dto) {
         MovieSession movieSession = new MovieSession();
