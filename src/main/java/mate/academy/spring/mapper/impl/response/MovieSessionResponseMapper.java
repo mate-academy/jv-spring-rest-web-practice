@@ -6,8 +6,8 @@ import mate.academy.spring.model.dto.response.MovieSessionResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieSessionResponseMapper implements DtoResponseMapper<MovieSessionResponseDto,
-                                                                     MovieSession> {
+public class MovieSessionResponseMapper
+        implements DtoResponseMapper<MovieSessionResponseDto, MovieSession> {
     @Override
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();

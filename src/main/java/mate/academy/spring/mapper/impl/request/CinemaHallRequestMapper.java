@@ -6,7 +6,8 @@ import mate.academy.spring.model.dto.request.CinemaHallRequestDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CinemaHallRequestMapper implements DtoRequestMapper<CinemaHallRequestDto, CinemaHall> {
+public class CinemaHallRequestMapper
+        implements DtoRequestMapper<CinemaHallRequestDto, CinemaHall> {
     @Override
     public CinemaHall fromDto(CinemaHallRequestDto dto) {
         CinemaHall cinemaHall = new CinemaHall();
