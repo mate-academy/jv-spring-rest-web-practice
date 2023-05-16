@@ -1,6 +1,7 @@
 package mate.academy.spring.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -53,6 +54,14 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Long> getTicketIds() {
+        List<Long> ticketIds = new ArrayList<>();
+        for (Ticket ticket: tickets) {
+            ticketIds.add(ticket.getId());
+        }
+        return ticketIds;
     }
 
     @Override

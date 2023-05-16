@@ -11,8 +11,6 @@ public class UserRequestMapper implements DtoRequestMapper<UserRequestDto, User>
     public User fromDto(UserRequestDto dto) {
         User user = new User();
         user.setEmail(dto.getEmail());
-        user.setPassword(dto.getPassword());
-        user.setSalt(dto.getSalt());
         return user;
     }
 }

@@ -1,7 +1,5 @@
 package mate.academy.spring.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -24,9 +22,10 @@ public class UserController {
     }
 
     @GetMapping("/by-email")
-    public List<UserResponseDto> findByEmail(@RequestParam String email) {
+    public UserResponseDto findByEmail(@RequestParam String email) {
         return userService.findByEmail(email).stream()
                 .map(userDtoResponseMapper::toDto)
-                .collect(Collectors.toList());
+                .findFirst()
+                .orElse(null);
     }
 }
