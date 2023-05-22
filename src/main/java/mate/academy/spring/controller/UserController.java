@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.response.UserResponseMapper;
+import java.util.NoSuchElementException;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.UserService;
@@ -14,18 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
-    private final UserResponseMapper userResponseMapper;
+    private final DtoResponseMapper<UserResponseDto, User> userResponseMapper;
 
     @Autowired
     public UserController(UserService userService,
-                          UserResponseMapper userResponseMapper) {
+                          DtoResponseMapper<UserResponseDto,
+                                  User> userResponseMapper) {
         this.userService = userService;
         this.userResponseMapper = userResponseMapper;
     }
 
     @GetMapping("/by-email")
     public UserResponseDto getUser(@RequestParam String email) {
-        User user = userService.findByEmail(email).get();
+        User user = userService.findByEmail(email).orElseThrow(NoSuchElementException::new);
         return userResponseMapper.toDto(user);
     }
 }
