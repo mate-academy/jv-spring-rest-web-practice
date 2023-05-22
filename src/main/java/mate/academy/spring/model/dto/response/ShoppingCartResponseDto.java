@@ -3,7 +3,7 @@ package mate.academy.spring.model.dto.response;
 import java.util.List;
 
 public class ShoppingCartResponseDto {
-    private java.lang.Long id;
+    private Long id;
     private List<Long> ticketIds;
     private Long userId;
 
