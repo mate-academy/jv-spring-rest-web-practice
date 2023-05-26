@@ -30,7 +30,8 @@ public class OrderController {
 
     public OrderController(OrderService orderService,
                            UserService userService,
-                           ShoppingCartService shoppingCartService, DtoRequestMapper<OrderRequestDto, Order> dtoRequestMapper,
+                           ShoppingCartService shoppingCartService,
+                           DtoRequestMapper<OrderRequestDto, Order> dtoRequestMapper,
                            DtoResponseMapper<OrderResponseDto, Order> dtoResponseMapper) {
         this.orderService = orderService;
         this.userService = userService;

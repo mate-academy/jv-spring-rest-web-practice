@@ -1,13 +1,12 @@
 package mate.academy.spring.mapper.impl.request;
 
+import java.util.ArrayList;
+import java.util.List;
 import mate.academy.spring.mapper.DtoRequestMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.dto.request.OrderRequestDto;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class OrderRequestMapper implements DtoRequestMapper<OrderRequestDto, Order> {
