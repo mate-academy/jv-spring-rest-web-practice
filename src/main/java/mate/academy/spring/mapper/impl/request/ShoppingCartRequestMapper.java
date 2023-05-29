@@ -21,7 +21,7 @@ public class ShoppingCartRequestMapper
     @Override
     public ShoppingCart fromDto(ShoppingCartRequestDto dto) {
         List<Ticket> tickets = new ArrayList<>();
-        for (Long id: dto.getTicketsId()) {
+        for (Long id: dto.getTicketIds()) {
             Ticket ticket = new Ticket();
             ticket.setId(id);
             tickets.add(ticket);

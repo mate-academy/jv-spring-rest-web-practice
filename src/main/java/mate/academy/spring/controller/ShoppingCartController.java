@@ -1,21 +1,15 @@
 package mate.academy.spring.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import mate.academy.spring.mapper.DtoRequestMapper;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.ShoppingCart;
-import mate.academy.spring.model.Ticket;
 import mate.academy.spring.model.User;
-import mate.academy.spring.model.dto.request.ShoppingCartRequestDto;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,39 +21,27 @@ public class ShoppingCartController {
     private final UserService userService;
     private final MovieSessionService movieSessionService;
     private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> dtoResponseMapper;
-    private final DtoRequestMapper<ShoppingCartRequestDto, ShoppingCart> dtoRequestMapper;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   UserService userService,
                                   MovieSessionService movieSessionService,
                                   DtoResponseMapper<ShoppingCartResponseDto,
-                                          ShoppingCart> dtoResponseMapper,
-                                  DtoRequestMapper<ShoppingCartRequestDto,
-                                          ShoppingCart> dtoRequestMapper) {
+                                          ShoppingCart> dtoResponseMapper) {
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
         this.movieSessionService = movieSessionService;
         this.dtoResponseMapper = dtoResponseMapper;
-        this.dtoRequestMapper = dtoRequestMapper;
     }
 
     @PutMapping("/movie-sessions")
     public ShoppingCartResponseDto addMovieSession(@RequestParam Long userId,
-                                        @RequestParam Long movieSessionId,
-                                        @RequestBody ShoppingCartRequestDto requestDto) {
-        List<Ticket> tickets = new ArrayList<>();
-        for (Long id: requestDto.getTicketsId()) {
-            Ticket ticket = new Ticket();
-            ticket.setId(id);
-            tickets.add(ticket);
-        }
+                                        @RequestParam Long movieSessionId) {
+
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         User user = userService.get(userId);
-        ShoppingCart shoppingCart = dtoRequestMapper.fromDto(requestDto);
-        shoppingCart.setUser(user);
-        shoppingCart.setTickets(tickets);
         shoppingCartService.addSession(movieSession, user);
-        return dtoResponseMapper.toDto(shoppingCart);
+        ShoppingCart shoppingCartServiceByUser = shoppingCartService.getByUser(user);
+        return dtoResponseMapper.toDto(shoppingCartServiceByUser);
     }
 
     @GetMapping("/by-user")

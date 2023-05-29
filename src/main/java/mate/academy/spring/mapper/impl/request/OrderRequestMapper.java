@@ -13,7 +13,7 @@ public class OrderRequestMapper implements DtoRequestMapper<OrderRequestDto, Ord
     @Override
     public Order fromDto(OrderRequestDto dto) {
         List<Ticket> tickets = new ArrayList<>();
-        for (Long id: dto.getTicketsId()) {
+        for (Long id: dto.getTicketIds()) {
             Ticket ticket = new Ticket();
             ticket.setId(id);
             tickets.add(ticket);

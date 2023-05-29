@@ -4,18 +4,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderRequestDto {
-    private List<Long> ticketsId;
+    private List<Long> ticketIds;
     private LocalDateTime orderDate;
 
     public OrderRequestDto() {
     }
 
-    public List<Long> getTicketsId() {
-        return ticketsId;
+    public List<Long> getTicketIds() {
+        return ticketIds;
     }
 
-    public void setTicketsId(List<Long> tickets) {
-        this.ticketsId = tickets;
+    public void setTicketIds(List<Long> tickets) {
+        this.ticketIds = tickets;
     }
 
     public LocalDateTime getOrderDate() {
