@@ -1,6 +1,6 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.response.ShoppingCartResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
@@ -17,23 +17,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
-    private final ShoppingCartResponseMapper shoppingCartResponseMapper;
-
     private final MovieSessionService movieSessionService;
+    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart>
+                                                shoppingCartResponseMapper;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   UserService userService,
-                                  ShoppingCartResponseMapper shoppingCartResponseMapper,
-                                  MovieSessionService movieSessionService) {
+                                  MovieSessionService movieSessionService,
+                                  DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart>
+                                          dtoResponseMapper) {
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
-        this.shoppingCartResponseMapper = shoppingCartResponseMapper;
         this.movieSessionService = movieSessionService;
+        this.shoppingCartResponseMapper = dtoResponseMapper;
     }
 
     @PutMapping("/movie-sessions")
     public void addMovieSession(@RequestParam Long userId,
-                                                   @RequestParam Long movieSessionId) {
+                                @RequestParam Long movieSessionId) {
         shoppingCartService.addSession(movieSessionService.get(movieSessionId),
                 userService.get(userId));
     }
