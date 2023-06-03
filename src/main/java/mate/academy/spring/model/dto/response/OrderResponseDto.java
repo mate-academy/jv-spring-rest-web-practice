@@ -2,12 +2,10 @@ package mate.academy.spring.model.dto.response;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
 public class OrderResponseDto {
     private Long id;
-    private List<Long> ticketId;
+    private List<Long> ticketIds;
     private LocalDateTime orderDate;
     private Long userId;
 
@@ -19,12 +17,12 @@ public class OrderResponseDto {
         this.id = id;
     }
 
-    public List<Long> getTicketId() {
-        return ticketId;
+    public List<Long> getTicketIds() {
+        return ticketIds;
     }
 
     public void setTicketsId(List<Long> ticketId) {
-        this.ticketId = ticketId;
+        this.ticketIds = ticketId;
     }
 
     public LocalDateTime getOrderDate() {
