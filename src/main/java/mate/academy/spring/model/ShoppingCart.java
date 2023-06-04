@@ -1,5 +1,6 @@
 package mate.academy.spring.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,6 +32,14 @@ public class ShoppingCart {
 
     public List<Ticket> getTickets() {
         return tickets;
+    }
+
+    public List<Long> getTicketIds() {
+        List<Long> ticketIds = new ArrayList<>();
+        for (Ticket ticket: tickets) {
+            ticketIds.add(ticket.getId());
+        }
+        return ticketIds;
     }
 
     public void setTickets(List<Ticket> tickets) {
