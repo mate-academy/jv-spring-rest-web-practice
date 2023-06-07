@@ -23,7 +23,7 @@ public class ShoppingCartController {
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   DtoResponseMapper<ShoppingCartResponseDto,
-                                                                        ShoppingCart> responseMapper,
+                                      ShoppingCart> responseMapper,
                                   UserService userService,
                                   MovieSessionService movieSessionService) {
         this.shoppingCartService = shoppingCartService;

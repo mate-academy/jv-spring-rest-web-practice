@@ -20,15 +20,17 @@ public class AuthenticationController {
     private final UserResponseMapper userResponseMapper;
 
     @Autowired
-    public AuthenticationController(AuthenticationService authenticationService, UserService userService,
+    public AuthenticationController(AuthenticationService authenticationService,
+                                    UserService userService,
                                     UserResponseMapper userResponseMapper) {
         this.authenticationService = authenticationService;
         this.userService = userService;
         this.userResponseMapper = userResponseMapper;
     }
+
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody UserRequestDto userRequestDto)
-        throws AuthenticationException {
+            throws AuthenticationException {
         if (userService.findByEmail(userRequestDto.getEmail()).isEmpty()) {
             return userResponseMapper
                 .toDto(authenticationService
