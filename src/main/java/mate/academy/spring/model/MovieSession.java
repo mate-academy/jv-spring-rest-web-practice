@@ -21,6 +21,16 @@ public class MovieSession {
     private CinemaHall cinemaHall;
     private LocalDateTime showTime;
 
+    private boolean isDeleted = false;
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+
     public Long getId() {
         return id;
     }
