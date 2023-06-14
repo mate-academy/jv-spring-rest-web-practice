@@ -1,11 +1,9 @@
 package mate.academy.spring.model.dto.response;
 
-import mate.academy.spring.validation.Email;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserResponseDto {
-    @Email
     private String email;
     private Long id;
 
