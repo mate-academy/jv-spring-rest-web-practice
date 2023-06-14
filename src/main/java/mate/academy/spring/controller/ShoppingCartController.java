@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController("/shopping-carts")
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
-    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> shoppingCartResponseMapper;
+    private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart>
+            shoppingCartResponseMapper;
     private final UserService userService;
     private final MovieSessionService movieSessionService;
 
