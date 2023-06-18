@@ -1,10 +1,9 @@
 package mate.academy.spring.model.dto.request;
 
-import mate.academy.spring.model.Ticket;
-import mate.academy.spring.model.User;
-
 import java.time.LocalDateTime;
 import java.util.List;
+import mate.academy.spring.model.Ticket;
+import mate.academy.spring.model.User;
 
 public class OrderRequestDto {
     private List<Ticket> tickets;

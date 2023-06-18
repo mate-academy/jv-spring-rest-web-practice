@@ -13,7 +13,8 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final DtoResponseMapper<UserResponseDto, User> userMapper;
 
-    public AuthenticationController(AuthenticationService authenticationService, DtoResponseMapper<UserResponseDto, User> userMapper) {
+    public AuthenticationController(AuthenticationService authenticationService,
+                                    DtoResponseMapper<UserResponseDto, User> userMapper) {
         this.authenticationService = authenticationService;
         this.userMapper = userMapper;
     }

@@ -10,7 +10,11 @@ import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/shopping-carts")
@@ -23,7 +27,13 @@ public class ShoppingCartController {
     private final DtoResponseMapper<MovieSessionResponseDto, MovieSession>
             movieSessionDtoResponseMapper;
 
-    public ShoppingCartController(MovieSessionService service, UserService userService, ShoppingCartService shoppingCartService, MovieSessionService movieSessionService, DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> shoppingCartDtoResponseMapper, DtoResponseMapper<MovieSessionResponseDto, MovieSession> movieSessionDtoResponseMapper) {
+    public ShoppingCartController(UserService userService,
+                                  ShoppingCartService shoppingCartService,
+                                  MovieSessionService movieSessionService,
+                                  DtoResponseMapper<ShoppingCartResponseDto,
+                                          ShoppingCart> shoppingCartDtoResponseMapper,
+                                  DtoResponseMapper<MovieSessionResponseDto,
+                                          MovieSession> movieSessionDtoResponseMapper) {
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
         this.movieSessionService = movieSessionService;
@@ -32,7 +42,8 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/movie-sessions")
-    public MovieSessionResponseDto addMovieSession(@RequestParam Long userId, @RequestParam Long movieSessionId) {
+    public MovieSessionResponseDto addMovieSession(@RequestParam Long userId,
+                                                   @RequestParam Long movieSessionId) {
         User user = userService.get(userId);
         ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
         MovieSession movieSession = movieSessionService.get(movieSessionId);
