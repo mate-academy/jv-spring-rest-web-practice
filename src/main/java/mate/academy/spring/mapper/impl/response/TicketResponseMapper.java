@@ -8,13 +8,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class TicketResponseMapper implements DtoResponseMapper<TicketResponseDto,
         Ticket> {
+    private final UserResponseMapper userResponseMapper;
+    private final MovieSessionResponseMapper movieSessionResponseMapper;
+
+    public TicketResponseMapper(UserResponseMapper userResponseMapper,
+                                MovieSessionResponseMapper movieSessionResponseMapper) {
+        this.userResponseMapper = userResponseMapper;
+        this.movieSessionResponseMapper = movieSessionResponseMapper;
+    }
 
     @Override
     public TicketResponseDto toDto(Ticket object) {
         TicketResponseDto dto = new TicketResponseDto();
         dto.setId(object.getId());
-        UserResponseMapper userResponseMapper = new UserResponseMapper();
-        MovieSessionResponseMapper movieSessionResponseMapper = new MovieSessionResponseMapper();
 
         dto.setUserResponseDto(userResponseMapper.toDto(object.getUser()));
         dto.setMovieSessionResponseDto(movieSessionResponseMapper.toDto(object.getMovieSession()));
