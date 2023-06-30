@@ -27,5 +27,4 @@ public class AuthenticationController {
                 authenticationService.register(
                         userRequestDto.getEmail(), userRequestDto.getPassword()));
     }
-
 }
