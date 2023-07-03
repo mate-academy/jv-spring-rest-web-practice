@@ -1,8 +1,8 @@
 package mate.academy.spring.dao.impl;
 
+import jakarta.persistence.criteria.CriteriaQuery;
 import java.util.List;
 import java.util.Optional;
-import javax.persistence.criteria.CriteriaQuery;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.MovieDao;
 import mate.academy.spring.exception.DataProcessingException;
