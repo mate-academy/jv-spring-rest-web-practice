@@ -38,6 +38,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
+    public ShoppingCart getByUserId(Long userId) {
+        return shoppingCartDao.getBuUserId(userId);
+    }
+
+    @Override
     public void registerNewShoppingCart(User user) {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.setUser(user);
