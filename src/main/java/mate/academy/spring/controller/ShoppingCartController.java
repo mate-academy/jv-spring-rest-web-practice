@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.response.ShoppingCartResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
+import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
@@ -14,19 +15,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
-    private final ShoppingCartResponseMapper shoppingCartResponseMapper;
+    private final UserService userService;
     private final ShoppingCartService shoppingCartService;
     private final MovieSessionService movieSessionService;
-    private final UserService userService;
+    private final DtoResponseMapper<ShoppingCartResponseDto,
+            ShoppingCart> shoppingCartResponseMapper;
 
-    public ShoppingCartController(ShoppingCartResponseMapper shoppingCartResponseMapper,
+    public ShoppingCartController(UserService userService,
                                   ShoppingCartService shoppingCartService,
                                   MovieSessionService movieSessionService,
-                                  UserService userService) {
-        this.shoppingCartResponseMapper = shoppingCartResponseMapper;
+                                  DtoResponseMapper<ShoppingCartResponseDto,
+                                          ShoppingCart> shoppingCartResponseMapper) {
+        this.userService = userService;
         this.shoppingCartService = shoppingCartService;
         this.movieSessionService = movieSessionService;
-        this.userService = userService;
+        this.shoppingCartResponseMapper = shoppingCartResponseMapper;
     }
 
     @GetMapping("/by-user")

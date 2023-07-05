@@ -2,7 +2,8 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
+import mate.academy.spring.model.Order;
 import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
@@ -19,12 +20,12 @@ public class OrderController {
     private final OrderService orderService;
     private final UserService userService;
     private final ShoppingCartService shoppingCartService;
-    private final OrderResponseMapper orderResponseMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper;
 
     public OrderController(OrderService orderService,
                            UserService userService,
                            ShoppingCartService shoppingCartService,
-                           OrderResponseMapper orderResponseMapper) {
+                           DtoResponseMapper<OrderResponseDto, Order> orderResponseMapper) {
         this.orderService = orderService;
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
@@ -34,7 +35,8 @@ public class OrderController {
     @GetMapping
     public List<OrderResponseDto> getOrderHistory(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId)).stream()
-                .map(orderResponseMapper::toDto).collect(Collectors.toList());
+                .map(orderResponseMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @PostMapping("/complete")
