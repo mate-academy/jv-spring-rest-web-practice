@@ -7,6 +7,4 @@ public interface ShoppingCartDao extends GenericDao<ShoppingCart> {
     ShoppingCart getByUser(User user);
 
     void update(ShoppingCart shoppingCart);
-
-    ShoppingCart getBuUserId(Long userId);
 }
