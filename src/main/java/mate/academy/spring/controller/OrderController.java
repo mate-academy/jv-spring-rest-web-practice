@@ -21,7 +21,6 @@ public class OrderController {
     private final DtoResponseMapper<OrderResponseDto, Order> orderDtoResponseMapper;
     private final OrderService orderService;
     private final UserService userService;
-
     private final ShoppingCartService shoppingCartService;
 
     public OrderController(DtoResponseMapper<OrderResponseDto, Order> orderDtoResponseMapper,
@@ -34,7 +33,7 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-    public OrderResponseDto completeOrder(@RequestParam Long userId) {
+    public OrderResponseDto complete(@RequestParam Long userId) {
         ShoppingCart shoppingCart = shoppingCartService.getByUser(userService.get(userId));
         return orderDtoResponseMapper.toDto(orderService.completeOrder(shoppingCart));
     }
