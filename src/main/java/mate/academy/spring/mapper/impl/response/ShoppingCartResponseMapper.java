@@ -15,9 +15,7 @@ public class ShoppingCartResponseMapper implements DtoResponseMapper<ShoppingCar
         ShoppingCartResponseDto shoppingCartResponseDto = new ShoppingCartResponseDto();
         shoppingCartResponseDto.setId(shoppingCart.getId());
         List<Long> tickets = new ArrayList<>();
-        shoppingCart.getTickets().forEach(t -> {
-            tickets.add(t.getId());
-        });
+        shoppingCart.getTickets().forEach(t -> tickets.add(t.getId()));
         shoppingCartResponseDto.setTickets(tickets);
         return shoppingCartResponseDto;
     }
