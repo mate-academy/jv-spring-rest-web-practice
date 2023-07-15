@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -33,15 +34,15 @@ public class OrderController {
         this.orderDtoResponseMapper = orderDtoResponseMapper;
     }
 
-    @PostMapping("{/userId}")
+    @PostMapping("/{userId}")
     public OrderResponseDto completeOrder(@PathVariable Long userId) {
         User user = userService.get(userId);
         ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
         return orderDtoResponseMapper.toDto(orderService.completeOrder(shoppingCart));
     }
 
-    @GetMapping("{/userId}")
-    public List<OrderResponseDto> getOrdersHistory(@PathVariable Long userId) {
+    @GetMapping("/{userId}")
+    public List<OrderResponseDto> getOrdersHistory(@RequestParam Long userId) {
         User user = userService.get(userId);
         return orderService.getOrdersHistory(user).stream()
                 .map(orderDtoResponseMapper::toDto)

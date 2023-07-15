@@ -31,7 +31,7 @@ public class ShoppingCartController {
         this.shoppingCartResponseMapper = shoppingCartResponseMapper;
     }
 
-    @PutMapping("/movie-sessions/{/userId}{/movieSessionId}")
+    @PutMapping("/movie-sessions/{userId}/{movieSessionId}")
     public ShoppingCartResponseDto addMovieSession(@PathVariable Long userId,
                                                    @PathVariable Long movieSessionId) {
         MovieSession movieSession = movieSessionService.get(movieSessionId);
@@ -41,7 +41,7 @@ public class ShoppingCartController {
                 .toDto(shoppingCartService.getByUser(user));
     }
 
-    @GetMapping("/by-user/{/userId}")
+    @GetMapping("/by-user/{userId}")
     public ShoppingCartResponseDto getByUser(@PathVariable Long userId) {
         User user = userService.get(userId);
         return shoppingCartResponseMapper.toDto(shoppingCartService.getByUser(user));
