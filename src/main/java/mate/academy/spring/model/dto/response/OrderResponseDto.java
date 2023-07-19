@@ -5,10 +5,8 @@ import java.util.List;
 
 public class OrderResponseDto {
     private Long id;
-
     private List<Long> ticketsId;
     private LocalDateTime orderDate;
-
     private Long userId;
 
     public Long getId() {
