@@ -18,7 +18,6 @@ public class ShoppingCartResponseMapper implements
                 .stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList()));
-        responseDto.setUserId(shoppingCart.getUser().getId());
         return responseDto;
     }
 }
