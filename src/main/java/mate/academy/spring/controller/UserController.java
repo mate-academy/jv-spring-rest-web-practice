@@ -1,6 +1,5 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.request.UserRequestMapper;
 import mate.academy.spring.mapper.impl.response.UserResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
@@ -14,13 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
-    private final UserRequestMapper userRequestMapper;
     private final UserResponseMapper userResponseMapper;
 
-    public UserController(UserService userService, UserRequestMapper userRequestMapper,
-                          UserResponseMapper userResponseMapper) {
+    public UserController(UserService userService, UserResponseMapper userResponseMapper) {
         this.userService = userService;
-        this.userRequestMapper = userRequestMapper;
         this.userResponseMapper = userResponseMapper;
     }
 
