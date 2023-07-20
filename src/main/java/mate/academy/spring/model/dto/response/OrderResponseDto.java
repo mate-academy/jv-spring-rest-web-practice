@@ -7,7 +7,6 @@ public class OrderResponseDto {
     private Long id;
     private List<Long> ticketsIds;
     private LocalDateTime orderDate;
-
     private Long userId;
 
     public Long getId() {
