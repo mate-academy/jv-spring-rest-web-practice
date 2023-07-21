@@ -21,8 +21,10 @@ public class UserController {
         this.userResponseMapper = userResponseMapper;
     }
 
-    @GetMapping("/by-email/{userEmail}")
-    public UserResponseDto findByEmail(@RequestParam String email) {
-        return userResponseMapper.toDto(userService.findByEmail(email).get());
+    @GetMapping("/by-email")
+    public UserResponseDto get(@RequestParam String userEmail) {
+        return userResponseMapper.toDto(userService.findByEmail(userEmail).orElseThrow(() ->
+                new RuntimeException("Incorrect email: " + userEmail))
+        );
     }
 }
