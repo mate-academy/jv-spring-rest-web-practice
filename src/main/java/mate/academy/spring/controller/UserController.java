@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping("/by-email")
-    UserResponseDto getByEmail(@RequestParam String email) {
+    public UserResponseDto getByEmail(@RequestParam String email) {
         return userDtoResponseMapper.toDto(userService.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Invalid email: " + email)));
     }
