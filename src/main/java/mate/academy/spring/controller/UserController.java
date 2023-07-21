@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
@@ -32,7 +33,8 @@ public class UserController {
         if (userOptional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Can't find user" + email);
         } else {
-            return userResponseMapper.toDto(userOptional.get());
+            return userResponseMapper.toDto(userOptional.orElseThrow(()
+                    -> new NoSuchElementException("Can't get user by email: " + email)));
         }
     }
 }
