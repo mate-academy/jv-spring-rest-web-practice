@@ -3,7 +3,6 @@ package mate.academy.spring.dao.impl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Optional;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -14,8 +13,6 @@ import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -23,12 +20,12 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     private static final LocalTime END_OF_DAY = LocalTime.of(23, 59, 59);
 
     public MovieSessionDaoImpl(SessionFactory sessionFactory) {
-        super(sessionFactory);
+        super(sessionFactory, MovieSession.class);
     }
 
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = factory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<MovieSession> criteriaQuery =
                     criteriaBuilder.createQuery(MovieSession.class);
@@ -47,66 +44,4 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         }
     }
 
-    @Override
-    public Optional<MovieSession> get(Long id) {
-        try (Session session = sessionFactory.openSession()) {
-            Query<MovieSession> query = session.createQuery(
-                    "FROM MovieSession ms "
-                            + "JOIN FETCH ms.movie "
-                            + "JOIN FETCH ms.cinemaHall "
-                            + "WHERE ms.id = :id", MovieSession.class);
-            query.setParameter("id", id);
-            return query.uniqueResultOptional();
-        } catch (Exception e) {
-            throw new DataProcessingException("Can't get a movie session by id: " + id, e);
-        }
-    }
-
-    @Override
-    public MovieSession update(MovieSession movieSession) {
-        Session session = null;
-        Transaction transaction = null;
-        try {
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            session.update(movieSession);
-            transaction.commit();
-            return movieSession;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Could not update movie session with id "
-                    + movieSession.getId() + ". ", e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-    }
-
-    @Override
-    public boolean remove(Long id) {
-        Session session = null;
-        Transaction transaction = null;
-        try {
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            session.createQuery("delete from MovieSession where id = :id")
-                    .setParameter("id", id)
-                    .executeUpdate();
-            transaction.commit();
-            return true;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Could not remove movie session by id "
-                    + id + ". ", e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-    }
 }

@@ -14,17 +14,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     public OrderDaoImpl(SessionFactory sessionFactory) {
-        super(sessionFactory);
+        super(sessionFactory, Order.class);
     }
 
     @Override
     public List<Order> getOrdersHistory(User user) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = factory.openSession()) {
             Query<Order> query = session.createQuery("select distinct o "
                     + "from Order o "
-                    + "left join fetch o.tickets "
-                    + "left join fetch o.user "
-                    + "WHERE o.user = :user", Order.class);
+                    + "join fetch o.tickets "
+                    + "join fetch o.user "
+                    + "where o.user = :user", Order.class);
             query.setParameter("user", user);
             return query.getResultList();
         } catch (Exception e) {
