@@ -7,13 +7,9 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 @ValidPassword
 public class UserRegistrationDto {
-    @Email
-    @NotNull
-    @UniqueElements
+
     private String email;
-    @NotNull
     private String password;
-    @NotNull
     private String repeatPassword;
 
     public String getEmail() {
