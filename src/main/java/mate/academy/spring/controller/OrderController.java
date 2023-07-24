@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,8 +30,8 @@ public class OrderController {
     }
 
 
-    @PostMapping("/complete/{userId}")
-    public OrderResponseDto complete(@PathVariable Long userId) {
+    @PostMapping("/complete")
+    public OrderResponseDto complete(@RequestParam Long userId) {
         User user = new User();
         user.setId(userId);
         ShoppingCart scByUser = shoppingCartService.getByUser(user);
@@ -38,12 +39,12 @@ public class OrderController {
         return orderResponseMapper.toDto(orderFromDB);
     }
 
-    @GetMapping("/{userId}")
-    public List<OrderResponseDto> getAll(@PathVariable Long userId) {
+    @GetMapping
+    public List<OrderResponseDto> getAll(@RequestParam Long userId) {
         User user = new User();
         user.setId(userId);
         return orderService.getOrdersHistory(user).stream()
-                .map(o -> orderResponseMapper.toDto(o))
+                .map(orderResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
