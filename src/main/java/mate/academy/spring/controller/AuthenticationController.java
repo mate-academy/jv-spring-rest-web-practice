@@ -26,7 +26,7 @@ public class AuthenticationController {
     }
 
     @PostMapping
-    public UserResponseDto register(@RequestBody UserRegistrationDto dto) {
+    public UserResponseDto register(@RequestBody @Valid UserRegistrationDto dto) {
         User user = userRequestMapper.fromDto(dto);
         User userFromDB = userService.add(user);
         return userResponseMapper.toDto(userFromDB);
