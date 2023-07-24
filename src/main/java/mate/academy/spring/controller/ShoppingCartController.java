@@ -22,7 +22,9 @@ public class ShoppingCartController {
     private final MovieSessionService movieSessionService;
     private final ShoppingCartResponseMapper shoppingCartResponseMapper;
 
-    public ShoppingCartController(ShoppingCartService shoppingCartService, UserService userService, MovieSessionService movieSessionService, ShoppingCartResponseMapper shoppingCartResponseMapper) {
+    public ShoppingCartController(ShoppingCartService shoppingCartService, UserService userService,
+                                  MovieSessionService movieSessionService,
+                                  ShoppingCartResponseMapper shoppingCartResponseMapper) {
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
         this.movieSessionService = movieSessionService;

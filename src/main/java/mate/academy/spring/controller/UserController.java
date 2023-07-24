@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping("by-email")
-    public UserResponseDto getByEmail(@RequestParam String email) {
+    public UserResponseDto get(@RequestParam String email) {
         User userFromDB = userService.findByEmail(email)
                 .orElseThrow();
         return userResponseMapper.toDto(userFromDB);

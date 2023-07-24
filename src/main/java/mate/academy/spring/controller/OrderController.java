@@ -10,7 +10,6 @@ import mate.academy.spring.model.dto.response.OrderResponseDto;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,12 +22,12 @@ public class OrderController {
     private final OrderResponseMapper orderResponseMapper;
     private final OrderService orderService;
 
-    public OrderController(ShoppingCartService shoppingCartService, OrderResponseMapper orderResponseMapper, OrderService orderService) {
+    public OrderController(ShoppingCartService shoppingCartService,
+                           OrderResponseMapper orderResponseMapper, OrderService orderService) {
         this.shoppingCartService = shoppingCartService;
         this.orderResponseMapper = orderResponseMapper;
         this.orderService = orderService;
     }
-
 
     @PostMapping("/complete")
     public OrderResponseDto complete(@RequestParam Long userId) {

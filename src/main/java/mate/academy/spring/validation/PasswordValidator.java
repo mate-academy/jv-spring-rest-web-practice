@@ -1,9 +1,9 @@
 package mate.academy.spring.validation;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import mate.academy.spring.model.dto.request.UserRegistrationDto;
 
 public class PasswordValidator implements ConstraintValidator<ValidPassword, UserRegistrationDto> {

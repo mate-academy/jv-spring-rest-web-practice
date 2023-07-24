@@ -2,9 +2,7 @@ package mate.academy.spring.model.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import mate.academy.spring.validation.ValidPassword;
-import org.hibernate.validator.constraints.UniqueElements;
 
 @ValidPassword
 public class UserRegistrationDto {
