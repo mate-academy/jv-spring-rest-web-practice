@@ -9,7 +9,7 @@ public class UserRequestDto {
     @Email
     private String email;
     @NotNull
-    @Size(min = 8)
+    @Size(min = 9)
     private String password;
 
     public String getEmail() {
