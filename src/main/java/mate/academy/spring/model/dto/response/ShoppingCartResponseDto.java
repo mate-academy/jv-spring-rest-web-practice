@@ -1,7 +1,6 @@
 package mate.academy.spring.model.dto.response;
 
 import java.util.List;
-import mate.academy.spring.model.Ticket;
 
 public class ShoppingCartResponseDto {
     private Long id;
