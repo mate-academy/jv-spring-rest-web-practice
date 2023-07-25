@@ -1,8 +1,5 @@
 package mate.academy.spring.model.dto.response;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-
 public class UserResponseDto {
     private Long id;
     private String email;
