@@ -2,7 +2,7 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.mapper.impl.response.OrderResponseMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/orders")
 public class OrderController {
     private final ShoppingCartService shoppingCartService;
-    private final OrderResponseMapper orderResponseMapper;
+    private final DtoResponseMapper<OrderResponseDto, Order> dtoResponseMapper;
     private final OrderService orderService;
 
     public OrderController(ShoppingCartService shoppingCartService,
-                           OrderResponseMapper orderResponseMapper, OrderService orderService) {
+                           DtoResponseMapper<OrderResponseDto, Order> dtoResponseMapper, OrderService orderService) {
         this.shoppingCartService = shoppingCartService;
-        this.orderResponseMapper = orderResponseMapper;
+        this.dtoResponseMapper = dtoResponseMapper;
         this.orderService = orderService;
     }
 
@@ -35,7 +35,7 @@ public class OrderController {
         user.setId(userId);
         ShoppingCart scByUser = shoppingCartService.getByUser(user);
         Order orderFromDB = orderService.completeOrder(scByUser);
-        return orderResponseMapper.toDto(orderFromDB);
+        return dtoResponseMapper.toDto(orderFromDB);
     }
 
     @GetMapping
@@ -43,7 +43,7 @@ public class OrderController {
         User user = new User();
         user.setId(userId);
         return orderService.getOrdersHistory(user).stream()
-                .map(orderResponseMapper::toDto)
+                .map(dtoResponseMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
