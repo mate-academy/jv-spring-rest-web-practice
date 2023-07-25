@@ -8,8 +8,12 @@ import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("/shopping-carts")
 public class ShoppingCartController {
     private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart>
             shoppingCartDtoResponseMapper;
@@ -27,7 +31,7 @@ public class ShoppingCartController {
         this.userService = userService;
     }
 
-    @PutMapping
+    @PutMapping("/movie-sessions")
     public void addMovieSession(@RequestParam Long userId, @RequestParam Long movieSessionId) {
         shoppingCartService.addSession(movieSessionService
                         .get(movieSessionId),
