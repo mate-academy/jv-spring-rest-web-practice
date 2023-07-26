@@ -4,7 +4,6 @@ import java.util.List;
 
 public class ShoppingCartResponseDto {
     private Long id;
-
     private List<Long> ticketIds;
 
     public Long getId() {

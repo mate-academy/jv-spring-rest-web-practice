@@ -14,7 +14,9 @@ public class ShoppingCartResponseMapper
     public ShoppingCartResponseDto toDto(ShoppingCart cart) {
         ShoppingCartResponseDto dto = new ShoppingCartResponseDto();
         dto.setId(cart.getId());
-        dto.setTickets(cart.getTickets().stream().map(Ticket::getId).collect(Collectors.toList()));
+        dto.setTickets(cart.getTickets().stream()
+                .map(Ticket::getId)
+                .collect(Collectors.toList()));
         return dto;
     }
 }
