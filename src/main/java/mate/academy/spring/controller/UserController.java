@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.mapper.impl.response.UserResponseDtoMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
+import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.response.UserResponseDto;
 import mate.academy.spring.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
-    private final UserResponseDtoMapper mapper;
+    private final DtoResponseMapper<UserResponseDto, User> mapper;
 
-    public UserController(UserService userService, UserResponseDtoMapper mapper) {
+    public UserController(UserService userService,
+                          DtoResponseMapper<UserResponseDto, User> mapper) {
         this.userService = userService;
         this.mapper = mapper;
     }
