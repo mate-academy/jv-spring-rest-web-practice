@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    /*
-        - Get user by email - GET: /users/by-email?email
-    */
     private final UserService userService;
     private final DtoResponseMapper<UserResponseDto, User> userResponseDto;
 
