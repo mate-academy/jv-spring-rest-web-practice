@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import jakarta.validation.Valid;
 import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.User;
 import mate.academy.spring.model.dto.request.UserRequestDto;
@@ -20,6 +21,7 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
+    @Valid
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody UserRequestDto userRequestDto) {
         return userResponseMapper.toDto(authenticationService
