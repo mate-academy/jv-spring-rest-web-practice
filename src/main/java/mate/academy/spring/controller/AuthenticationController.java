@@ -8,23 +8,22 @@ import mate.academy.spring.security.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/register")
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper;
 
     @Autowired
     public AuthenticationController(AuthenticationService authenticationService,
-                                    DtoResponseMapper<UserResponseDto, User> userDtoResponseMapper) {
+                                    DtoResponseMapper<UserResponseDto, User>
+                                            userDtoResponseMapper) {
         this.authenticationService = authenticationService;
         this.userDtoResponseMapper = userDtoResponseMapper;
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public UserResponseDto register(
             @RequestBody AuthenticationRequestDto authenticationRequestDto) {
         User user = authenticationService.register(authenticationRequestDto.getEmail(),
