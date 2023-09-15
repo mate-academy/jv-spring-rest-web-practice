@@ -1,15 +1,13 @@
 package mate.academy.spring.model.dto.request;
 
-import java.time.LocalDateTime;
-
 public class OrderRequestDto {
-    private LocalDateTime orderDate;
+    private String orderDate;
 
-    public LocalDateTime getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDateTime orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 }
