@@ -19,6 +19,13 @@ public class Ticket {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+    public Ticket() {
+    }
+
+    public Ticket(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
