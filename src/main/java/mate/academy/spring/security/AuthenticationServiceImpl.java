@@ -29,13 +29,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public User register(String email, String password) {
-        User user = new User();
-        user.setEmail(email);
-        user.setPassword(password);
-        userService.add(user);
-        shoppingCartService.registerNewShoppingCart(user);
-        return user;
+    public User register(String email, String password) throws AuthenticationException {
+        if (!userService.findByEmail(email).isPresent()) {
+            User user = new User();
+            user.setEmail(email);
+            user.setPassword(password);
+            userService.add(user);
+            shoppingCartService.registerNewShoppingCart(user);
+            return user;
+        }
+        throw new AuthenticationException("Try to use another email");
     }
 
     private boolean matchPasswords(String rawPassword, User userFromDb) {
