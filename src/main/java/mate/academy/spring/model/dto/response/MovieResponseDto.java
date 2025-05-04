@@ -5,6 +5,12 @@ public class MovieResponseDto {
     private String title;
     private String description;
 
+    public MovieResponseDto(Long id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
+
     public String getTitle() {
         return title;
     }
