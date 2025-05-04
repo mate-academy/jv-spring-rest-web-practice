@@ -1,0 +1,65 @@
+
+    Continue working on Spring MVC. Implement the following functionality.
+
+    OrderController
+    + Complete order - POST: /orders/complete?userId
+    + Get orders history for user - GET: /orders?userId
+    AuthenticationController
+    + Register - POST: /register
+    UserController
+    + Get user by email - GET: /users/by-email?email
+    ShoppingCartController
+    + Add movie session - PUT: /shopping-carts/movie-sessions?userId&movieSessionId
+    + Get by user - GET: /shopping-carts/by-user?userId
+    We will remove userId from request parameters in the future.
+
+    ! Don't create GlobalExceptionHandler, custom validation annotations in this HW (this is not specified in the task condition)
+
+    + In order to properly use new dependencies in your project, you might need to run mvn clean package.
+    + Make your code consistent. Use the @Autowired annotation everywhere with the constructors or delete it from everywhere.
+    + Return id of entity in all response DTOs.
+    + Remember about REST resource-naming convention.
+    + In your mappers prefer setters over big constructors while converting entity to dto and vice versa.
+    + Use Stream API while working with lists in your mappers.
+    + In your MovieSessionRequest/ResponseDtos, we don’t need to pass the whole information about
+    Movie and CinemaHall - their ids will be enough.
+    + When creating a MovieSession, if you need to accept LocalDateTime in request body -
+    add jackson-datatype-jsr310 dependency to be able to parse it into MovieSessionRequestDto.
+    + Your method names in controllers and mappers should have uniform names.
+    + Be attentive with ShoppingCartController. We should use PUT HTTP, not POST when adding a movie session.
+    Don’t create redundant dtos and mappers for them.
+    What do we need to use in AuthenticationController to create User: UserService or AuthenticationService?
+
+    + Be careful which mapping should be class-level and which method-level:
+
+     Wrong:
+        @RestController
+        @RequestMapping("/register")
+        public class AuthenticationController {
+            private final AuthenticationService service;
+
+            @PostMapping
+            public void registration(@RequestBody UserRequestDto requestDto) {
+                service.register(requestDto.getEmail(), requestDto.getPassword());
+            }
+        }
+
+     + Good:
+        @RestController
+        public class AuthenticationController {
+            private final AuthenticationService service;
+
+            @PostMapping("/register")
+            public void registration(@RequestBody UserRequestDto requestDto) {
+                service.register(requestDto.getEmail(), requestDto.getPassword());
+            }
+            /*
+              We may have method with @PostMapping("/login") too.
+              So it's incorrect to add /register as class-level mapping.
+            */
+        }
+
+    + You can return information about tickets in your ShoppingCartResponseDto / OrderResponseDto in the form of List<Long> tiketIds.
+    + When choosing the fields to be returned in your ShoppingCartResponseDto, keep in mind that cartId and userId hold the same value.
+    + Don’t expose secure data in your ResponseDtos.
+    + Use DtoRequestMapper and DtoResponseMapper as types when you declare mapper fields in controllers.
