@@ -5,6 +5,4 @@ import mate.academy.spring.model.User;
 
 public interface ShoppingCartDao extends GenericDao<ShoppingCart> {
     ShoppingCart getByUser(User user);
-
-    void update(ShoppingCart shoppingCart);
 }
