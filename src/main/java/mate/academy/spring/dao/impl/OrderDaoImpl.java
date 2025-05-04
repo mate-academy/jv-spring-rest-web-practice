@@ -32,3 +32,4 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         }
     }
 }
+
