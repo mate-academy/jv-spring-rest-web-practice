@@ -32,7 +32,7 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
     }
 
     @Override
-    public void update(ShoppingCart shoppingCart) {
+    public ShoppingCart update(ShoppingCart shoppingCart) {
         Session session = null;
         Transaction transaction = null;
         try {
@@ -40,6 +40,7 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
             transaction = session.beginTransaction();
             session.update(shoppingCart);
             transaction.commit();
+            return shoppingCart;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
