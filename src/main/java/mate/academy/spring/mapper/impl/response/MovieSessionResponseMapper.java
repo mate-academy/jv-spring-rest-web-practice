@@ -13,7 +13,7 @@ public class MovieSessionResponseMapper implements DtoResponseMapper<MovieSessio
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());
         movieSessionResponseDto.setMovieTitle(movieSession.getMovie().getTitle());
-        movieSessionResponseDto.setShowTime(movieSession.getShowTime());
+        movieSessionResponseDto.setShowTime(String.valueOf(movieSession.getShowTime()));
         movieSessionResponseDto.setCinemaHallCapacity(movieSession.getCinemaHall().getCapacity());
         return movieSessionResponseDto;
     }
