@@ -3,6 +3,7 @@ package mate.academy.spring.model.dto.response;
 public class CinemaHallResponseDto {
     private Long id;
     private int capacity;
+    private String description;
 
     public int getCapacity() {
         return capacity;
@@ -18,5 +19,13 @@ public class CinemaHallResponseDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

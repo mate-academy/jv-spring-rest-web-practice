@@ -18,3 +18,4 @@ We will remove `userId` from request parameters in the future.
 _! Don't create GlobalExceptionHandler, custom validation annotations in this HW (this is not specified in the task condition)_
 
 **You can check yourself using this [checklist](https://mate-academy.github.io/jv-program-common-mistakes/java-spring/rest-practice/jv-spring-rest-practice_checklist)**
+
